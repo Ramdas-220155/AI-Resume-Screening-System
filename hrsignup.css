@@ -1,0 +1,323 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* PAGE BACKGROUND */
+
+body {
+  height: 100vh;
+
+  background: radial-gradient(circle at top, #1e1b4b, #020617 65%);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: white;
+}
+
+/* FORM CONTAINER */
+
+.signup-container {
+  width: 400px;
+
+  padding: 28px 30px;
+
+  border-radius: 14px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(14px);
+}
+
+/* HEADER */
+
+.signup-header {
+  text-align: center;
+
+  margin-bottom: 18px;
+}
+
+.signup-logo {
+  width: 55px;
+
+  margin-bottom: 6px;
+}
+
+.signup-header h1 {
+  font-size: 26px;
+
+  margin-bottom: 3px;
+}
+
+.signup-header p {
+  font-size: 13px;
+
+  color: #94a3b8;
+}
+
+/* FORM TITLE */
+
+.form-panel h2 {
+  text-align: center;
+
+  font-size: 20px;
+
+  margin-bottom: 14px;
+
+  color: #c084fc;
+}
+
+/* INPUT FIELDS */
+
+input {
+  width: 100%;
+
+  padding: 10px 12px;
+
+  border-radius: 7px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(255, 255, 255, 0.03);
+
+  color: white;
+
+  font-size: 13px;
+
+  transition: 0.25s;
+}
+
+input::placeholder {
+  color: #94a3b8;
+}
+
+input:focus {
+  outline: none;
+
+  border-color: #9333ea;
+
+  box-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
+}
+
+/* ROW LAYOUT */
+
+.name-fields,
+.company-fields,
+.otp-row {
+  display: flex;
+
+  gap: 8px;
+
+  margin-bottom: 10px;
+}
+
+/* OTP BUTTON */
+
+.otp-btn {
+  padding: 10px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background: linear-gradient(135deg, #7c3aed, #c026d3);
+
+  color: white;
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.otp-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.6);
+}
+
+/* FILE UPLOAD */
+
+.file-upload {
+  position: relative;
+
+  width: 100%;
+
+  height: 36px;
+
+  border-radius: 7px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(255, 255, 255, 0.03);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 13px;
+
+  color: #94a3b8;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.file-upload input {
+  position: absolute;
+
+  width: 100%;
+
+  height: 100%;
+
+  opacity: 0;
+
+  cursor: pointer;
+}
+
+.file-upload:hover {
+  border-color: #9333ea;
+
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* CREATE ACCOUNT BUTTON */
+
+.signup-btn {
+  display: block;
+
+  margin: 10px auto;
+
+  padding: 10px 22px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  background: linear-gradient(135deg, #7c3aed, #c026d3);
+
+  color: white;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.signup-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.5);
+}
+
+/* DIVIDER */
+
+.divider {
+  display: flex;
+
+  align-items: center;
+
+  margin: 12px 0;
+
+  font-size: 12px;
+
+  color: #94a3b8;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background: #334155;
+
+  margin: 0 8px;
+}
+
+/* GOOGLE BUTTON */
+
+.google-btn {
+  width: 100%;
+
+  padding: 9px;
+
+  border-radius: 7px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: white;
+
+  font-size: 13px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.google-btn img {
+  width: 16px;
+}
+
+.google-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+
+  border-color: #9333ea;
+}
+
+/* LOGIN TEXT */
+
+.login-text {
+  text-align: center;
+
+  margin-top: 10px;
+
+  font-size: 13px;
+
+  color: #94a3b8;
+}
+
+.login-text a {
+  color: #c084fc;
+
+  text-decoration: none;
+}
+
+.login-text a:hover {
+  text-decoration: underline;
+}
