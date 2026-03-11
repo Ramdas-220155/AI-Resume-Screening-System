@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up</title>
+    <link rel="stylesheet" href="Sign_up.css">
+</head>
+<body>
+    
+    
+    <div class="container">
+    <span class="title">Sign-up</span>
+    <p>Enter your credentials below:</p>
+    <form id="signupform" method="post" action="index.php">
+    
+        <input type="text" name="username" id="username" class="input-text" placeholder="Name" required > <br><br>
+
+        <input type="email" name="email" id="email"  class="input-text"   placeholder="Email" required> <br><br>
+        <input type="password" name="password" id="password" class="input-text"   placeholder="Password" minlength="6" required><br><br>
+        <input type="checkbox"><span class="remember-me">Remember Me</span> <br><br>
+        <button type="submit" id="submitbtn" class="sign-in-button">Sign up</button>
+    
+        <div> <p id="ErrorMsg"></p> </div> 
+
+    </form>
+   
+
+
+
+
+    </div>
+    <script src="Sign_up.js"></script>
+</body>
+</html>

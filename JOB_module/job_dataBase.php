@@ -1,11 +1,7 @@
 <?php
 
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-//$client = new MongoDB\Client("mongodb://localhost:27017");
+$date = new \MongoDB\BSON\UTCDateTime();
 
-$db = $client->resume_screening;
-
-$jobsCollection = $db->jobs;
-
-?>
+echo "MongoDB UTCDateTime working";
