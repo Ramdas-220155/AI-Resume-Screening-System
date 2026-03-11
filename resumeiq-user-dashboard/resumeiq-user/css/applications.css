@@ -1,0 +1,76 @@
+/* ============================================================
+   applications.css — My Applications Page Styles
+   ============================================================ */
+
+/* ── Mini stat cards ──────────────────────────────────── */
+.app-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  gap: 14px; margin-bottom: 24px;
+}
+.app-stat-card { padding: 18px 20px; text-align: center; }
+.app-stat-num {
+  font-family: var(--ff-head);
+  font-size: 28px; font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text; color: transparent;
+  line-height: 1;
+}
+.app-stat-label { font-family: var(--ff-head); font-size: 12px; font-weight: 600; color: var(--clr-muted); margin-top: 5px; }
+
+/* ── Toolbar ── */
+.app-toolbar {
+  display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center;
+}
+
+.search-box {
+  flex: 1; position: relative; min-width: 200px;
+}
+.search-box i {
+  position: absolute; left: 13px; top: 50%;
+  transform: translateY(-50%); color: var(--clr-muted); font-size: 14px;
+  pointer-events: none;
+}
+.search-box input {
+  width: 100%;
+  background: rgba(6,10,28,0.85); border: 1px solid var(--gb);
+  border-radius: var(--radius-sm); padding: 10px 14px 10px 40px;
+  color: var(--clr-head); font-family: var(--ff-body); font-size: 14px; outline: none;
+  transition: border-color var(--ease);
+}
+.search-box input:focus { border-color: var(--p1); }
+.search-box input::placeholder { color: var(--clr-muted); }
+
+.filter-select {
+  background: rgba(6,10,28,0.85); border: 1px solid var(--gb);
+  border-radius: var(--radius-sm); padding: 10px 14px;
+  color: var(--clr-text); font-family: var(--ff-body); font-size: 14px; outline: none;
+  cursor: pointer; min-width: 150px; transition: border-color var(--ease);
+}
+.filter-select:focus { border-color: var(--p1); }
+.filter-select option { background: var(--bg3); }
+
+/* ── Company cell ── */
+.company-cell { display: flex; align-items: center; gap: 10px; }
+.co-logo {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(192,38,211,0.1));
+  border: 1px solid rgba(124,58,237,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+
+/* ── AI insight in apps page ── */
+.app-ai-insight {
+  margin-top: 24px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .app-stats-row { grid-template-columns: 1fr 1fr; }
+  .app-toolbar { flex-direction: column; }
+  .filter-select { width: 100%; }
+}
+@media (max-width: 380px) {
+  .app-stats-row { grid-template-columns: 1fr; }
+}

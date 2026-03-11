@@ -4,7 +4,7 @@ const reviews = [
     name: "– Sarah Johnson, Hiring Manager",
   },
   {
-    text: "A well-structured portfolio that highlights technical ability and creativity. The use of modern web design principles makes it visually appealling perfectly.",
+    text: "A well-structured portfolio that highlights technical ability and creativity. The use of modern web design principles makes it visually appealing perfectly.",
     name: "– Michael Chen, Tech Recruiter",
   },
   {
@@ -15,24 +15,46 @@ const reviews = [
 
 let index = 0;
 
-function showReview() {
-  document.getElementById("reviewText").textContent = reviews[index].text;
-  document.getElementById("reviewName").textContent = reviews[index].name;
-}
+document.addEventListener("DOMContentLoaded", function () {
+  // ----------- REVIEW CAROUSEL -----------
+  const reviewText = document.getElementById("reviewText");
+  const reviewName = document.getElementById("reviewName");
 
-function nextReview() {
-  index = (index + 1) % reviews.length;
+  function showReview() {
+    reviewText.textContent = reviews[index].text;
+    reviewName.textContent = reviews[index].name;
+  }
+
+  function nextReview() {
+    index = (index + 1) % reviews.length;
+    showReview();
+  }
+
+  function prevReview() {
+    index = (index - 1 + reviews.length) % reviews.length;
+    showReview();
+  }
+
+  // Show first review
   showReview();
-}
 
-function prevReview() {
-  index = (index - 1 + reviews.length) % reviews.length;
-  showReview();
-}
-const faqItems = document.querySelectorAll(".faq-item");
+  // Attach arrow buttons
+  document.querySelector(".arrow.right").addEventListener("click", nextReview);
+  document.querySelector(".arrow.left").addEventListener("click", prevReview);
 
-faqItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    item.classList.toggle("active");
-  });
+  // ----------- DROPDOWN -----------
+  function toggleDropdown() {
+    document.getElementById("loginMenu").classList.toggle("show");
+  }
+
+  window.toggleDropdown = toggleDropdown; // make global for onclick
+
+  window.onclick = function (e) {
+    if (!e.target.matches(".login")) {
+      const dropdown = document.getElementById("loginMenu");
+      if (dropdown.classList.contains("show")) {
+        dropdown.classList.remove("show");
+      }
+    }
+  };
 });

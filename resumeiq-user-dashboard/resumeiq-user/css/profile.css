@@ -1,0 +1,126 @@
+/* ============================================================
+   profile.css — User Profile Page Styles
+   ============================================================ */
+
+/* ── Layout ── */
+.profile-layout {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 22px; align-items: start;
+}
+
+/* ── Profile sidebar card ── */
+.profile-card-left { padding: 28px 22px; text-align: center; }
+
+.prof-av-wrap {
+  position: relative; display: inline-block; margin-bottom: 14px;
+}
+.prof-av {
+  width: 88px; height: 88px; border-radius: 50%;
+  background: var(--grad);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-head); font-size: 30px; font-weight: 800; color: white;
+  border: 3px solid rgba(124,58,237,0.45);
+  box-shadow: 0 0 28px rgba(124,58,237,0.32);
+}
+.prof-av-edit {
+  position: absolute; bottom: 2px; right: 2px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--grad);
+  border: 2px solid var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: white; cursor: pointer;
+}
+
+.prof-name {
+  font-family: var(--ff-head);
+  font-size: 19px; font-weight: 800; color: var(--clr-head);
+  margin-bottom: 3px;
+}
+.prof-role { font-size: 13px; color: var(--clr-muted); margin-bottom: 18px; }
+
+/* Profile stats */
+.prof-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px;
+}
+.prof-stat {
+  padding: 11px 8px; border-radius: var(--radius-sm);
+  background: var(--glass); border: 1px solid var(--gb); text-align: center;
+}
+.prof-stat-num { font-family: var(--ff-head); font-size: 20px; font-weight: 800; color: var(--clr-head); }
+.prof-stat-lbl { font-family: var(--ff-head); font-size: 11px; color: var(--clr-muted); margin-top: 2px; }
+
+/* Skill badges */
+.skill-badges { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.skill-badge {
+  padding: 3px 11px; border-radius: 99px;
+  background: rgba(124,58,237,0.1);
+  border: 1px solid rgba(124,58,237,0.22);
+  font-family: var(--ff-head); font-size: 11px; font-weight: 700;
+  color: var(--clr-accent);
+}
+
+/* Contact list */
+.contact-list { display: flex; flex-direction: column; gap: 8px; text-align: left; }
+.contact-item {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--clr-text);
+}
+.contact-item i { font-size: 13px; color: var(--clr-muted); width: 14px; flex-shrink: 0; }
+
+/* Completeness bar */
+.completeness-bar-wrap { margin: 14px 0; }
+.completeness-label {
+  display: flex; justify-content: space-between;
+  font-family: var(--ff-head); font-size: 12px; font-weight: 700;
+  color: var(--clr-muted); margin-bottom: 6px;
+}
+.completeness-track {
+  height: 6px; background: rgba(255,255,255,0.07);
+  border-radius: 99px; overflow: hidden;
+}
+.completeness-fill {
+  height: 100%; border-radius: 99px;
+  background: var(--grad);
+  transition: width 1s ease;
+}
+
+/* ── Right column cards ── */
+.profile-form-card { padding: 26px 28px; }
+.pfc-title {
+  font-family: var(--ff-head);
+  font-size: 16px; font-weight: 700; color: var(--clr-head);
+  margin-bottom: 20px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--gb);
+  display: flex; align-items: center; gap: 9px;
+}
+.pfc-title i { font-size: 15px; color: var(--p1); }
+
+.form-actions {
+  display: flex; gap: 12px; margin-top: 22px;
+  padding-top: 18px; border-top: 1px solid var(--gb);
+}
+
+/* Password strength */
+.pwd-strength { margin: 10px 0; }
+.pwd-strength-label {
+  font-family: var(--ff-head); font-size: 12px; color: var(--clr-muted); margin-bottom: 5px;
+}
+.pwd-bars { display: flex; gap: 4px; }
+.pwd-bar { flex: 1; height: 4px; border-radius: 99px; background: rgba(255,255,255,0.07); }
+.pwd-bar.active { background: var(--green); }
+.pwd-strength-text { font-family: var(--ff-head); font-size: 11px; color: var(--green); margin-top: 4px; }
+
+/* Notif prefs */
+.notif-pref-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.notif-pref-item:last-child { border-bottom: none; }
+.notif-pref-label { font-family: var(--ff-head); font-size: 14px; font-weight: 600; color: var(--clr-head); }
+.notif-pref-sub   { font-size: 12px; color: var(--clr-muted); margin-top: 2px; }
+input[type="checkbox"] { accent-color: var(--p1); width: 17px; height: 17px; cursor: pointer; }
+
+/* ── Responsive ── */
+@media (max-width: 1000px) {
+  .profile-layout { grid-template-columns: 1fr; }
+}

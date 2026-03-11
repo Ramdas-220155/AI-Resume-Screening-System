@@ -208,26 +208,26 @@ Upload a job description and let AI evaluate resumes automatically.
 <nav class="navbar">
 
 <div class="logo-container">
-<img src="logo.png" class="logo-img">
-<div class="logo-text">HireMind</div>
+
+<div class="logo-text">RESUMEIQ</div>
 </div>
 
 <ul class="nav-links">
 
 <li><a href="#features">Features</a></li>
-<li><a href="#how it works">How it Works</a></li>
+<li><a href="#how-it-works">How it Works</a></li>
 <li><a href="#">Contact</a></li>
 </ul>
 
 <div class="nav-buttons">
 <div class="login-dropdown">
 
-<button class="login">Login ▾</button>
+<button class="login" onclick="toggleDropdown()">Login ▾</button>
 
 <div class="login-menu">
 
-<a href="#">HR Login</a>
-<a href="#">User Login</a>
+<a href="hrlogin.html">HR Login</a>
+<a href="userlogin.html">User Login</a>
 
 </div>
 
@@ -255,7 +255,7 @@ and build the perfect shortlist in seconds.
 
 <div class="hero-buttons">
 
-<button class="primary-btn">Start Screening</button>
+<button class="primary-btn" id ="startBtn" onclick="location.href='userlogin.html'">Start Screening</button>
 
 
 
@@ -353,7 +353,7 @@ and build the perfect shortlist in seconds.
 
     <p>
       Transform your recruitment process with AI-powered resume screening.
-      HireMind analyzes thousands of resumes instantly, identifies the best
+      ResumeIQ analyzes thousands of resumes instantly, identifies the best
       candidates, and helps your team focus on what matters most — finding
       the perfect talent faster and more efficiently.
     </p>
@@ -361,9 +361,9 @@ and build the perfect shortlist in seconds.
   </div>
 </section>
 
-<section class="how-it-works" id = "how it works">
+<section class="how-it-works" id = "how-it-works">
   <div class="container">
-    <h2>How HireMind Works</h2>
+    <h2>How ResumeIQ Works</h2>
 
     <div class="steps">
 
@@ -456,84 +456,7 @@ and build the perfect shortlist in seconds.
   </div>
 
 </section>
-<section class="benefits-section">
-  <div class="container">
 
-    <h2>Why teams choose HireMind</h2>
-
-    <div class="benefits-grid">
-
-      <div class="benefit-card">
-        <h3>Faster Resume Screening</h3>
-        <p>
-          HireMind scans and analyzes hundreds of resumes within seconds,
-          helping recruiters quickly identify the most qualified candidates
-          without spending hours reviewing applications manually.
-        </p>
-      </div>
-
-      <div class="benefit-card">
-        <h3>AI-Powered Candidate Matching</h3>
-        <p>
-          Our intelligent algorithms evaluate skills, experience, and job
-          requirements to match candidates with the most relevant roles,
-          ensuring better hiring decisions and stronger teams.
-        </p>
-      </div>
-
-      <div class="benefit-card">
-        <h3>Save Time for What Matters</h3>
-        <p>
-          By automating the initial screening process, HireMind allows your
-          hiring team to focus on interviews, candidate engagement, and
-          selecting the best talent for your organization.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-<!-- AI HIRING INTELLIGENCE -->
-<section class="faq">
-  <div class="container">
-    <h2>Frequently Asked Questions</h2>
-
-    <div class="faq-item">
-      <h3>How does AI resume screening work?</h3>
-      <p>
-        HireMind analyzes resumes using AI algorithms that evaluate
-        skills, experience, and job requirements to identify the best
-        matching candidates.
-      </p>
-    </div>
-
-    <div class="faq-item">
-      <h3>Is candidate data secure?</h3>
-      <p>
-        Yes. HireMind follows strict security standards to ensure that
-        all candidate data and recruitment information remain protected.
-      </p>
-    </div>
-
-    <div class="faq-item">
-      <h3>Can HireMind integrate with our recruitment tools?</h3>
-      <p>
-        HireMind is designed to work alongside modern recruitment
-        platforms and ATS systems to streamline your hiring workflow.
-      </p>
-    </div>
-
-    <div class="faq-item">
-      <h3>How accurate is the AI candidate matching?</h3>
-      <p>
-        Our AI evaluates multiple factors including skills, experience,
-        and job fit to provide highly accurate candidate recommendations.
-      </p>
-    </div>
-
-  </div>
-</section>
 
 <!-- FOOTER -->
 <!-- AI CHATBOT ICON -->
@@ -541,7 +464,8 @@ and build the perfect shortlist in seconds.
 <div class="chatbot-container">
 
 <div class="chatbot-icon">
-💬<!--<img src="icons/chatbot.png">-->
+<!--<img src="icons/chatbot.png">-->
+ <i class="fa-solid fa-robot" style="margin-right:5px;color: #7c3aed;"></i>
 </div>
 
 </div>
@@ -550,7 +474,7 @@ and build the perfect shortlist in seconds.
 <div class="footer-container">
 
 <div class="footer-logo">
-<h3>HireMind</h3>
+<h3>ResumeIQ</h3>
 <p>AI-powered resume screening for modern recruiters.</p>
 </div>
 
@@ -578,11 +502,11 @@ and build the perfect shortlist in seconds.
 </div>
 
 <p class="copyright">
-© 2026 HireMind. All rights reserved.
+© 2026 ResumeIQ. All rights reserved.
 </p>
 
 </footer>
-
-</body>
 <script src="resume.js"></script>
+</body>
+
 </html>

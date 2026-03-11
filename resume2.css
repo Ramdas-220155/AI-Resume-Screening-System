@@ -169,79 +169,82 @@ section p {
 
 /* LOGIN BUTTON */
 
-.login {
-  padding: 10px 24px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-  transition: 0.3s;
+.nav-buttons {
+  position: relative;
+}
+.nav-buttons {
+  position: relative;
 }
 
-.login:hover {
-  background: linear-gradient(135deg, var(--primary), var(--primary3));
-  color: white;
-}
-
-/* LOGIN DROPDOWN */
-
+/* dropdown container */
 .login-dropdown {
   position: relative;
 }
 
-.login-menu {
-  position: absolute;
-
-  top: 45px;
-
-  right: 0;
-
-  width: 170px;
-
-  background: rgba(15, 23, 42, 0.95);
-
-  border: 1px solid var(--border);
-
-  border-radius: 10px;
-
-  backdrop-filter: blur(12px);
-
-  display: none;
-
-  overflow: hidden;
-
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-.login-dropdown:hover .login-menu {
-  display: block;
-}
-
-.login-menu a {
-  display: block;
-
-  padding: 12px 18px;
-
-  color: var(--text);
-
-  text-decoration: none;
-
+/* login button */
+.login {
+  background: linear-gradient(135deg, #7c3aed, #c026d3);
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
   transition: 0.3s;
 }
 
-.login-menu a:hover {
-  background: linear-gradient(
-    135deg,
-    var(--primary),
-    var(--primary2),
-    var(--primary3)
-  );
-
-  color: white;
+.login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(124, 58, 237, 0.4);
 }
 
-/* HERO */
+/* dropdown menu */
+.login-menu {
+  position: absolute;
+  top: 45px;
+  right: 0;
+
+  width: 150px;
+
+  background: #121929;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 8px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(-10px);
+
+  transition: 0.25s;
+}
+
+/* SHOW DROPDOWN */
+
+.login-dropdown:hover .login-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* links */
+
+.login-menu a {
+  display: block;
+  padding: 22px 24px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+.login-menu a:hover {
+  background: linear-gradient(135deg, #7c3aed, #c026d3);
+  color: white;
+}
 
 .hero {
   padding: 200px 20px 160px;
@@ -274,6 +277,9 @@ section p {
   font-size: 16px;
 
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 
   margin-top: 25px;
 
@@ -281,9 +287,15 @@ section p {
 }
 
 .primary-btn:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(124, 58, 237, 0.45);
+}
+.primary-btn .arrow {
+  transition: transform 0.3s ease;
+}
 
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+.primary-btn:hover .arrow {
+  transform: translateX(6px);
 }
 
 /* LOGOS */
@@ -312,12 +324,11 @@ section p {
 
 .logos img {
   height: 60px;
-
-  filter: grayscale(100%) brightness(250%) contrast(120%);
+  color: #94a3b800;
+  filter: grayscale(100%) brightness(200%);
 
   opacity: 0.85;
 }
-
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -433,65 +444,6 @@ section p {
 }
 
 /* FAQ */
-
-.faq {
-  padding: 120px 20px;
-  background: #020617;
-  text-align: center;
-}
-
-.faq-item {
-  max-width: 700px;
-
-  margin: 18px auto;
-
-  background: var(--card-bg);
-
-  border: 1px solid var(--border);
-
-  border-radius: 10px;
-
-  padding: 20px;
-
-  cursor: pointer;
-
-  transition: 0.3s;
-}
-
-.faq-item:hover {
-  border-color: var(--primary);
-}
-
-.faq-item h3 {
-  font-size: 18px;
-}
-
-/* HIDE ANSWERS */
-
-.faq-item p {
-  display: none;
-
-  margin-top: 12px;
-
-  color: #a8b3cf;
-}
-
-.faq-item.active p {
-  display: block;
-}
-
-/* FAQ ICON */
-
-.faq-item h3::after {
-  content: "+";
-  float: right;
-  color: var(--primary);
-  font-size: 20px;
-}
-
-.faq-item.active h3::after {
-  content: "−";
-}
 
 /* CTA */
 
