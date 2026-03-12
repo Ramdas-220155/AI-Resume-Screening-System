@@ -4,7 +4,8 @@ session_start();
 
 /* LOAD AUTOLOAD */
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
+require "db.php";
 
 use Dotenv\Dotenv;
 use Google\Client;
@@ -32,8 +33,7 @@ $client->addScope("profile");
 /* CHECK AUTH CODE */
 
 if (!isset($_GET['code'])) {
-    echo "Invalid authentication request";
-    exit();
+    die("Google login failed");
 }
 
 try {
@@ -94,15 +94,17 @@ try {
 
     /* INSERT USER IF FIRST LOGIN */
 
-   $users->insertOne([
-    "name" => $name,
-    "email" => $email,
-    "picture" => $picture,
-    "login_type" => "google",
-    "role" => "candidate",
-    "created_at" => new \MongoDB\BSON\UTCDateTime()
-]);
-
+  if (!$existingUser) {
+        // Insert new Google user
+        $users->insertOne([
+            "name" => $name,
+            "email" => $email,
+            "picture" => $picture,
+            "login_type" => "google",
+            "role" => "candidate",
+            "created_at" => new MongoDB\BSON\UTCDateTime()
+        ]);
+    }
 
     /* SECURE SESSION */
 
@@ -120,7 +122,7 @@ try {
 
     /* REDIRECT USER */
 
-    header("Location: ../dashboard.php");
+    header("Location: dashboard.php");
     exit();
 
 

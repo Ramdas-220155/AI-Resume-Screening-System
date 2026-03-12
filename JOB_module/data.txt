@@ -23,3 +23,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap" rel="stylesheet">
+
+
+git add .
+git commit -m "Backend integration progress"
+git pull origin frontend2 --no-edit
+
+
+git stash
+git pull origin frontend2
+git stash pop
+
+
+
+http://localhost/AI-Resume-Screening-System/usersignup.html

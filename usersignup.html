@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -31,19 +31,19 @@
 
 <h2>Create Account</h2>
 
-<form>
+<form action="signup.php" method="POST">
 
 <div class="name-fields">
 
-<input type="text" placeholder="First Name" required>
+<input type="text"  name="firstname" placeholder="First Name" required>
 
-<input type="text" placeholder="Last Name" required>
+<input type="text" name="lastname" placeholder="Last Name" required>
 
 </div>
 
-<input type="email" placeholder="Email Address" required>
-
-<input type="password" placeholder="Password" required>
+<input type="email" name="email" placeholder="Email Address" required>
+ 
+<input type="password" name="password" placeholder="Password" required>
 
 <button class="login-btn">Create Account</button>
 
@@ -51,24 +51,75 @@
 <span>OR</span>
 </div>
 
-<button type="button" class="google-btn">
-
-<img src="images\google-color-svgrepo-com.svg">
-
-Continue with Google
-
-</button>
+<a href="index.php" class="google-btn">
+    <img src="images/google-color-svgrepo-com.svg" alt="Google Logo">
+    Continue with Google
+</a>
 
 <p class="signup-text">
 
 Already have an account?
-<a href="userlogin.html">Login</a>
+<a href="UserLogin.html">Login</a>
 
 </p>
 
 </form>
 
 </div>
+
+</div>
+
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Signup</title>
+<link rel="stylesheet" href="usersignup.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="login-container">
+
+  <div class="login-header">
+    <h1>ResumeIQ</h1>
+    <p>User Portal</p>
+  </div>
+
+  <div class="form-panel">
+
+    <h2>Create Account</h2>
+
+    <!-- Normal Signup Form -->
+    <form action="signup.php" method="POST">
+      <div class="name-fields">
+        <input type="text" name="firstname" placeholder="First Name" required>
+        <input type="text" name="lastname" placeholder="Last Name" required>
+      </div>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit" class="login-btn">Create Account</button>
+    </form>
+
+    <div class="divider"><span>OR</span></div>
+
+    <!-- Google Signup/Login -->
+    <a href="index.php" class="google-btn">
+      <img src="images/google-color-svgrepo-com.svg" alt="Google Logo">
+      Continue with Google
+    </a>
+
+    <p class="signup-text">
+      Already have an account? <a href="UserLogin.html">Login</a>
+    </p>
+
+  </div>
 
 </div>
 
