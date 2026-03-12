@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeIQ — Browse Jobs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/jobs.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+</head>
+<body>
+
+<div class="sb-overlay" id="sbOverlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-topbar">
+    <div class="sb-brand">
+     <!--- <div class="sb-brand-icon"><i class="fa-solid fa-brain"></i></div>-->
+      <span class="sb-brand-name">ResumeIQ</span>
+    </div>
+    <button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="sb-user">
+    <div class="sb-user-av">A</div>
+    <div>
+      <div class="sb-user-name">Arjun</div>
+      <div class="sb-user-role">Job Seeker · Pro</div>
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section">Navigation</div>
+    <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a class="nav-link" href="jobs.html"><i class="fa-solid fa-briefcase"></i><span>Browse Jobs</span></a>
+    <a class="nav-link" href="applications.html"><i class="fa-solid fa-file-lines"></i><span>My Applications</span></a>
+    <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a>
+    <div class="sb-section" style="margin-top:8px;">Account</div>
+    <a class="nav-link" href="#" onclick="showToast('Settings coming soon','info');return false;"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+    <a class="nav-link danger nav-logout" href="#"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+  </nav>
+  <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1)"></i>ResumeIQ v2.4 · Pro Plan</div>
+</aside>
+
+<div class="shell">
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button class="hamburger-btn" id="hamburgerBtn" title="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topbar-center">
+        <div class="topbar-title">Browse Jobs</div>
+        <div class="topbar-crumb">
+          <i class="fa-solid fa-house"></i>
+          <i class="fa-solid fa-chevron-right"></i>
+          Jobs
+        </div>
+      </div>
+      <div class="topbar-right">
+       
+        <div class="tb-avatar">
+          <div class="tb-av-circle">A</div>
+          <span class="tb-av-name">Arun</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="page">
+
+      <!-- ── Toolbar ────────────────────────────────────── -->
+      <div class="jobs-toolbar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="jobSearch" placeholder="Search jobs, skills, companies…" />
+        </div>
+        <select class="filter-select" id="typeFilter">
+          <option value="all">All Types</option>
+          <option value="full-time">Full-time</option>
+          <option value="remote">Remote</option>
+          <option value="part-time">Part-time</option>
+          <option value="contract">Contract</option>
+          <option value="internship">Internship</option>
+        </select>
+        <select class="filter-select" id="locFilter">
+          <option value="all">All Locations</option>
+          <option value="bangalore">Bangalore</option>
+          <option value="mumbai">Mumbai</option>
+          <option value="hyderabad">Hyderabad</option>
+          <option value="delhi">Delhi NCR</option>
+          <option value="remote">Remote</option>
+        </select>
+        <select class="filter-select" id="levelFilter">
+          <option value="all">All Levels</option>
+          <option value="junior">Junior</option>
+          <option value="mid">Mid-level</option>
+          <option value="senior">Senior</option>
+          <option value="lead">Lead</option>
+        </select>
+      </div>
+
+      <!-- Results count -->
+      <div style="margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+        <span style="font-size:14px;color:var(--clr-muted);font-family:var(--ff-head);font-weight:600;">
+          <i class="fa-solid fa-list" style="margin-right:6px;color:var(--p1);"></i>
+          Showing <span id="resultCount" style="color:var(--clr-head);">12</span> jobs matching your profile
+        </span>
+        <span style="font-size:12px;color:var(--clr-muted);">
+          Sorted by: <span style="color:var(--clr-accent);font-weight:600;">Best Match</span>
+        </span>
+      </div>
+
+      <!-- ── Job Cards Grid ────────────────────────────── -->
+      <div class="jobs-grid">
+
+        <!-- 1 -->
+        <div class="card job-card" data-title="Senior Frontend Developer" data-company="TechNova" data-type="full-time" data-loc="bangalore" data-level="senior" data-skills="react typescript css redux">
+          <div class="jc-header">
+            <div class="jc-logo"><i class="fa-solid fa-desktop" style="color:var(--p1)"></i></div>
+            <div class="jc-title-wrap">
+              <div class="jc-title">Senior Frontend Developer</div>
+              <div class="jc-company">TechNova Solutions</div>
+            </div>
+            <span class="jc-type jt-full">Full-time</span>
+          </div>
+          <div class="jc-meta">
+            <span class="jc-meta-item"><i class="fa-solid fa-location-dot"></i> Bangalore</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 18–26 LPA</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> 3–5 yrs</span>
+          </div>
+          <div class="jc-skills">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">Redux</span>
+          </div>
+          <div class="jc-footer">
+            <span class="jc-posted"><i class="fa-regular fa-clock"></i> Posted 2 days ago</span>
+            <button class="btn btn-primary btn-sm apply-btn">
+              <i class="fa-solid fa-paper-plane"></i> Apply Now
+            </button>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="card job-card" data-title="AI/ML Engineer" data-company="DeepLogic" data-type="remote" data-loc="remote" data-level="senior" data-skills="python tensorflow pytorch llms">
+          <div class="jc-header">
+            <div class="jc-logo"><i class="fa-solid fa-robot" style="color:var(--p1)"></i></div>
+            <div class="jc-title-wrap">
+              <div class="jc-title">AI/ML Engineer</div>
+              <div class="jc-company">DeepLogic AI</div>
+            </div>
+            <span class="jc-type jt-remote">Remote</span>
+          </div>
+          <div class="jc-meta">
+            <span class="jc-meta-item"><i class="fa-solid fa-globe"></i> Remote</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 28–40 LPA</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> 4–7 yrs</span>
+          </div>
+          <div class="jc-skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">LLMs</span>
+          </div>
+          <div class="jc-footer">
+            <span class="jc-posted"><i class="fa-regular fa-clock"></i> Posted today</span>
+            <button class="btn btn-primary btn-sm apply-btn">
+              <i class="fa-solid fa-paper-plane"></i> Apply Now
+            </button>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="card job-card" data-title="UI/UX Designer" data-company="PixelCraft" data-type="full-time" data-loc="mumbai" data-level="mid" data-skills="figma design systems ux ui">
+          <div class="jc-header">
+            <div class="jc-logo"><i class="fa-solid fa-palette" style="color:var(--p1)"></i></div>
+            <div class="jc-title-wrap">
+              <div class="jc-title">UI/UX Designer</div>
+              <div class="jc-company">PixelCraft Studio</div>
+            </div>
+            <span class="jc-type jt-full">Full-time</span>
+          </div>
+          <div class="jc-meta">
+            <span class="jc-meta-item"><i class="fa-solid fa-location-dot"></i> Mumbai</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 12–18 LPA</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> 2–4 yrs</span>
+          </div>
+          <div class="jc-skills">
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Prototyping</span>
+            <span class="skill-tag">Design Systems</span>
+          </div>
+          <div class="jc-footer">
+            <span class="jc-posted"><i class="fa-regular fa-clock"></i> Posted 4 days ago</span>
+            <button class="btn btn-primary btn-sm apply-btn">
+              <i class="fa-solid fa-paper-plane"></i> Apply Now
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="card job-card" data-title="Full Stack Developer" data-company="NexaLabs" data-type="full-time" data-loc="hyderabad" data-level="mid" data-skills="nodejs react mongodb express">
+          <div class="jc-header">
+            <div class="jc-logo"><i class="fa-solid fa-rocket" style="color:var(--p1)"></i></div>
+            <div class="jc-title-wrap">
+              <div class="jc-title">Full Stack Developer</div>
+              <div class="jc-company">NexaLabs Inc.</div>
+            </div>
+            <span class="jc-type jt-full">Full-time</span>
+          </div>
+          <div class="jc-meta">
+            <span class="jc-meta-item"><i class="fa-solid fa-location-dot"></i> Hyderabad</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 16–24 LPA</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> 3–6 yrs</span>
+          </div>
+          <div class="jc-skills">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">MongoDB</span>
+          </div>
+          <div class="jc-footer">
+            <span class="jc-posted"><i class="fa-regular fa-clock"></i> Posted 1 week ago</span>
+            <button class="btn btn-primary btn-sm apply-btn">
+              <i class="fa-solid fa-paper-plane"></i> Apply Now
+            </button>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="card job-card" data-title="DevOps Engineer" data-company="CloudPeak" data-type="contract" data-loc="delhi" data-level="senior" data-skills="aws docker kubernetes cicd">
+          <div class="jc-header">
+            <div class="jc-logo"><i class="fa-solid fa-cloud" style="color:var(--p1)"></i></div>
+            <div class="jc-title-wrap">
+              <div class="jc-title">DevOps Engineer</div>
+              <div class="jc-company">CloudPeak Systems</div>
+            </div>
+            <span class="jc-type jt-contract">Contract</span>
+          </div>
+          <div class="jc-meta">
+            <span class="jc-meta-item"><i class="fa-solid fa-location-dot"></i> Delhi NCR</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 20–30 LPA</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> 4–6 yrs</span>
+          </div>
+          <div class="jc-skills">
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Kubernetes</span>
+          </div>
+          <div class="jc-footer">
+            <span class="jc-posted"><i class="fa-regular fa-clock"></i> Posted 3 days ago</span>
+            <button class="btn btn-primary btn-sm apply-btn">
+              <i class="fa-solid fa-paper-plane"></i> Apply Now
+            </button>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="card job-card" data-title="Backend Developer" data-company="DataStream" data-type="remote" data-loc="remote" data-level="mid" data-skills="python django postgresql rest">
+          <div class="jc-header">
+            <div class="jc-logo"><i class="fa-solid fa-server" style="color:var(--p1)"></i></div>
+            <div class="jc-title-wrap">
+              <div class="jc-title">Backend Developer</div>
+              <div class="jc-company">DataStream Labs</div>
+            </div>
+            <span class="jc-type jt-remote">Remote</span>
+          </div>
+          <div class="jc-meta">
+            <span class="jc-meta-item"><i class="fa-solid fa-globe"></i> Remote</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 14–22 LPA</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> 2–5 yrs</span>
+          </div>
+          <div class="jc-skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">PostgreSQL</span>
+          </div>
+          <div class="jc-footer">
+            <span class="jc-posted"><i class="fa-regular fa-clock"></i> Posted 5 days ago</span>
+            <button class="btn btn-primary btn-sm apply-btn">
+              <i class="fa-solid fa-paper-plane"></i> Apply Now
+            </button>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="card job-card" data-title="Data Scientist" data-company="InsightAI" data-type="full-time" data-loc="bangalore" data-level="senior" data-skills="python pandas sql scikit ml">
+          <div class="jc-header">
+            <div class="jc-logo"><i class="fa-solid fa-chart-bar" style="color:var(--p1)"></i></div>
+            <div class="jc-title-wrap">
+              <div class="jc-title">Data Scientist</div>
+              <div class="jc-company">InsightAI Labs</div>
+            </div>
+            <span class="jc-type jt-full">Full-time</span>
+          </div>
+          <div class="jc-meta">
+            <span class="jc-meta-item"><i class="fa-solid fa-location-dot"></i> Bangalore</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 22–35 LPA</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> 3–6 yrs</span>
+          </div>
+          <div class="jc-skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">SQL</span>
+          </div>
+          <div class="jc-footer">
+            <span class="jc-posted"><i class="fa-regular fa-clock"></i> Posted 2 days ago</span>
+            <button class="btn btn-primary btn-sm apply-btn">
+              <i class="fa-solid fa-paper-plane"></i> Apply Now
+            </button>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="card job-card" data-title="Mobile Developer" data-company="AppForge" data-type="full-time" data-loc="mumbai" data-level="mid" data-skills="react native javascript ios android">
+          <div class="jc-header">
+            <div class="jc-logo"><i class="fa-solid fa-mobile-screen" style="color:var(--p1)"></i></div>
+            <div class="jc-title-wrap">
+              <div class="jc-title">Mobile Developer</div>
+              <div class="jc-company">AppForge Studio</div>
+            </div>
+            <span class="jc-type jt-full">Full-time</span>
+          </div>
+          <div class="jc-meta">
+            <span class="jc-meta-item"><i class="fa-solid fa-location-dot"></i> Mumbai</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 15–22 LPA</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> 2–4 yrs</span>
+          </div>
+          <div class="jc-skills">
+            <span class="skill-tag">React Native</span>
+            <span class="skill-tag">iOS</span>
+            <span class="skill-tag">Android</span>
+          </div>
+          <div class="jc-footer">
+            <span class="jc-posted"><i class="fa-regular fa-clock"></i> Posted 6 days ago</span>
+            <button class="btn btn-primary btn-sm apply-btn">
+              <i class="fa-solid fa-paper-plane"></i> Apply Now
+            </button>
+          </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="card job-card" data-title="Frontend Intern" data-company="StartupHub" data-type="internship" data-loc="remote" data-level="junior" data-skills="html css javascript react">
+          <div class="jc-header">
+            <div class="jc-logo"><i class="fa-solid fa-seedling" style="color:var(--p1)"></i></div>
+            <div class="jc-title-wrap">
+              <div class="jc-title">Frontend Intern</div>
+              <div class="jc-company">StartupHub</div>
+            </div>
+            <span class="jc-type jt-intern">Internship</span>
+          </div>
+          <div class="jc-meta">
+            <span class="jc-meta-item"><i class="fa-solid fa-globe"></i> Remote</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 15–25k/mo</span>
+            <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> Fresher</span>
+          </div>
+          <div class="jc-skills">
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">React</span>
+          </div>
+          <div class="jc-footer">
+            <span class="jc-posted"><i class="fa-regular fa-clock"></i> Posted today</span>
+            <button class="btn btn-primary btn-sm apply-btn">
+              <i class="fa-solid fa-paper-plane"></i> Apply Now
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /jobs-grid -->
+
+    </main>
+  </div>
+</div>
+
+<div class="chatbot-float">
+  <div class="chatbot-tip"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--p1);"></i>AI Assistant</div>
+  <button class="chatbot-bubble"><i class="fa-solid fa-message"></i></button>
+</div>
+
+<script src="js/toast.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/jobs.js"></script>
+</body>
+</html>

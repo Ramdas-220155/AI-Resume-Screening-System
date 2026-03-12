@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeIQ HR — Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" /><link rel="stylesheet" href="css/profile.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+</head>
+<body>
+<div class="sb-overlay" id="sbOverlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-topbar"><div class="sb-brand"><div class="sb-brand-icon"><i class="fa-solid fa-brain"></i></div><div><div class="sb-brand-name">ResumeIQ</div><div class="sb-brand-sub">HR Portal</div></div></div><button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="sb-user"><div class="sb-user-av">SR</div><div><div class="sb-user-name">Sarah Rao</div><div class="sb-user-role">Talent Acquisition Lead</div><div class="sb-hr-badge"><i class="fa-solid fa-shield-halved"></i> HR Admin</div></div></div>
+  <nav class="sb-nav">
+    <div class="sb-section">Main</div>
+    <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+    <a class="nav-link" href="post-job.html"><i class="fa-solid fa-pen-to-square"></i><span>Post a Job</span></a>
+    <a class="nav-link" href="manage-jobs.html"><i class="fa-solid fa-briefcase"></i><span>Manage Jobs</span><span class="nav-badge">12</span></a>
+    <a class="nav-link" href="candidates.html"><i class="fa-solid fa-users"></i><span>Candidate Rankings</span><span class="nav-badge">8</span></a>
+    <div class="sb-section" style="margin-top:6px;">Account</div>
+    <a class="nav-link" href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+    <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a>
+    <a class="nav-link danger nav-logout" href="#"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+  </nav>
+  <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1);"></i>ResumeIQ HR v3.1 · Pro Plan</div>
+</aside>
+
+<div class="shell"><div class="main">
+  <header class="topbar">
+    <button class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    <div class="topbar-center">
+      <div class="topbar-title">HR Profile</div>
+      <div class="topbar-crumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-right"></i>Profile</div>
+    </div>
+    <div class="topbar-right">
+      <button class="tb-icon-btn" id="notifBtn"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></button>
+      <div class="tb-avatar"><div class="tb-av-circle">SR</div><span class="tb-av-name">Sarah Rao</span></div>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- Account banner -->
+    <div class="card card-p" style="margin-bottom:22px;background:linear-gradient(135deg,rgba(124,58,237,0.18),rgba(192,38,211,0.1));border-color:rgba(124,58,237,0.28);">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:7px;padding:3px 12px;background:rgba(124,58,237,0.18);border:1px solid rgba(124,58,237,0.35);border-radius:99px;font-family:var(--ff-head);font-size:11px;font-weight:700;color:var(--clr-accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;"><i class="fa-solid fa-shield-halved"></i> Pro Plan Active</div>
+          <div style="font-family:var(--ff-head);font-size:18px;font-weight:800;color:var(--clr-head);">Account in good standing</div>
+          <div style="font-size:13px;color:var(--clr-text);margin-top:5px;">Renews 1 Apr 2026 · Unlimited AI screenings · 5 of 10 seats used</div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-outline" onclick="showToast('Opening billing portal…','info')"><i class="fa-solid fa-credit-card"></i> Billing</button>
+          <button class="btn btn-primary" onclick="showToast('Upgrade options coming soon','info')"><i class="fa-solid fa-bolt"></i> Upgrade</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-layout">
+
+      <!-- LEFT card -->
+      <div class="card profile-left">
+        <div class="prof-av-wrap">
+          <div class="prof-av">SR</div>
+          <div class="prof-cam" title="Change photo"><i class="fa-solid fa-camera" style="font-size:11px;"></i></div>
+        </div>
+        <div class="prof-name">Sarah Rao</div>
+        <div class="prof-role"><i class="fa-solid fa-users" style="margin-right:5px;color:var(--p1);"></i>Senior HR Manager · TechNova</div>
+
+        <div class="prof-stats">
+          <div class="ps-box"><div class="ps-num">18</div><div class="ps-lbl">Jobs Posted</div></div>
+          <div class="ps-box"><div class="ps-num">342</div><div class="ps-lbl">Applications</div></div>
+          <div class="ps-box"><div class="ps-num">58</div><div class="ps-lbl">Shortlisted</div></div>
+          <div class="ps-box"><div class="ps-num">4.9★</div><div class="ps-lbl">HR Score</div></div>
+        </div>
+
+        <div class="divider" style="margin:14px 0;"></div>
+
+        <div style="margin-bottom:16px;text-align:left;">
+          <div style="font-family:var(--ff-head);font-size:11px;font-weight:700;color:var(--clr-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;"><i class="fa-solid fa-address-card" style="margin-right:5px;color:var(--p1);"></i>Contact</div>
+          <div class="contact-list">
+            <div class="contact-item"><i class="fa-solid fa-envelope"></i> sarah.rao@technova.com</div>
+            <div class="contact-item"><i class="fa-solid fa-phone"></i> +91 98765 12340</div>
+            <div class="contact-item"><i class="fa-solid fa-building"></i> TechNova Solutions</div>
+            <div class="contact-item"><i class="fa-solid fa-location-dot"></i> Bangalore, India</div>
+            <div class="contact-item"><i class="fa-brands fa-linkedin"></i><a href="#" style="color:var(--clr-accent);">linkedin.com/in/sarahrao</a></div>
+          </div>
+        </div>
+
+        <div class="divider" style="margin:14px 0;"></div>
+
+        <div style="text-align:left;">
+          <div style="font-family:var(--ff-head);font-size:11px;font-weight:700;color:var(--clr-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;"><i class="fa-solid fa-lock" style="margin-right:5px;color:var(--p1);"></i>Permissions</div>
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;"><span>Post Jobs</span><span style="color:#34d399;font-weight:700;"><i class="fa-solid fa-check"></i> Enabled</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;"><span>Manage Candidates</span><span style="color:#34d399;font-weight:700;"><i class="fa-solid fa-check"></i> Enabled</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;"><span>Export Reports</span><span style="color:#34d399;font-weight:700;"><i class="fa-solid fa-check"></i> Enabled</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;"><span>Admin Access</span><span style="color:#f87171;font-weight:700;"><i class="fa-solid fa-xmark"></i> Restricted</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT forms -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+
+        <!-- Edit profile -->
+        <div class="card profile-form-card">
+          <div class="pfc-title"><i class="fa-solid fa-pen-to-square"></i> Edit Profile</div>
+          <form id="editProfileForm" novalidate>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label"><i class="fa-solid fa-user"></i>Full Name</label><input type="text" class="form-input" value="Sarah Rao" /></div>
+              <div class="form-group"><label class="form-label"><i class="fa-solid fa-envelope"></i>Email</label><input type="email" class="form-input" value="sarah.rao@technova.com" /></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label"><i class="fa-solid fa-phone"></i>Phone</label><input type="tel" class="form-input" value="+91 98765 12340" /></div>
+              <div class="form-group"><label class="form-label"><i class="fa-solid fa-id-badge"></i>Job Title</label><input type="text" class="form-input" value="Senior HR Manager" /></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label"><i class="fa-solid fa-building"></i>Company</label><input type="text" class="form-input" value="TechNova Solutions" /></div>
+              <div class="form-group"><label class="form-label"><i class="fa-solid fa-sitemap"></i>Department</label><select class="form-select"><option selected>Human Resources</option><option>Talent Acquisition</option><option>People Operations</option></select></div>
+            </div>
+            <div class="form-group"><label class="form-label"><i class="fa-solid fa-location-dot"></i>Location</label><input type="text" class="form-input" value="Bangalore, India" /></div>
+            <div class="form-group"><label class="form-label"><i class="fa-solid fa-align-left"></i>Bio</label><textarea class="form-textarea" rows="3">Senior HR Manager with 8+ years in talent acquisition. Specializing in tech hiring and AI-powered recruitment at TechNova Solutions.</textarea></div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+              <button type="button" class="btn btn-outline" onclick="this.form.reset()"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Company logo -->
+        <div class="card profile-form-card">
+          <div class="pfc-title"><i class="fa-solid fa-building"></i> Company Logo</div>
+          <div style="display:flex;align-items:center;gap:20px;margin-bottom:18px;flex-wrap:wrap;">
+            <div style="width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,rgba(124,58,237,0.25),rgba(192,38,211,0.15));border:1px solid rgba(124,58,237,0.25);display:flex;align-items:center;justify-content:center;font-size:28px;"><i class="fa-solid fa-building" style="color:var(--p1);"></i></div>
+            <div>
+              <div style="font-family:var(--ff-head);font-size:14px;font-weight:700;color:var(--clr-head);">TechNova Solutions</div>
+              <div style="font-size:12px;color:var(--clr-muted);margin-top:3px;">Current logo · PNG · 256×256px</div>
+              <button class="btn btn-danger btn-sm" style="margin-top:8px;" onclick="showToast('Logo removed','error')"><i class="fa-solid fa-trash"></i> Remove</button>
+            </div>
+          </div>
+          <div class="file-zone" id="logoZone">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p><strong>Click to upload</strong> or drag & drop</p>
+            <p style="font-size:12px;margin-top:4px;">PNG, JPG, SVG · Max 2 MB · Recommended 256×256px</p>
+            <div id="logoInfo" style="margin-top:8px;font-size:13px;color:var(--clr-accent);font-family:var(--ff-head);font-weight:600;"></div>
+            <input type="file" id="logoInput" accept="image/*" style="display:none;" />
+          </div>
+          <div class="form-actions"><button class="btn btn-primary" onclick="showToast('Logo uploaded!','success')"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Logo</button></div>
+        </div>
+
+        <!-- Password -->
+        <div class="card profile-form-card">
+          <div class="pfc-title"><i class="fa-solid fa-lock"></i> Update Password</div>
+          <form id="passwordForm" novalidate>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label"><i class="fa-solid fa-key"></i>Current Password</label><input type="password" class="form-input" placeholder="Enter current password" /></div>
+              <div class="form-group"><label class="form-label"><i class="fa-solid fa-lock"></i>New Password</label><input type="password" class="form-input" id="newPwd" placeholder="Min. 8 characters" /></div>
+            </div>
+            <div class="form-group" style="max-width:50%;"><label class="form-label"><i class="fa-solid fa-lock"></i>Confirm New Password</label><input type="password" class="form-input" id="confPwd" placeholder="Repeat new password" /></div>
+            <div class="pwd-strength"><div style="font-family:var(--ff-head);font-size:12px;color:var(--clr-muted);margin-bottom:5px;">Password Strength</div><div class="pwd-bars"><div class="pwd-bar"></div><div class="pwd-bar"></div><div class="pwd-bar"></div><div class="pwd-bar"></div></div><div class="pwd-strength-text" id="pwdStrengthText"></div></div>
+            <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-shield-halved"></i> Update Password</button></div>
+          </form>
+        </div>
+
+        <!-- Notifications -->
+        <div class="card profile-form-card">
+          <div class="pfc-title"><i class="fa-solid fa-bell"></i> Notification Preferences</div>
+          <div class="toggle-item"><div><div class="ti-label">New Application Alerts</div><div class="ti-sub">Notify when candidates apply</div></div><input type="checkbox" checked /></div>
+          <div class="toggle-item"><div><div class="ti-label">High Match Alerts (90%+)</div><div class="ti-sub">Immediate alert for strong AI matches</div></div><input type="checkbox" checked /></div>
+          <div class="toggle-item"><div><div class="ti-label">Weekly AI Report</div><div class="ti-sub">Weekly summary of screening activity</div></div><input type="checkbox" checked /></div>
+          <div class="toggle-item"><div><div class="ti-label">Job Expiry Reminders</div><div class="ti-sub">Remind me 3 days before listing expires</div></div><input type="checkbox" /></div>
+          <div class="form-actions"><button id="saveNotifBtn" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Preferences</button></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div></div>
+
+<div class="chatbot-float">
+  <div class="chatbot-tip"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--p1);"></i>AI Recruiter Bot</div>
+  <button class="chatbot-bubble"><i class="fa-solid fa-message"></i></button>
+</div>
+
+<script src="js/toast.js"></script><script src="js/sidebar.js"></script><script src="js/profile.js"></script>
+</body></html>

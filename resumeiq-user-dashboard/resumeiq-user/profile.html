@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeIQ — Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+</head>
+<body>
+
+<div class="sb-overlay" id="sbOverlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-topbar">
+    <div class="sb-brand">
+     <!--- <div class="sb-brand-icon"><i class="fa-solid fa-brain"></i></div>-->
+      <span class="sb-brand-name">ResumeIQ</span>
+    </div>
+    <button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="sb-user">
+    <div class="sb-user-av">A</div>
+    <div>
+      <div class="sb-user-name">Arjun</div>
+      <div class="sb-user-role">Job Seeker · Pro</div>
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section">Navigation</div>
+    <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a class="nav-link" href="jobs.html"><i class="fa-solid fa-briefcase"></i><span>Browse Jobs</span></a>
+    <a class="nav-link" href="applications.html"><i class="fa-solid fa-file-lines"></i><span>My Applications</span></a>
+    <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a>
+    <div class="sb-section" style="margin-top:8px;">Account</div>
+    <a class="nav-link" href="#" onclick="showToast('Settings coming soon','info');return false;"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+    <a class="nav-link danger nav-logout" href="#"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+  </nav>
+  <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1)"></i>ResumeIQ v2.4 · Pro Plan</div>
+</aside>
+
+<div class="shell">
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button class="hamburger-btn" id="hamburgerBtn" title="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topbar-center">
+        <div class="topbar-title">My Profile</div>
+        <div class="topbar-crumb">
+          <i class="fa-solid fa-house"></i>
+          <i class="fa-solid fa-chevron-right"></i>
+          Profile
+        </div>
+      </div>
+      <div class="topbar-right">
+        
+        <div class="tb-avatar">
+          <div class="tb-av-circle">A</div>
+          <span class="tb-av-name">Arjun</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="page">
+
+      <!-- ── Profile Completeness Banner ──────────────────── -->
+      <div class="card card-p" style="margin-bottom:22px;background:linear-gradient(135deg,rgba(124,58,237,0.18),rgba(192,38,211,0.1));border-color:rgba(124,58,237,0.28);">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+          <div>
+            <div style="display:inline-flex;align-items:center;gap:7px;padding:3px 12px;background:rgba(124,58,237,0.18);border:1px solid rgba(124,58,237,0.35);border-radius:99px;font-family:var(--ff-head);font-size:11px;font-weight:700;color:var(--clr-accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">
+              <i class="fa-solid fa-circle-check"></i> Profile Completeness
+            </div>
+            <div style="font-family:var(--ff-head);font-size:19px;font-weight:800;color:var(--clr-head);">
+              Your profile is <span style="color:#34d399;">82% complete</span>
+            </div>
+            <div style="font-size:14px;color:var(--clr-text);margin-top:5px;">
+              Add your GitHub and certifications to reach 100% and boost your AI match score.
+            </div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:var(--ff-head);font-size:48px;font-weight:900;background:var(--grad);-webkit-background-clip:text;color:transparent;line-height:1;">87%</div>
+            <div style="font-family:var(--ff-head);font-size:11px;font-weight:700;color:var(--clr-muted);text-transform:uppercase;letter-spacing:0.5px;">AI Match Score</div>
+          </div>
+        </div>
+        <div class="completeness-bar-wrap" style="margin-top:14px;margin-bottom:0;">
+          <div class="completeness-track">
+            <div class="completeness-fill" data-pct="82" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Profile Layout ─────────────────────────────── -->
+      <div class="profile-layout">
+
+        <!-- LEFT: Profile Card -->
+        <div class="card profile-card-left">
+
+          <div class="prof-av-wrap">
+            <div class="prof-av">A</div>
+            <div class="prof-av-edit" title="Change photo">
+              <i class="fa-solid fa-camera" style="font-size:11px;"></i>
+            </div>
+          </div>
+
+          <div class="prof-name">Arjun</div>
+          <div class="prof-role">
+            <i class="fa-solid fa-code" style="margin-right:5px;color:var(--p1);"></i>
+            Frontend Developer · 4 yrs exp
+          </div>
+
+          <!-- Stats -->
+          <div class="prof-stats">
+            <div class="prof-stat">
+              <div class="prof-stat-num">14</div>
+              <div class="prof-stat-lbl">Applied</div>
+            </div>
+            <div class="prof-stat">
+              <div class="prof-stat-num">5</div>
+              <div class="prof-stat-lbl">Shortlisted</div>
+            </div>
+            <div class="prof-stat">
+              <div class="prof-stat-num">87%</div>
+              <div class="prof-stat-lbl">AI Score</div>
+            </div>
+            <div class="prof-stat">
+              <div class="prof-stat-num">Top 12%</div>
+              <div class="prof-stat-lbl">Platform Rank</div>
+            </div>
+          </div>
+
+          <div class="divider" style="margin:14px 0;"></div>
+
+          <!-- Skills -->
+          <div style="margin-bottom:16px;">
+            <div style="font-family:var(--ff-head);font-size:11px;font-weight:700;color:var(--clr-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;">
+              <i class="fa-solid fa-tags" style="margin-right:5px;color:var(--p1);"></i>Skills
+            </div>
+            <div class="skill-badges">
+              <span class="skill-badge">React</span>
+              <span class="skill-badge">JavaScript</span>
+              <span class="skill-badge">TypeScript</span>
+              <span class="skill-badge">CSS</span>
+              <span class="skill-badge">Redux</span>
+              <span class="skill-badge">Node.js</span>
+              <span class="skill-badge">Git</span>
+            </div>
+          </div>
+
+          <div class="divider" style="margin:14px 0;"></div>
+
+          <!-- Contact -->
+          <div>
+            <div style="font-family:var(--ff-head);font-size:11px;font-weight:700;color:var(--clr-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;">
+              <i class="fa-solid fa-address-card" style="margin-right:5px;color:var(--p1);"></i>Contact
+            </div>
+            <div class="contact-list">
+              <div class="contact-item"><i class="fa-solid fa-envelope"></i> arjun.kumar@email.com</div>
+              <div class="contact-item"><i class="fa-solid fa-phone"></i> +91 98765 43210</div>
+              <div class="contact-item"><i class="fa-solid fa-location-dot"></i> Bangalore, India</div>
+              <div class="contact-item">
+                <i class="fa-brands fa-linkedin"></i>
+                <a href="#" style="color:var(--clr-accent);">linkedin.com/in/arjunkumar</a>
+              </div>
+              <div class="contact-item">
+                <i class="fa-brands fa-github"></i>
+                <a href="#" style="color:var(--clr-accent);">github.com/arjunkumar</a>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /profile card left -->
+
+        <!-- RIGHT: Forms column -->
+        <div style="display:flex;flex-direction:column;gap:20px;">
+
+          <!-- ── Edit Profile ── -->
+          <div class="card profile-form-card">
+            <div class="pfc-title">
+              <i class="fa-solid fa-pen-to-square"></i>
+              Edit Profile
+            </div>
+            <form id="editProfileForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label"><i class="fa-solid fa-user" style="margin-right:5px;"></i>Full Name</label>
+                  <input type="text" class="form-input" value="Arjun Kumar" placeholder="Your full name" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label"><i class="fa-solid fa-envelope" style="margin-right:5px;"></i>Email Address</label>
+                  <input type="email" class="form-input" value="arjun.kumar@email.com" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label"><i class="fa-solid fa-phone" style="margin-right:5px;"></i>Phone</label>
+                  <input type="tel" class="form-input" value="+91 98765 43210" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label"><i class="fa-solid fa-location-dot" style="margin-right:5px;"></i>Location</label>
+                  <input type="text" class="form-input" value="Bangalore, India" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label"><i class="fa-solid fa-briefcase" style="margin-right:5px;"></i>Current Title</label>
+                  <input type="text" class="form-input" value="Frontend Developer" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label"><i class="fa-solid fa-clock" style="margin-right:5px;"></i>Experience</label>
+                  <select class="form-select">
+                    <option>Less than 1 year</option>
+                    <option>1–2 years</option>
+                    <option>2–3 years</option>
+                    <option selected>3–5 years</option>
+                    <option>5–8 years</option>
+                    <option>8+ years</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label"><i class="fa-solid fa-tags" style="margin-right:5px;"></i>Skills (comma-separated)</label>
+                <input type="text" class="form-input" value="React, JavaScript, TypeScript, CSS, Redux, Node.js, Git" />
+              </div>
+              <div class="form-group">
+                <label class="form-label"><i class="fa-solid fa-align-left" style="margin-right:5px;"></i>Professional Summary</label>
+                <textarea class="form-textarea">Passionate frontend developer with 4 years of experience building scalable web applications using React and TypeScript. Strong advocate for performance optimization and accessibility standards.</textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label"><i class="fa-brands fa-linkedin" style="margin-right:5px;"></i>LinkedIn URL</label>
+                  <input type="url" class="form-input" value="https://linkedin.com/in/arjunkumar" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label"><i class="fa-brands fa-github" style="margin-right:5px;"></i>GitHub URL</label>
+                  <input type="url" class="form-input" value="https://github.com/arjunkumar" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label"><i class="fa-solid fa-indian-rupee-sign" style="margin-right:5px;"></i>Expected Salary</label>
+                  <input type="text" class="form-input" value="18–24 LPA" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label"><i class="fa-solid fa-laptop-house" style="margin-right:5px;"></i>Preferred Work Mode</label>
+                  <select class="form-select">
+                    <option>Remote</option>
+                    <option selected>Hybrid</option>
+                    <option>On-site</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fa-solid fa-floppy-disk"></i> Save Changes
+                </button>
+                <button type="button" class="btn btn-outline" onclick="this.form.reset()">
+                  <i class="fa-solid fa-rotate-left"></i> Reset
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- ── Resume Upload ── -->
+          <div class="card profile-form-card">
+            <div class="pfc-title">
+              <i class="fa-solid fa-file-arrow-up"></i>
+              Resume / CV Upload
+            </div>
+
+            <div style="margin-bottom:14px;display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:var(--radius-sm);">
+              <i class="fa-solid fa-file-pdf" style="color:#34d399;font-size:18px;"></i>
+              <div>
+                <div style="font-family:var(--ff-head);font-size:13px;font-weight:700;color:var(--clr-head);">Arjun_Kumar_Resume_2026.pdf</div>
+                <div style="font-size:12px;color:#34d399;"><i class="fa-solid fa-check" style="margin-right:4px;"></i>Uploaded on 08 Mar 2026</div>
+              </div>
+            </div>
+
+            <div class="file-zone" id="resumeZone">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <p><strong>Click to upload</strong> or drag & drop</p>
+              <p style="font-size:12px;margin-top:5px;">PDF or DOCX · Max 5 MB</p>
+              <div id="resumeInfo" style="margin-top:8px;font-size:13px;font-weight:600;font-family:var(--ff-head);"></div>
+              <input type="file" id="resumeFile" accept=".pdf,.docx" style="display:none;" />
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" onclick="showToast('Resume uploaded successfully','success')">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload Resume
+              </button>
+            </div>
+          </div>
+
+          <!-- ── Update Password ── -->
+          <div class="card profile-form-card">
+            <div class="pfc-title">
+              <i class="fa-solid fa-lock"></i>
+              Update Password
+            </div>
+            <form id="passwordForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label"><i class="fa-solid fa-key" style="margin-right:5px;"></i>Current Password</label>
+                  <input type="password" class="form-input" placeholder="Enter current password" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label"><i class="fa-solid fa-lock" style="margin-right:5px;"></i>New Password</label>
+                  <input type="password" class="form-input" id="newPwd" placeholder="Minimum 8 characters" />
+                </div>
+              </div>
+              <div class="form-group" style="max-width:50%">
+                <label class="form-label"><i class="fa-solid fa-lock" style="margin-right:5px;"></i>Confirm Password</label>
+                <input type="password" class="form-input" id="confPwd" placeholder="Repeat new password" />
+              </div>
+              <div class="pwd-strength">
+                <div class="pwd-strength-label">Password Strength</div>
+                <div class="pwd-bars">
+                  <div class="pwd-bar"></div>
+                  <div class="pwd-bar"></div>
+                  <div class="pwd-bar"></div>
+                  <div class="pwd-bar"></div>
+                </div>
+                <div class="pwd-strength-text" id="pwdStrengthText"></div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fa-solid fa-shield-halved"></i> Update Password
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- ── Notification Preferences ── -->
+          <div class="card profile-form-card">
+            <div class="pfc-title">
+              <i class="fa-solid fa-bell"></i>
+              Notification Preferences
+            </div>
+
+            <div class="notif-pref-item">
+              <div>
+                <div class="notif-pref-label">New Job Alerts</div>
+                <div class="notif-pref-sub">Get notified when matching jobs are posted</div>
+              </div>
+              <input type="checkbox" checked />
+            </div>
+            <div class="notif-pref-item">
+              <div>
+                <div class="notif-pref-label">Shortlist Notifications</div>
+                <div class="notif-pref-sub">Immediate alert when you're shortlisted</div>
+              </div>
+              <input type="checkbox" checked />
+            </div>
+            <div class="notif-pref-item">
+              <div>
+                <div class="notif-pref-label">Weekly AI Report</div>
+                <div class="notif-pref-sub">Weekly summary of your AI screening performance</div>
+              </div>
+              <input type="checkbox" checked />
+            </div>
+            <div class="notif-pref-item">
+              <div>
+                <div class="notif-pref-label">Application Status Updates</div>
+                <div class="notif-pref-sub">Real-time updates on your application progress</div>
+              </div>
+              <input type="checkbox" />
+            </div>
+
+            <div class="form-actions">
+              <button id="saveNotifBtn" class="btn btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> Save Preferences
+              </button>
+            </div>
+          </div>
+
+        </div><!-- /right column -->
+
+      </div><!-- /profile-layout -->
+
+    </main>
+  </div>
+</div>
+
+<div class="chatbot-float">
+  <div class="chatbot-tip"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--p1);"></i>AI Assistant</div>
+  <button class="chatbot-bubble"><i class="fa-solid fa-message"></i></button>
+</div>
+
+<script src="js/toast.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeIQ HR — Post a Job</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" /><link rel="stylesheet" href="css/postjob.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+</head>
+<body>
+<div class="sb-overlay" id="sbOverlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-topbar"><div class="sb-brand"><div><div class="sb-brand-name">ResumeIQ</div><div class="sb-brand-sub">HR Portal</div></div></div><button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="sb-user"><div class="sb-user-av">SR</div><div><div class="sb-user-name">Sarah Rao</div><div class="sb-user-role">Talent Acquisition Lead</div><div class="sb-hr-badge"><i class="fa-solid fa-shield-halved"></i> HR Admin</div></div></div>
+  <nav class="sb-nav">
+    <div class="sb-section">Main</div>
+    <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+    <a class="nav-link" href="post-job.html"><i class="fa-solid fa-pen-to-square"></i><span>Post a Job</span></a>
+    <a class="nav-link" href="manage-jobs.html"><i class="fa-solid fa-briefcase"></i><span>Manage Jobs</span><span class="nav-badge">12</span></a>
+    <a class="nav-link" href="candidates.html"><i class="fa-solid fa-users"></i><span>Candidate Rankings</span><span class="nav-badge">8</span></a>
+    <div class="sb-section" style="margin-top:6px;">Account</div>
+    <a class="nav-link" href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+    <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a>
+    <a class="nav-link danger nav-logout" href="#"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+  </nav>
+  <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1);"></i>ResumeIQ HR v3.1 · Pro Plan</div>
+</aside>
+
+<div class="shell"><div class="main">
+  <header class="topbar">
+    <button class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    <div class="topbar-center">
+      <div class="topbar-title">Post a Job</div>
+      <div class="topbar-crumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-right"></i>Post Job</div>
+    </div>
+    <div class="topbar-right">
+      <button class="tb-icon-btn" id="notifBtn"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></button>
+      <div class="tb-avatar"><div class="tb-av-circle">SR</div><span class="tb-av-name">Sarah Rao</span></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="post-job-wrap">
+
+      <!-- Header card -->
+      <div class="pj-header-card">
+        <div>
+          <div class="pj-header-title"><i class="fa-solid fa-pen-to-square" style="color:var(--p1);margin-right:9px;"></i>Create New Job Posting</div>
+          <div class="pj-header-sub">Fill in the details. AI will auto-screen all incoming resumes and rank candidates.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;padding:6px 14px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);border-radius:99px;font-family:var(--ff-head);font-size:12px;font-weight:700;color:#34d399;">
+           AI Screening Enabled
+        </div>
+      </div>
+
+      <div class="card pj-form-card">
+        <form id="postJobForm" novalidate>
+
+          <!-- Section 1: Basic Info -->
+          <div class="form-section-title"><i class="fa-solid fa-circle-info"></i> Basic Information</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-briefcase"></i>Job Title *</label>
+              <input type="text" class="form-input" placeholder="e.g. Senior Frontend Developer" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-building"></i>Company Name *</label>
+              <input type="text" class="form-input" value="TechNova Solutions" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-location-dot"></i>Location</label>
+              <input type="text" class="form-input" placeholder="e.g. Bangalore / Remote" />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-laptop-house"></i>Employment Type</label>
+              <select class="form-select">
+                <option>Full-time</option><option>Part-time</option><option>Remote</option><option>Contract</option><option>Internship</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-indian-rupee-sign"></i>Salary Range</label>
+              <input type="text" class="form-input" placeholder="e.g. ₹18–26 LPA" />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-chart-bar"></i>Experience Level</label>
+              <select class="form-select">
+                <option>Fresher (0–1 yr)</option><option>Junior (1–3 yrs)</option><option selected>Mid-level (3–5 yrs)</option><option>Senior (5–8 yrs)</option><option>Lead (8+ yrs)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-sitemap"></i>Department</label>
+              <select class="form-select"><option>Engineering</option><option>Design</option><option>Product</option><option>Data & AI</option><option>Marketing</option><option>Operations</option></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-hashtag"></i>Number of Openings</label>
+              <input type="number" class="form-input" placeholder="e.g. 3" min="1" />
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Section 2: Skills -->
+          <div class="form-section-title"><i class="fa-solid fa-tags"></i> Skills & Requirements</div>
+          <div class="form-group">
+            <label class="form-label"><i class="fa-solid fa-check-circle"></i>Required Skills <span style="font-size:11px;text-transform:none;font-weight:400;color:var(--clr-muted);">(Enter or comma to add)</span></label>
+            <div class="tag-wrap" data-tags="React,TypeScript,CSS">
+              <input class="tag-input-el" placeholder="Add required skill…" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><i class="fa-solid fa-circle-plus"></i>Nice-to-Have Skills <span style="font-size:11px;text-transform:none;font-weight:400;color:var(--clr-muted);">(optional)</span></label>
+            <div class="tag-wrap">
+              <input class="tag-input-el" placeholder="e.g. GraphQL, AWS, Docker…" />
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Section 3: Description -->
+          <div class="form-section-title"><i class="fa-solid fa-file-lines"></i> Job Description</div>
+          <div class="form-group">
+            <label class="form-label"><i class="fa-solid fa-align-left"></i>Full Description *</label>
+            <textarea class="form-textarea" rows="7" placeholder="Describe the role, responsibilities, team and growth opportunities…">We are looking for a passionate Senior Frontend Developer to join our growing engineering team. You will build responsive and performant web applications, collaborate with designers and backend engineers, and mentor junior developers.
+
+Responsibilities:
+• Build and maintain high-quality React applications
+• Collaborate with UI/UX designers on pixel-perfect implementations
+• Write clean, well-documented, testable code
+• Participate in code reviews and technical architecture discussions</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><i class="fa-solid fa-robot"></i>AI Screening Notes <span style="font-size:11px;text-transform:none;font-weight:400;color:var(--clr-muted);">(optional — guide the AI ranker)</span></label>
+            <textarea class="form-textarea" rows="3" placeholder="e.g. Prioritize candidates with open-source contributions. Deprioritize candidates with &lt; 2 years React experience."></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-calendar"></i>Application Deadline</label>
+              <input type="date" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-eye"></i>Visibility</label>
+              <select class="form-select">
+                <option>Public — visible on job board</option>
+                <option>Private — invite-only</option>
+                <option>Internal — employees only</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- AI Options -->
+          <div class="ai-options-box">
+            <div class="ao-title"><i class="fa-solid fa-robot"></i> AI Screening Configuration</div>
+            <div class="ao-grid">
+              <label class="ao-item"><input type="checkbox" checked /> Auto-score resumes on submission</label>
+              <label class="ao-item"><input type="checkbox" checked /> Auto-shortlist candidates above 85%</label>
+              <label class="ao-item"><input type="checkbox" /> Send email to shortlisted candidates</label>
+              <label class="ao-item"><input type="checkbox" checked /> Notify me for 90%+ matches</label>
+            </div>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-paper-plane"></i><span>Post Job</span>
+            </button>
+            <button type="button" class="btn btn-outline btn-lg" id="clearBtn">
+              <i class="fa-solid fa-rotate-left"></i><span>Clear Form</span>
+            </button>
+            <button type="button" class="btn btn-warn" id="draftBtn" style="margin-left:auto;">
+              <i class="fa-solid fa-floppy-disk"></i> Save Draft
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </main>
+</div></div>
+
+<div class="chatbot-float">
+  <div class="chatbot-tip">AI Recruiter Bot</div>
+  <button class="chatbot-bubble"><i class="fa-solid fa-message"></i></button>
+</div>
+
+<script src="js/toast.js"></script><script src="js/sidebar.js"></script><script src="js/postjob.js"></script>
+</body></html>

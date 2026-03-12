@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeIQ — My Applications</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/applications.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+</head>
+<body>
+
+<div class="sb-overlay" id="sbOverlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-topbar">
+    <div class="sb-brand">
+    <!----  <div class="sb-brand-icon"><i class="fa-solid fa-brain"></i></div>-->
+      <span class="sb-brand-name">ResumeIQ</span>
+    </div>
+    <button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="sb-user">
+    <div class="sb-user-av">A</div>
+    <div>
+      <div class="sb-user-name">Arjun</div>
+      <div class="sb-user-role">Job Seeker · Pro</div>
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section">Navigation</div>
+    <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a class="nav-link" href="jobs.html"><i class="fa-solid fa-briefcase"></i><span>Browse Jobs</span></a>
+    <a class="nav-link" href="applications.html"><i class="fa-solid fa-file-lines"></i><span>My Applications</span></a>
+    <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a>
+    <div class="sb-section" style="margin-top:8px;">Account</div>
+    <a class="nav-link" href="#" onclick="showToast('Settings coming soon','info');return false;"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+    <a class="nav-link danger nav-logout" href="#"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+  </nav>
+  <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1)"></i>ResumeIQ v2.4 · Pro Plan</div>
+</aside>
+
+<div class="shell">
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button class="hamburger-btn" id="hamburgerBtn" title="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topbar-center">
+        <div class="topbar-title">My Applications</div>
+        <div class="topbar-crumb">
+          <i class="fa-solid fa-house"></i>
+          <i class="fa-solid fa-chevron-right"></i>
+          Applications
+        </div>
+      </div>
+      <div class="topbar-right">
+        
+        <div class="tb-avatar">
+          <div class="tb-av-circle">AK</div>
+          <span class="tb-av-name">Arjun Kumar</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="page">
+
+      <!-- ── Mini Stats ─────────────────────────────────── -->
+      <div class="app-stats-row">
+        <div class="card app-stat-card">
+          <div class="app-stat-num count-up" data-target="14">0</div>
+          <div class="app-stat-label"><i class="fa-solid fa-paper-plane" style="margin-right:5px;"></i>Total Applied</div>
+        </div>
+        <div class="card app-stat-card">
+          <div class="app-stat-num count-up" data-target="5">0</div>
+          <div class="app-stat-label"><i class="fa-solid fa-star" style="margin-right:5px;"></i>Shortlisted</div>
+        </div>
+        <div class="card app-stat-card">
+          <div class="app-stat-num count-up" data-target="6">0</div>
+          <div class="app-stat-label"><i class="fa-solid fa-hourglass-half" style="margin-right:5px;"></i>Under Review</div>
+        </div>
+        <div class="card app-stat-card">
+          <div class="app-stat-num count-up" data-target="3">0</div>
+          <div class="app-stat-label"><i class="fa-solid fa-circle-xmark" style="margin-right:5px;"></i>Rejected</div>
+        </div>
+      </div>
+
+      <!-- ── Toolbar ────────────────────────────────────── -->
+      <div class="app-toolbar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="appSearch" placeholder="Search job title, company…" />
+        </div>
+        <select class="filter-select" id="statusFilter">
+          <option value="all">All Statuses</option>
+          <option value="shortlisted">Shortlisted</option>
+          <option value="pending">Pending</option>
+          <option value="rejected">Rejected</option>
+        </select>
+        <a href="jobs.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-plus"></i> New Application
+        </a>
+      </div>
+
+      <!-- ── Applications Table ─────────────────────────── -->
+      <div class="tbl-wrap" style="margin-bottom:24px;">
+        <table>
+          <thead>
+            <tr>
+              <th><i class="fa-solid fa-hashtag"></i></th>
+              <th><i class="fa-solid fa-briefcase" style="margin-right:5px;"></i>Job Title</th>
+              <th><i class="fa-solid fa-building" style="margin-right:5px;"></i>Company</th>
+              <th><i class="fa-solid fa-percent" style="margin-right:5px;"></i>Match Score</th>
+              <th><i class="fa-solid fa-circle-dot" style="margin-right:5px;"></i>Status</th>
+              <th><i class="fa-solid fa-calendar" style="margin-right:5px;"></i>Date Applied</th>
+              <th><i class="fa-solid fa-ellipsis" style="margin-right:5px;"></i>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="app-row" data-status="shortlisted">
+              <td style="color:var(--clr-muted);font-family:var(--ff-head);font-size:12px;font-weight:700;">01</td>
+              <td><strong style="color:var(--clr-head);font-family:var(--ff-head);font-size:14px;">Senior Frontend Dev</strong></td>
+              <td>
+                <div class="company-cell">
+                  <div class="co-logo"><i class="fa-solid fa-desktop" style="color:var(--p1);font-size:13px;"></i></div>
+                  <span style="font-weight:600;color:var(--clr-head);">TechNova</span>
+                </div>
+              </td>
+              <td>
+                <div class="score-wrap">
+                  <div class="score-track"><div class="score-fill" data-score="92" style="width:0%"></div></div>
+                  <span class="score-pct">92%</span>
+                </div>
+              </td>
+              <td><span class="badge badge-shortlisted"><i class="fa-solid fa-check" style="font-size:8px;"></i> Shortlisted</span></td>
+              <td style="color:var(--clr-muted);font-size:13px;">08 Mar 2026</td>
+              <td>
+                <div style="display:flex;gap:6px;">
+                  <button class="btn btn-outline btn-sm view-app-btn">
+                    <i class="fa-solid fa-eye"></i> View
+                  </button>
+                  <button class="btn btn-sm withdraw-btn" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#f87171;">
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <tr class="app-row" data-status="pending">
+              <td style="color:var(--clr-muted);font-family:var(--ff-head);font-size:12px;font-weight:700;">02</td>
+              <td><strong style="color:var(--clr-head);font-family:var(--ff-head);font-size:14px;">UI/UX Designer</strong></td>
+              <td>
+                <div class="company-cell">
+                  <div class="co-logo"><i class="fa-solid fa-palette" style="color:var(--p1);font-size:13px;"></i></div>
+                  <span style="font-weight:600;color:var(--clr-head);">PixelCraft</span>
+                </div>
+              </td>
+              <td>
+                <div class="score-wrap">
+                  <div class="score-track"><div class="score-fill" data-score="78" style="width:0%"></div></div>
+                  <span class="score-pct">78%</span>
+                </div>
+              </td>
+              <td><span class="badge badge-pending">Pending</span></td>
+              <td style="color:var(--clr-muted);font-size:13px;">06 Mar 2026</td>
+              <td>
+                <div style="display:flex;gap:6px;">
+                  <button class="btn btn-outline btn-sm view-app-btn"><i class="fa-solid fa-eye"></i> View</button>
+                  <button class="btn btn-sm withdraw-btn" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#f87171;"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+              </td>
+            </tr>
+
+            <tr class="app-row" data-status="rejected">
+              <td style="color:var(--clr-muted);font-family:var(--ff-head);font-size:12px;font-weight:700;">03</td>
+              <td><strong style="color:var(--clr-head);font-family:var(--ff-head);font-size:14px;">React Engineer</strong></td>
+              <td>
+                <div class="company-cell">
+                  <div class="co-logo"><i class="fa-solid fa-bolt" style="color:var(--p1);font-size:13px;"></i></div>
+                  <span style="font-weight:600;color:var(--clr-head);">Velocity</span>
+                </div>
+              </td>
+              <td>
+                <div class="score-wrap">
+                  <div class="score-track"><div class="score-fill" data-score="65" style="width:0%"></div></div>
+                  <span class="score-pct">65%</span>
+                </div>
+              </td>
+              <td><span class="badge badge-rejected">Rejected</span></td>
+              <td style="color:var(--clr-muted);font-size:13px;">03 Mar 2026</td>
+              <td>
+                <div style="display:flex;gap:6px;">
+                  <button class="btn btn-outline btn-sm view-app-btn"><i class="fa-solid fa-eye"></i> View</button>
+                </div>
+              </td>
+            </tr>
+
+            <tr class="app-row" data-status="shortlisted">
+              <td style="color:var(--clr-muted);font-family:var(--ff-head);font-size:12px;font-weight:700;">04</td>
+              <td><strong style="color:var(--clr-head);font-family:var(--ff-head);font-size:14px;">Full Stack Developer</strong></td>
+              <td>
+                <div class="company-cell">
+                  <div class="co-logo"><i class="fa-solid fa-rocket" style="color:var(--p1);font-size:13px;"></i></div>
+                  <span style="font-weight:600;color:var(--clr-head);">NexaLabs</span>
+                </div>
+              </td>
+              <td>
+                <div class="score-wrap">
+                  <div class="score-track"><div class="score-fill" data-score="88" style="width:0%"></div></div>
+                  <span class="score-pct">88%</span>
+                </div>
+              </td>
+              <td><span class="badge badge-shortlisted"><i class="fa-solid fa-check" style="font-size:8px;"></i> Shortlisted</span></td>
+              <td style="color:var(--clr-muted);font-size:13px;">01 Mar 2026</td>
+              <td>
+                <div style="display:flex;gap:6px;">
+                  <button class="btn btn-outline btn-sm view-app-btn"><i class="fa-solid fa-eye"></i> View</button>
+                  <button class="btn btn-sm withdraw-btn" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#f87171;"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+              </td>
+            </tr>
+
+            <tr class="app-row" data-status="pending">
+              <td style="color:var(--clr-muted);font-family:var(--ff-head);font-size:12px;font-weight:700;">05</td>
+              <td><strong style="color:var(--clr-head);font-family:var(--ff-head);font-size:14px;">Data Scientist</strong></td>
+              <td>
+                <div class="company-cell">
+                  <div class="co-logo"><i class="fa-solid fa-chart-bar" style="color:var(--p1);font-size:13px;"></i></div>
+                  <span style="font-weight:600;color:var(--clr-head);">InsightAI</span>
+                </div>
+              </td>
+              <td>
+                <div class="score-wrap">
+                  <div class="score-track"><div class="score-fill" data-score="82" style="width:0%"></div></div>
+                  <span class="score-pct">82%</span>
+                </div>
+              </td>
+              <td><span class="badge badge-pending">Pending</span></td>
+              <td style="color:var(--clr-muted);font-size:13px;">27 Feb 2026</td>
+              <td>
+                <div style="display:flex;gap:6px;">
+                  <button class="btn btn-outline btn-sm view-app-btn"><i class="fa-solid fa-eye"></i> View</button>
+                  <button class="btn btn-sm withdraw-btn" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#f87171;"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+              </td>
+            </tr>
+
+            <tr class="app-row" data-status="shortlisted">
+              <td style="color:var(--clr-muted);font-family:var(--ff-head);font-size:12px;font-weight:700;">06</td>
+              <td><strong style="color:var(--clr-head);font-family:var(--ff-head);font-size:14px;">Backend Developer</strong></td>
+              <td>
+                <div class="company-cell">
+                  <div class="co-logo"><i class="fa-solid fa-server" style="color:var(--p1);font-size:13px;"></i></div>
+                  <span style="font-weight:600;color:var(--clr-head);">DataStream</span>
+                </div>
+              </td>
+              <td>
+                <div class="score-wrap">
+                  <div class="score-track"><div class="score-fill" data-score="95" style="width:0%"></div></div>
+                  <span class="score-pct">95%</span>
+                </div>
+              </td>
+              <td><span class="badge badge-shortlisted"><i class="fa-solid fa-check" style="font-size:8px;"></i> Shortlisted</span></td>
+              <td style="color:var(--clr-muted);font-size:13px;">24 Feb 2026</td>
+              <td>
+                <div style="display:flex;gap:6px;">
+                  <button class="btn btn-outline btn-sm view-app-btn"><i class="fa-solid fa-eye"></i> View</button>
+                  <button class="btn btn-sm withdraw-btn" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#f87171;"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ── AI Insight ─────────────────────────────────── -->
+      <div class="ai-strip app-ai-insight">
+        <div class="ai-strip-head">
+          <span class="ai-dot"></span>
+          <span class="ai-label"><!--<i class="fa-solid fa-robot" style="margin-right:5px;"></i>-->AI Application Insight</span>
+        </div>
+        <p>
+          You have a <strong style="color:#34d399">35.7% shortlist rate</strong>, above the platform average of 28%.
+          Your strongest area is <strong style="color:var(--clr-accent)">Backend & Full Stack</strong> roles.
+          Adding <strong style="color:var(--clr-accent)">TypeScript</strong> skills could improve Frontend match scores by <strong style="color:#34d399">+18%</strong>.
+          <a href="profile.html" style="color:var(--clr-accent);margin-left:6px;">
+            Update profile <i class="fa-solid fa-arrow-right" style="font-size:11px;"></i>
+          </a>
+        </p>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<div class="chatbot-float">
+  <div class="chatbot-tip"><!--<i class="fa-solid fa-robot" style="margin-right:5px;color:var(--p1);"></i>-->AI Assistant</div>
+  <button class="chatbot-bubble"><i class="fa-solid fa-message"></i></button>
+</div>
+
+<script src="js/toast.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/applications.js"></script>
+</body>
+</html>

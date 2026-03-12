@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeIQ HR — Candidate Rankings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" /><link rel="stylesheet" href="css/candidates.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+</head>
+<body>
+<div class="sb-overlay" id="sbOverlay"></div>
+
+<!-- Resume panel overlay -->
+<div class="sb-overlay" id="panelOverlay" style="z-index:499;"></div>
+
+<!-- ═══ RESUME SIDE PANEL ═══ -->
+<div class="resume-panel" id="resumePanel">
+  <div class="rp-header">
+    <div class="rp-title"><i class="fa-solid fa-file-user" style="margin-right:7px;color:var(--p1);"></i>Candidate Profile</div>
+    <button class="rp-close" id="rpCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="rp-body">
+    <!-- Avatar + Name -->
+    <div class="rp-av-row">
+      <div class="rp-av" id="rpInit">PK</div>
+      <div>
+        <div class="rp-name" id="rpName">Priya Kapoor</div>
+        <div class="rp-role" id="rpRole">Senior Frontend Developer</div>
+      </div>
+    </div>
+    <!-- AI Score -->
+    <div class="rp-score-row">
+      <div>
+        <div class="rp-score-val" id="rpScore">94%</div>
+        <div class="rp-score-label">AI Match Score</div>
+      </div>
+      <div style="flex:1;">
+        <div class="score-track" style="height:8px;"><div class="score-fill" id="rpScoreBar" data-score="94" style="width:0%;"></div></div>
+        <div style="font-size:12px;color:var(--clr-muted);margin-top:5px;font-family:var(--ff-head);">Ranked #1 for this posting</div>
+      </div>
+    </div>
+    <!-- Info grid -->
+    <div class="rp-section-label"><i class="fa-solid fa-circle-info" style="margin-right:5px;color:var(--p1);"></i>Details</div>
+    <div class="rp-info-grid">
+      <div class="rp-info-item"><div class="rp-info-label"><i class="fa-solid fa-envelope" style="margin-right:4px;"></i>Email</div><div class="rp-info-val" id="rpEmail">—</div></div>
+      <div class="rp-info-item"><div class="rp-info-label"><i class="fa-solid fa-phone" style="margin-right:4px;"></i>Phone</div><div class="rp-info-val" id="rpPhone">—</div></div>
+      <div class="rp-info-item"><div class="rp-info-label"><i class="fa-solid fa-location-dot" style="margin-right:4px;"></i>Location</div><div class="rp-info-val" id="rpLoc">—</div></div>
+      <div class="rp-info-item"><div class="rp-info-label"><i class="fa-solid fa-clock" style="margin-right:4px;"></i>Experience</div><div class="rp-info-val" id="rpExp">—</div></div>
+      <div class="rp-info-item"><div class="rp-info-label"><i class="fa-solid fa-indian-rupee-sign" style="margin-right:4px;"></i>Expected CTC</div><div class="rp-info-val" id="rpExpect">—</div></div>
+      <div class="rp-info-item"><div class="rp-info-label"><i class="fa-solid fa-calendar" style="margin-right:4px;"></i>Applied On</div><div class="rp-info-val" id="rpApplied">—</div></div>
+    </div>
+    <!-- Skills -->
+    <div class="rp-section-label" style="margin-bottom:9px;"><i class="fa-solid fa-tags" style="margin-right:5px;color:var(--p1);"></i>Skills</div>
+    <div class="rp-skills-wrap" id="rpSkills"></div>
+    <!-- AI Summary -->
+    <div class="rp-section-label" style="margin:16px 0 9px;"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--p1);"></i>AI Screening Summary</div>
+    <div style="background:rgba(124,58,237,0.07);border:1px solid rgba(124,58,237,0.2);border-radius:var(--radius-sm);padding:13px 15px;">
+      <p style="font-size:13px;color:var(--clr-text);line-height:1.75;">Candidate shows strong proficiency in all required skills. Open-source contributions detected on GitHub. Communication score: <strong style="color:#34d399">High</strong>. Resume quality: <strong style="color:#34d399">Excellent</strong>. Recommend immediate interview.</p>
+    </div>
+    <!-- Experience -->
+    <div class="rp-section-label" style="margin:16px 0 9px;"><i class="fa-solid fa-building" style="margin-right:5px;color:var(--p1);"></i>Work Experience</div>
+    <div class="rp-exp-item"><div class="rp-exp-title">Senior Frontend Developer</div><div class="rp-exp-co">Zomato · 2022–Present (3 yrs)</div></div>
+    <div class="rp-exp-item"><div class="rp-exp-title">Frontend Developer</div><div class="rp-exp-co">Swiggy · 2020–2022 (2 yrs)</div></div>
+  </div>
+  <div class="rp-actions">
+    <button id="rpShortlistBtn" class="btn btn-success btn-sm" style="flex:1;justify-content:center;"><i class="fa-solid fa-check"></i> Shortlist</button>
+    <button id="rpRejectBtn"    class="btn btn-danger btn-sm"  style="flex:1;justify-content:center;"><i class="fa-solid fa-xmark"></i> Reject</button>
+    <button class="btn btn-outline btn-sm" onclick="showToast('Opening resume PDF…','info')"><i class="fa-solid fa-file-pdf"></i></button>
+  </div>
+</div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sb-topbar"><div class="sb-brand"><div class="sb-brand-icon"><i class="fa-solid fa-brain"></i></div><div><div class="sb-brand-name">ResumeIQ</div><div class="sb-brand-sub">HR Portal</div></div></div><button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="sb-user"><div class="sb-user-av">SR</div><div><div class="sb-user-name">Sarah Rao</div><div class="sb-user-role">Talent Acquisition Lead</div><div class="sb-hr-badge"><i class="fa-solid fa-shield-halved"></i> HR Admin</div></div></div>
+  <nav class="sb-nav">
+    <div class="sb-section">Main</div>
+    <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+    <a class="nav-link" href="post-job.html"><i class="fa-solid fa-pen-to-square"></i><span>Post a Job</span></a>
+    <a class="nav-link" href="manage-jobs.html"><i class="fa-solid fa-briefcase"></i><span>Manage Jobs</span><span class="nav-badge">12</span></a>
+    <a class="nav-link" href="candidates.html"><i class="fa-solid fa-users"></i><span>Candidate Rankings</span><span class="nav-badge">8</span></a>
+    <div class="sb-section" style="margin-top:6px;">Account</div>
+    <a class="nav-link" href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+    <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a>
+    <a class="nav-link danger nav-logout" href="#"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+  </nav>
+  <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1);"></i>ResumeIQ HR v3.1 · Pro Plan</div>
+</aside>
+
+<div class="shell"><div class="main">
+  <header class="topbar">
+    <button class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    <div class="topbar-center">
+      <div class="topbar-title">Candidate Rankings</div>
+      <div class="topbar-crumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-right"></i>Candidates</div>
+    </div>
+    <div class="topbar-right">
+      
+      <div class="tb-avatar"><div class="tb-av-circle">SR</div><span class="tb-av-name">Sarah Rao</span></div>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- Stats -->
+    <div class="cand-stats">
+      <div class="card cs-card"><div class="cs-num count-up" data-target="342">0</div><div class="cs-label"><i class="fa-solid fa-inbox" style="margin-right:4px;"></i>Total Applied</div></div>
+      <div class="card cs-card"><div class="cs-num count-up" data-target="58">0</div><div class="cs-label"><i class="fa-solid fa-star" style="margin-right:4px;"></i>Shortlisted</div></div>
+      <div class="card cs-card"><div class="cs-num count-up" data-target="24">0</div><div class="cs-label"><i class="fa-solid fa-circle-dot" style="margin-right:4px;"></i>Under Review</div></div>
+      <div class="card cs-card"><div class="cs-num count-up" data-target="9">0</div><div class="cs-label"><i class="fa-solid fa-calendar-check" style="margin-right:4px;"></i>Interviews</div></div>
+      <div class="card cs-card"><div class="cs-num count-up" data-target="12">0</div><div class="cs-label"><i class="fa-solid fa-fire" style="margin-right:4px;"></i>90%+ Matches</div></div>
+    </div>
+
+    <!-- AI Banner -->
+    <div class="ai-strip" style="margin-bottom:20px;">
+      <div class="ai-strip-head"><span class="ai-dot"></span><span class="ai-label"><i class="fa-solid fa-robot" style="margin-right:5px;"></i>AI Ranking Engine</span><span style="margin-left:auto;font-size:12px;color:var(--clr-muted);">Updated 2 min ago</span></div>
+      <p>Rankings calculated from <strong style="color:var(--clr-accent)">skill match</strong>, <strong style="color:var(--clr-accent)">experience fit</strong>, and <strong style="color:var(--clr-accent)">resume quality</strong>.
+      <span style="color:#34d399;margin:0 6px;">■</span>90–100% Strong &nbsp;<span style="color:#fbbf24;">■</span>70–89% Good &nbsp;<span style="color:#f87171;">■</span>&lt;70% Weak</p>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="cand-toolbar">
+      <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="candSearch" placeholder="Search candidates, roles, skills…" /></div>
+      <select class="filter-sel" id="scoreFilter">
+        <option value="all">All Scores</option>
+        <option value="hi">Strong (90–100%)</option>
+        <option value="mid">Good (70–89%)</option>
+        <option value="lo">Weak (&lt;70%)</option>
+      </select>
+      <select class="filter-sel" id="jobFilter">
+        <option value="all">All Jobs</option>
+        <option value="frontend">Sr. Frontend Dev</option>
+        <option value="aiml">AI/ML Engineer</option>
+        <option value="ux">UX Designer</option>
+        <option value="fullstack">Full Stack Dev</option>
+      </select>
+      <button id="exportBtn" class="btn btn-outline btn-sm"><i class="fa-solid fa-file-export"></i> Export CSV</button>
+    </div>
+
+    <!-- Rankings Table -->
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th><i class="fa-solid fa-ranking-star" style="margin-right:5px;"></i>Rank</th>
+            <th><i class="fa-solid fa-user" style="margin-right:5px;"></i>Candidate</th>
+            <th><i class="fa-solid fa-briefcase" style="margin-right:5px;"></i>Job Role</th>
+            <th><i class="fa-solid fa-percent" style="margin-right:5px;"></i>Match Score</th>
+            <th><i class="fa-solid fa-tags" style="margin-right:5px;"></i>Skills Matched</th>
+            <th><i class="fa-solid fa-clock" style="margin-right:5px;"></i>Experience</th>
+            <th><i class="fa-solid fa-circle-dot" style="margin-right:5px;"></i>Status</th>
+            <th><i class="fa-solid fa-ellipsis" style="margin-right:5px;"></i>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- Row 1 -->
+          <tr class="cand-row" data-score="97" data-job="frontend"
+            data-name="Priya Kapoor" data-role="Sr. Frontend Developer" data-initials="PK"
+            data-email="priya.k@email.com" data-phone="+91 98765 11111"
+            data-location="Bangalore, India" data-experience="5 years"
+            data-expected="₹24 LPA" data-applied="09 Mar 2026"
+            data-skills="React,TypeScript,CSS,Redux,Next.js,Git">
+            <td><div class="rank-num rank-1"><i class="fa-solid fa-medal"></i></div></td>
+            <td><div class="cand-cell"><div class="cand-av">PK</div><div><div class="cand-name">Priya Kapoor</div><div class="cand-sub">priya.k@email.com</div></div></div></td>
+            <td style="color:var(--clr-head);font-weight:600;">Sr. Frontend Dev</td>
+            <td><div style="display:flex;flex-direction:column;gap:5px;"><span class="score-badge sb-hi">97%</span><div class="score-track" style="width:100px;"><div class="score-fill" data-score="97" style="width:0%"></div></div></div></td>
+            <td><div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="skill-chip">React</span><span class="skill-chip">TypeScript</span><span class="skill-chip">Redux</span></div></td>
+            <td style="color:var(--clr-text);font-size:13px;">5 years</td>
+            <td class="status-cell"><span class="badge badge-shortlist"><i class="fa-solid fa-check" style="font-size:8px;"></i> Shortlisted</span></td>
+            <td><div style="display:flex;gap:6px;">
+              <button class="btn btn-outline btn-sm view-resume-btn"><i class="fa-solid fa-eye"></i> View</button>
+              <button class="btn btn-success btn-sm shortlist-btn"><i class="fa-solid fa-star"></i></button>
+              <button class="btn btn-danger btn-sm reject-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div></td>
+          </tr>
+
+          <!-- Row 2 -->
+          <tr class="cand-row" data-score="95" data-job="ux"
+            data-name="Simran Joshi" data-role="UX Designer" data-initials="SJ"
+            data-email="simran.j@email.com" data-phone="+91 98765 22222"
+            data-location="Mumbai, India" data-experience="4 years"
+            data-expected="₹19 LPA" data-applied="09 Mar 2026"
+            data-skills="Figma,Prototyping,Design Systems,User Research,Adobe XD">
+            <td><div class="rank-num rank-2">2</div></td>
+            <td><div class="cand-cell"><div class="cand-av" style="background:linear-gradient(135deg,#ec4899,#be185d)">SJ</div><div><div class="cand-name">Simran Joshi</div><div class="cand-sub">simran.j@email.com</div></div></div></td>
+            <td style="color:var(--clr-head);font-weight:600;">UX Designer</td>
+            <td><div style="display:flex;flex-direction:column;gap:5px;"><span class="score-badge sb-hi">95%</span><div class="score-track" style="width:100px;"><div class="score-fill" data-score="95" style="width:0%"></div></div></div></td>
+            <td><div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="skill-chip">Figma</span><span class="skill-chip">Prototyping</span></div></td>
+            <td style="color:var(--clr-text);font-size:13px;">4 years</td>
+            <td class="status-cell"><span class="badge badge-shortlist"><i class="fa-solid fa-check" style="font-size:8px;"></i> Shortlisted</span></td>
+            <td><div style="display:flex;gap:6px;">
+              <button class="btn btn-outline btn-sm view-resume-btn"><i class="fa-solid fa-eye"></i> View</button>
+              <button class="btn btn-success btn-sm shortlist-btn"><i class="fa-solid fa-star"></i></button>
+              <button class="btn btn-danger btn-sm reject-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div></td>
+          </tr>
+
+          <!-- Row 3 -->
+          <tr class="cand-row" data-score="93" data-job="fullstack"
+            data-name="Dev Malhotra" data-role="Full Stack Developer" data-initials="DM"
+            data-email="dev.m@email.com" data-phone="+91 98765 33333"
+            data-location="Hyderabad, India" data-experience="5 years"
+            data-expected="₹22 LPA" data-applied="08 Mar 2026"
+            data-skills="Node.js,React,MongoDB,Express,Docker">
+            <td><div class="rank-num rank-3">3</div></td>
+            <td><div class="cand-cell"><div class="cand-av" style="background:linear-gradient(135deg,#06b6d4,#0e7490)">DM</div><div><div class="cand-name">Dev Malhotra</div><div class="cand-sub">dev.m@email.com</div></div></div></td>
+            <td style="color:var(--clr-head);font-weight:600;">Full Stack Dev</td>
+            <td><div style="display:flex;flex-direction:column;gap:5px;"><span class="score-badge sb-hi">93%</span><div class="score-track" style="width:100px;"><div class="score-fill" data-score="93" style="width:0%"></div></div></div></td>
+            <td><div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="skill-chip">Node.js</span><span class="skill-chip">React</span><span class="skill-chip">MongoDB</span></div></td>
+            <td style="color:var(--clr-text);font-size:13px;">5 years</td>
+            <td class="status-cell"><span class="badge badge-reviewing">Reviewing</span></td>
+            <td><div style="display:flex;gap:6px;">
+              <button class="btn btn-outline btn-sm view-resume-btn"><i class="fa-solid fa-eye"></i> View</button>
+              <button class="btn btn-success btn-sm shortlist-btn"><i class="fa-solid fa-star"></i></button>
+              <button class="btn btn-danger btn-sm reject-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div></td>
+          </tr>
+
+          <!-- Row 4 -->
+          <tr class="cand-row" data-score="91" data-job="aiml"
+            data-name="Riya Kumar" data-role="AI/ML Engineer" data-initials="RK"
+            data-email="riya.k@email.com" data-phone="+91 98765 44444"
+            data-location="Pune, India" data-experience="4 years"
+            data-expected="₹30 LPA" data-applied="07 Mar 2026"
+            data-skills="Python,PyTorch,LLMs,MLOps,Transformers">
+            <td><div class="rank-num rank-n">4</div></td>
+            <td><div class="cand-cell"><div class="cand-av" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)">RK</div><div><div class="cand-name">Riya Kumar</div><div class="cand-sub">riya.k@email.com</div></div></div></td>
+            <td style="color:var(--clr-head);font-weight:600;">AI/ML Engineer</td>
+            <td><div style="display:flex;flex-direction:column;gap:5px;"><span class="score-badge sb-hi">91%</span><div class="score-track" style="width:100px;"><div class="score-fill" data-score="91" style="width:0%"></div></div></div></td>
+            <td><div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="skill-chip">Python</span><span class="skill-chip">PyTorch</span><span class="skill-chip">LLMs</span></div></td>
+            <td style="color:var(--clr-text);font-size:13px;">4 years</td>
+            <td class="status-cell"><span class="badge badge-reviewing">Reviewing</span></td>
+            <td><div style="display:flex;gap:6px;">
+              <button class="btn btn-outline btn-sm view-resume-btn"><i class="fa-solid fa-eye"></i> View</button>
+              <button class="btn btn-success btn-sm shortlist-btn"><i class="fa-solid fa-star"></i></button>
+              <button class="btn btn-danger btn-sm reject-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div></td>
+          </tr>
+
+          <!-- Row 5 — Mid -->
+          <tr class="cand-row" data-score="88" data-job="aiml"
+            data-name="Rahul Mehra" data-role="AI/ML Engineer" data-initials="RM"
+            data-email="rahul.m@email.com" data-phone="+91 98765 55555"
+            data-location="Bangalore, India" data-experience="3 years"
+            data-expected="₹26 LPA" data-applied="09 Mar 2026"
+            data-skills="Python,TensorFlow,SQL,Pandas,Scikit-learn">
+            <td><div class="rank-num rank-n">5</div></td>
+            <td><div class="cand-cell"><div class="cand-av" style="background:linear-gradient(135deg,#06b6d4,#0284c7)">RM</div><div><div class="cand-name">Rahul Mehra</div><div class="cand-sub">rahul.m@email.com</div></div></div></td>
+            <td style="color:var(--clr-head);font-weight:600;">AI/ML Engineer</td>
+            <td><div style="display:flex;flex-direction:column;gap:5px;"><span class="score-badge sb-mid">88%</span><div class="score-track" style="width:100px;"><div class="score-fill" data-score="88" style="width:0%"></div></div></div></td>
+            <td><div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="skill-chip">Python</span><span class="skill-chip">TensorFlow</span></div></td>
+            <td style="color:var(--clr-text);font-size:13px;">3 years</td>
+            <td class="status-cell"><span class="badge badge-pending">Pending</span></td>
+            <td><div style="display:flex;gap:6px;">
+              <button class="btn btn-outline btn-sm view-resume-btn"><i class="fa-solid fa-eye"></i> View</button>
+              <button class="btn btn-success btn-sm shortlist-btn"><i class="fa-solid fa-star"></i></button>
+              <button class="btn btn-danger btn-sm reject-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div></td>
+          </tr>
+
+          <!-- Row 6 — Mid -->
+          <tr class="cand-row" data-score="82" data-job="frontend"
+            data-name="Nisha Shah" data-role="Sr. Frontend Dev" data-initials="NS"
+            data-email="nisha.s@email.com" data-phone="+91 98765 66666"
+            data-location="Chennai, India" data-experience="4 years"
+            data-expected="₹20 LPA" data-applied="08 Mar 2026"
+            data-skills="React,JavaScript,CSS,Vue.js">
+            <td><div class="rank-num rank-n">6</div></td>
+            <td><div class="cand-cell"><div class="cand-av" style="background:linear-gradient(135deg,#10b981,#059669)">NS</div><div><div class="cand-name">Nisha Shah</div><div class="cand-sub">nisha.s@email.com</div></div></div></td>
+            <td style="color:var(--clr-head);font-weight:600;">Sr. Frontend Dev</td>
+            <td><div style="display:flex;flex-direction:column;gap:5px;"><span class="score-badge sb-mid">82%</span><div class="score-track" style="width:100px;"><div class="score-fill" data-score="82" style="width:0%"></div></div></div></td>
+            <td><div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="skill-chip">React</span><span class="skill-chip">JavaScript</span></div></td>
+            <td style="color:var(--clr-text);font-size:13px;">4 years</td>
+            <td class="status-cell"><span class="badge badge-pending">Pending</span></td>
+            <td><div style="display:flex;gap:6px;">
+              <button class="btn btn-outline btn-sm view-resume-btn"><i class="fa-solid fa-eye"></i> View</button>
+              <button class="btn btn-success btn-sm shortlist-btn"><i class="fa-solid fa-star"></i></button>
+              <button class="btn btn-danger btn-sm reject-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div></td>
+          </tr>
+
+          <!-- Row 7 — Lo -->
+          <tr class="cand-row" data-score="62" data-job="frontend"
+            data-name="Aryan Verma" data-role="Sr. Frontend Dev" data-initials="AV"
+            data-email="aryan.v@email.com" data-phone="+91 98765 77777"
+            data-location="Delhi, India" data-experience="2 years"
+            data-expected="₹14 LPA" data-applied="07 Mar 2026"
+            data-skills="HTML,CSS,JavaScript">
+            <td><div class="rank-num rank-n">7</div></td>
+            <td><div class="cand-cell"><div class="cand-av" style="background:linear-gradient(135deg,#f59e0b,#d97706)">AV</div><div><div class="cand-name">Aryan Verma</div><div class="cand-sub">aryan.v@email.com</div></div></div></td>
+            <td style="color:var(--clr-head);font-weight:600;">Sr. Frontend Dev</td>
+            <td><div style="display:flex;flex-direction:column;gap:5px;"><span class="score-badge sb-lo">62%</span><div class="score-track" style="width:100px;"><div class="score-fill" data-score="62" style="width:0%"></div></div></div></td>
+            <td><div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="skill-chip">HTML/CSS</span><span class="skill-chip">JavaScript</span></div></td>
+            <td style="color:var(--clr-text);font-size:13px;">2 years</td>
+            <td class="status-cell"><span class="badge badge-rejected">Rejected</span></td>
+            <td><div style="display:flex;gap:6px;">
+              <button class="btn btn-outline btn-sm view-resume-btn"><i class="fa-solid fa-eye"></i> View</button>
+              <button class="btn btn-outline btn-sm" onclick="showToast('Reconsidering…','info')"><i class="fa-solid fa-rotate-left"></i></button>
+            </div></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:22px;">
+      <button class="btn btn-outline btn-sm"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+      <button class="btn btn-primary btn-sm" style="min-width:36px;">1</button>
+      <button class="btn btn-outline btn-sm" style="min-width:36px;">2</button>
+      <button class="btn btn-outline btn-sm" style="min-width:36px;">3</button>
+      <button class="btn btn-outline btn-sm">Next <i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+  </main>
+</div></div>
+
+<div class="chatbot-float">
+  <div class="chatbot-tip">AI Recruiter Bot</div>
+  <button class="chatbot-bubble"><i class="fa-solid fa-message"></i></button>
+</div>
+
+<script src="js/toast.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/candidates.js"></script>
+</body>
+</html>
