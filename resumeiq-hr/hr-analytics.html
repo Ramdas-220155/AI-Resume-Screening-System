@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeIQ HR — Analytics</title>
+  <link rel="stylesheet" href="css/hr-style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" />
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">🎯</div>
+      <div class="logo-wordmark"><strong>ResumeIQ</strong><span>HR Panel</span></div>
+      <button class="sidebar-toggle" id="sidebarToggle">
+        <div class="hamburger"><span></span><span></span><span></span></div>
+      </button>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Main</div>
+      <a class="nav-item" href="hr-dashboard.html"><span class="nav-icon">📊</span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" href="hr-jobs.html"><span class="nav-icon">📋</span><span class="nav-label">Job Postings</span><span class="nav-badge">8</span></a>
+      <a class="nav-item" href="hr-candidates.html"><span class="nav-icon">👥</span><span class="nav-label">Candidates</span><span class="nav-badge">142</span></a>
+      <a class="nav-item active" href="hr-analytics.html"><span class="nav-icon">📈</span><span class="nav-label">Analytics</span></a>
+      <div class="nav-section-title" style="margin-top:6px">Settings</div>
+      <a class="nav-item" href="hr-settings.html"><span class="nav-icon">⚙️</span><span class="nav-label">Settings</span></a>
+      <div class="divider" style="margin:8px 0;"></div>
+      <a class="nav-item nav-logout" href="#"><span class="nav-icon">🚪</span><span class="nav-label">Logout</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="sidebar-bottom-text">v2.4.1 · HR Edition</div></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1>Analytics</h1>
+        <div class="breadcrumb">hr.resumeiq.app / analytics</div>
+      </div>
+      <div class="topbar-right">
+        <button class="topbar-btn" data-notif>🔔<span class="notif-dot"></span></button>
+        <select class="filter-select" style="font-size:12px;padding:7px 11px">
+          <option>Last 30 days</option><option>Last 90 days</option><option>This year</option>
+        </select>
+        <button class="topbar-btn" title="Export report">📤</button>
+        <div class="hr-avatar">
+          <div class="avatar-circle">PR</div>
+          <div class="avatar-info"><span class="avatar-name">Priya Rajan</span><span class="avatar-role">HR Manager</span></div>
+        </div>
+        <button class="logout-btn">🚪 Logout</button>
+      </div>
+    </header>
+
+    <main class="page-content">
+
+      <!-- KPI row -->
+      <div class="kpi-grid" style="margin-bottom:26px">
+        <div class="card kpi-card">
+          <div class="kpi-top"><div class="kpi-icon icon-teal">📬</div><span class="kpi-delta up">↑ +22%</span></div>
+          <div class="kpi-value count-up" data-target="142">0</div><div class="kpi-label">Total Applications</div>
+        </div>
+        <div class="card kpi-card">
+          <div class="kpi-top"><div class="kpi-icon icon-green">🎯</div><span class="kpi-delta up">↑ +6%</span></div>
+          <div class="kpi-value">26<span style="font-size:16px;color:var(--m)">%</span></div><div class="kpi-label">Shortlist Rate</div>
+        </div>
+        <div class="card kpi-card">
+          <div class="kpi-top"><div class="kpi-icon icon-yellow">⏱</div><span class="kpi-delta down">↓ -4d</span></div>
+          <div class="kpi-value">18<span style="font-size:16px;color:var(--m)">d</span></div><div class="kpi-label">Avg. Time to Hire</div>
+        </div>
+        <div class="card kpi-card">
+          <div class="kpi-top"><div class="kpi-icon icon-purple">🤖</div><span class="kpi-delta up">↑ +11%</span></div>
+          <div class="kpi-value">84<span style="font-size:16px;color:var(--m)">%</span></div><div class="kpi-label">AI Accuracy</div>
+        </div>
+      </div>
+
+      <!-- Charts row 1 -->
+      <div class="two-col">
+
+        <!-- Applications over time (CSS bar chart) -->
+        <div class="card chart-card">
+          <div class="chart-title">Applications per Week</div>
+          <div class="chart-sub">Last 8 weeks · Total: 142</div>
+          <div class="bar-chart" id="barChart">
+            <div class="bar-group">
+              <div class="bar" data-h="45" style="background:linear-gradient(180deg,#06b6d4,#0d9488);height:4px;"></div>
+              <div class="bar-label">W1</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar" data-h="62" style="background:linear-gradient(180deg,#06b6d4,#0d9488);height:4px;"></div>
+              <div class="bar-label">W2</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar" data-h="38" style="background:linear-gradient(180deg,#06b6d4,#0d9488);height:4px;"></div>
+              <div class="bar-label">W3</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar" data-h="80" style="background:linear-gradient(180deg,#22d3ee,#06b6d4);height:4px;"></div>
+              <div class="bar-label">W4</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar" data-h="55" style="background:linear-gradient(180deg,#06b6d4,#0d9488);height:4px;"></div>
+              <div class="bar-label">W5</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar" data-h="95" style="background:linear-gradient(180deg,#22d3ee,#0891b2);height:4px;"></div>
+              <div class="bar-label">W6</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar" data-h="70" style="background:linear-gradient(180deg,#06b6d4,#0d9488);height:4px;"></div>
+              <div class="bar-label">W7</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar" data-h="110" style="background:linear-gradient(180deg,#34d399,#06b6d4);height:4px;border:1px solid rgba(6,182,212,0.3);"></div>
+              <div class="bar-label" style="color:var(--a3)">W8</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status Breakdown (donut-style) -->
+        <div class="card chart-card">
+          <div class="chart-title">Application Status Breakdown</div>
+          <div class="chart-sub">Current snapshot · 142 total</div>
+          <div class="donut-wrap">
+            <div style="position:relative;width:110px;height:110px;flex-shrink:0">
+              <svg viewBox="0 0 36 36" style="width:110px;height:110px;transform:rotate(-90deg)">
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3.5"/>
+                <!-- Pending 42% -->
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#fbbf24" stroke-width="3.5" stroke-dasharray="42 58" stroke-dashoffset="0"/>
+                <!-- Shortlisted 26% -->
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#22d3ee" stroke-width="3.5" stroke-dasharray="26 74" stroke-dashoffset="-42"/>
+                <!-- Interview 14% -->
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#a78bfa" stroke-width="3.5" stroke-dasharray="14 86" stroke-dashoffset="-68"/>
+                <!-- Hired 4% -->
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#34d399" stroke-width="3.5" stroke-dasharray="4 96" stroke-dashoffset="-82"/>
+                <!-- Rejected 14% -->
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#f87171" stroke-width="3.5" stroke-dasharray="14 86" stroke-dashoffset="-86"/>
+              </svg>
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+                <div style="font-family:var(--font-m);font-size:18px;font-weight:700;color:var(--h)">142</div>
+                <div style="font-size:10px;color:var(--m)">total</div>
+              </div>
+            </div>
+            <div class="donut-legend">
+              <div class="legend-item"><div class="legend-dot" style="background:#fbbf24"></div><span class="legend-label">Pending</span><span class="legend-value">60</span></div>
+              <div class="legend-item"><div class="legend-dot" style="background:#22d3ee"></div><span class="legend-label">Shortlisted</span><span class="legend-value">38</span></div>
+              <div class="legend-item"><div class="legend-dot" style="background:#a78bfa"></div><span class="legend-label">Interview</span><span class="legend-value">20</span></div>
+              <div class="legend-item"><div class="legend-dot" style="background:#34d399"></div><span class="legend-label">Hired</span><span class="legend-value">6</span></div>
+              <div class="legend-item"><div class="legend-dot" style="background:#f87171"></div><span class="legend-label">Rejected</span><span class="legend-value">18</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Charts row 2 -->
+      <div class="two-col">
+
+        <!-- Source of Hire -->
+        <div class="card chart-card">
+          <div class="chart-title">Source of Applications</div>
+          <div class="chart-sub">Where candidates found the job</div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span style="color:var(--t)">LinkedIn</span><span style="font-family:var(--font-m);color:var(--a3)">45% · 64</span></div>
+              <div style="height:8px;background:rgba(255,255,255,0.05);border-radius:99px;overflow:hidden"><div class="score-fill" data-score="45" style="width:0%;background:linear-gradient(90deg,#0891b2,#22d3ee)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span style="color:var(--t)">ResumeIQ Portal</span><span style="font-family:var(--font-m);color:var(--a3)">28% · 40</span></div>
+              <div style="height:8px;background:rgba(255,255,255,0.05);border-radius:99px;overflow:hidden"><div class="score-fill" data-score="28" style="width:0%;background:linear-gradient(90deg,#0d9488,#06b6d4)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span style="color:var(--t)">Naukri / Indeed</span><span style="font-family:var(--font-m);color:var(--a3)">15% · 21</span></div>
+              <div style="height:8px;background:rgba(255,255,255,0.05);border-radius:99px;overflow:hidden"><div class="score-fill" data-score="15" style="width:0%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span style="color:var(--t)">Referral</span><span style="font-family:var(--font-m);color:var(--a3)">8% · 11</span></div>
+              <div style="height:8px;background:rgba(255,255,255,0.05);border-radius:99px;overflow:hidden"><div class="score-fill" data-score="8" style="width:0%;background:linear-gradient(90deg,#f59e0b,#fbbf24)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span style="color:var(--t)">Company Website</span><span style="font-family:var(--font-m);color:var(--a3)">4% · 6</span></div>
+              <div style="height:8px;background:rgba(255,255,255,0.05);border-radius:99px;overflow:hidden"><div class="score-fill" data-score="4" style="width:0%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dept breakdown -->
+        <div class="card chart-card">
+          <div class="chart-title">Applications by Department</div>
+          <div class="chart-sub">Distribution across teams</div>
+          <div style="display:flex;flex-direction:column;gap:11px;margin-top:8px">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:100px;font-size:12px;color:var(--t)">Engineering</div>
+              <div style="flex:1;height:24px;background:rgba(255,255,255,0.05);border-radius:6px;overflow:hidden;position:relative">
+                <div class="score-fill" data-score="45" style="width:0%;height:100%;background:linear-gradient(90deg,#0d9488,#06b6d4);border-radius:6px"></div>
+                <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--font-m);font-size:11px;color:rgba(255,255,255,0.5)">64</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:100px;font-size:12px;color:var(--t)">AI / Data</div>
+              <div style="flex:1;height:24px;background:rgba(255,255,255,0.05);border-radius:6px;overflow:hidden;position:relative">
+                <div class="score-fill" data-score="35" style="width:0%;height:100%;background:linear-gradient(90deg,#7c3aed,#a78bfa);border-radius:6px"></div>
+                <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--font-m);font-size:11px;color:rgba(255,255,255,0.5)">50</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:100px;font-size:12px;color:var(--t)">Infrastructure</div>
+              <div style="flex:1;height:24px;background:rgba(255,255,255,0.05);border-radius:6px;overflow:hidden;position:relative">
+                <div class="score-fill" data-score="22" style="width:0%;height:100%;background:linear-gradient(90deg,#f59e0b,#fbbf24);border-radius:6px"></div>
+                <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--font-m);font-size:11px;color:rgba(255,255,255,0.5)">31</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:100px;font-size:12px;color:var(--t)">Product</div>
+              <div style="flex:1;height:24px;background:rgba(255,255,255,0.05);border-radius:6px;overflow:hidden;position:relative">
+                <div class="score-fill" data-score="11" style="width:0%;height:100%;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px"></div>
+                <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--font-m);font-size:11px;color:rgba(255,255,255,0.5)">16</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:100px;font-size:12px;color:var(--t)">Design</div>
+              <div style="flex:1;height:24px;background:rgba(255,255,255,0.05);border-radius:6px;overflow:hidden;position:relative">
+                <div class="score-fill" data-score="6" style="width:0%;height:100%;background:linear-gradient(90deg,#ec4899,#f9a8d4);border-radius:6px"></div>
+                <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--font-m);font-size:11px;color:rgba(255,255,255,0.5)">9</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- AI Accuracy Insight -->
+      <div class="card" style="padding:20px 22px;background:linear-gradient(135deg,rgba(13,148,136,0.1),rgba(6,182,212,0.06));border-color:rgba(6,182,212,0.2)">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <div style="width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--a1),var(--a3));display:flex;align-items:center;justify-content:center;font-size:15px">🤖</div>
+          <div style="font-size:13px;font-weight:800;color:var(--a3);font-family:var(--font-m);text-transform:uppercase;letter-spacing:1px">AI Performance Report</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px">
+          <div style="padding:14px;background:rgba(6,182,212,0.05);border-radius:10px;border:1px solid rgba(6,182,212,0.1)">
+            <div style="font-family:var(--font-m);font-size:22px;font-weight:700;color:var(--h)">84%</div>
+            <div style="font-size:12px;color:var(--m);margin-top:3px">Screening Accuracy</div>
+          </div>
+          <div style="padding:14px;background:rgba(6,182,212,0.05);border-radius:10px;border:1px solid rgba(6,182,212,0.1)">
+            <div style="font-family:var(--font-m);font-size:22px;font-weight:700;color:var(--h)">72%</div>
+            <div style="font-size:12px;color:var(--m);margin-top:3px">Time Saved vs Manual</div>
+          </div>
+          <div style="padding:14px;background:rgba(6,182,212,0.05);border-radius:10px;border:1px solid rgba(6,182,212,0.1)">
+            <div style="font-family:var(--font-m);font-size:22px;font-weight:700;color:var(--h)">2.3s</div>
+            <div style="font-size:12px;color:var(--m);margin-top:3px">Avg. Resume Screen Time</div>
+          </div>
+          <div style="padding:14px;background:rgba(6,182,212,0.05);border-radius:10px;border:1px solid rgba(6,182,212,0.1)">
+            <div style="font-family:var(--font-m);font-size:22px;font-weight:700;color:var(--h)">96%</div>
+            <div style="font-size:12px;color:var(--m);margin-top:3px">HR Satisfaction Score</div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<div class="chatbot-float">
+  <div class="chatbot-tooltip">AI Hiring Assistant</div>
+  <button class="chatbot-btn">🤖</button>
+</div>
+
+<script src="js/hr-script.js"></script>
+</body>
+</html>

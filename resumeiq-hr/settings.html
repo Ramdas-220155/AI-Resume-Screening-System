@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeIQ HR — Settings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" /><link rel="stylesheet" href="css/profile.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+</head>
+<body>
+<div class="sb-overlay" id="sbOverlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-topbar"><div class="sb-brand"><div class="sb-brand-icon"><i class="fa-solid fa-brain"></i></div><div><div class="sb-brand-name">ResumeIQ</div><div class="sb-brand-sub">HR Portal</div></div></div><button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="sb-user"><div class="sb-user-av">SR</div><div><div class="sb-user-name">Sarah Rao</div><div class="sb-user-role">Talent Acquisition Lead</div><div class="sb-hr-badge"><i class="fa-solid fa-shield-halved"></i> HR Admin</div></div></div>
+  <nav class="sb-nav">
+    <div class="sb-section">Main</div>
+    <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+    <a class="nav-link" href="post-job.html"><i class="fa-solid fa-pen-to-square"></i><span>Post a Job</span></a>
+    <a class="nav-link" href="manage-jobs.html"><i class="fa-solid fa-briefcase"></i><span>Manage Jobs</span><span class="nav-badge">12</span></a>
+    <a class="nav-link" href="candidates.html"><i class="fa-solid fa-users"></i><span>Candidate Rankings</span><span class="nav-badge">8</span></a>
+    <div class="sb-section" style="margin-top:6px;">Account</div>
+    <a class="nav-link" href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+    <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a>
+    <a class="nav-link danger nav-logout" href="#"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+  </nav>
+  <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1);"></i>ResumeIQ HR v3.1 · Pro Plan</div>
+</aside>
+
+<div class="shell"><div class="main">
+  <header class="topbar">
+    <button class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    <div class="topbar-center">
+      <div class="topbar-title">Settings</div>
+      <div class="topbar-crumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-right"></i>Settings</div>
+    </div>
+    <div class="topbar-right">
+      <button class="tb-icon-btn" id="notifBtn"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></button>
+      <div class="tb-avatar"><div class="tb-av-circle">SR</div><span class="tb-av-name">Sarah Rao</span></div>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <div class="settings-layout">
+
+      <!-- Settings sidebar tabs -->
+      <div class="card card-p settings-sidebar">
+        <div class="ss-title">Settings</div>
+        <div class="ss-item" data-tab="ai"><i class="fa-solid fa-robot"></i>AI Screening</div>
+        <div class="ss-item" data-tab="jobs"><i class="fa-solid fa-briefcase"></i>Job Defaults</div>
+        <div class="ss-item" data-tab="team"><i class="fa-solid fa-users"></i>Team & Access</div>
+        <div class="ss-item" data-tab="notif"><i class="fa-solid fa-bell"></i>Notifications</div>
+        <div class="ss-item" data-tab="billing"><i class="fa-solid fa-credit-card"></i>Billing & Plan</div>
+        <div class="ss-item" data-tab="integrations"><i class="fa-solid fa-plug"></i>Integrations</div>
+        <div class="ss-item" data-tab="security"><i class="fa-solid fa-shield-halved"></i>Security</div>
+      </div>
+
+      <!-- Settings sections -->
+      <div>
+
+        <!-- AI Screening -->
+        <div class="card settings-section" data-tab="ai">
+          <div class="settings-title"><i class="fa-solid fa-robot"></i> AI Screening Settings</div>
+          <div class="toggle-item"><div><div class="ti-label">Auto-score all incoming resumes</div><div class="ti-sub">AI ranks every resume on submission</div></div><input type="checkbox" checked /></div>
+          <div class="toggle-item"><div><div class="ti-label">Auto-shortlist above threshold</div><div class="ti-sub">Candidates above set % get auto-shortlisted</div></div><input type="checkbox" checked /></div>
+          <div class="toggle-item"><div><div class="ti-label">90%+ match instant notification</div><div class="ti-sub">Get immediate alert for high matches</div></div><input type="checkbox" checked /></div>
+          <div class="toggle-item"><div><div class="ti-label">Auto-reject below 40%</div><div class="ti-sub">Automatically reject very low match resumes</div></div><input type="checkbox" /></div>
+          <div class="divider"></div>
+          <div class="form-group">
+            <label class="form-label"><i class="fa-solid fa-percent"></i>Auto-shortlist Threshold</label>
+            <input type="range" min="50" max="95" value="85" style="width:100%;accent-color:var(--p1);" oninput="document.getElementById('threshVal').textContent=this.value+'%'" />
+            <div style="font-family:var(--ff-head);font-size:13px;font-weight:700;color:var(--clr-accent);margin-top:6px;">Current: <span id="threshVal">85%</span></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><i class="fa-solid fa-language"></i>Preferred Resume Language</label>
+            <select class="form-select"><option>English (default)</option><option>Hindi</option><option>Any language</option></select>
+          </div>
+          <div class="form-actions"><button class="btn btn-primary settings-save-btn"><i class="fa-solid fa-floppy-disk"></i> Save AI Settings</button></div>
+        </div>
+
+        <!-- Job Defaults -->
+        <div class="card settings-section" data-tab="jobs" style="display:none;">
+          <div class="settings-title"><i class="fa-solid fa-briefcase"></i> Job Posting Defaults</div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label"><i class="fa-solid fa-building"></i>Default Company Name</label><input type="text" class="form-input" value="TechNova Solutions" /></div>
+            <div class="form-group"><label class="form-label"><i class="fa-solid fa-location-dot"></i>Default Location</label><input type="text" class="form-input" value="Bangalore, India" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label"><i class="fa-solid fa-laptop-house"></i>Default Employment Type</label><select class="form-select"><option selected>Full-time</option><option>Remote</option><option>Hybrid</option></select></div>
+            <div class="form-group"><label class="form-label"><i class="fa-solid fa-calendar"></i>Default Posting Duration</label><select class="form-select"><option>30 days</option><option selected>60 days</option><option>90 days</option></select></div>
+          </div>
+          <div class="toggle-item"><div><div class="ti-label">AI screening on by default</div><div class="ti-sub">Enable AI for every new job posting</div></div><input type="checkbox" checked /></div>
+          <div class="form-actions"><button class="btn btn-primary settings-save-btn"><i class="fa-solid fa-floppy-disk"></i> Save Defaults</button></div>
+        </div>
+
+        <!-- Team & Access -->
+        <div class="card settings-section" data-tab="team" style="display:none;">
+          <div class="settings-title"><i class="fa-solid fa-users"></i> Team & Access Control</div>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td><div class="cand-cell"><div class="cand-av">SR</div><div><div class="cand-name">Sarah Rao</div></div></div></td><td style="font-size:13px;">sarah.rao@technova.com</td><td><span class="badge badge-shortlist">Admin</span></td><td><span class="badge badge-open">Active</span></td><td><button class="btn btn-outline btn-sm">Edit</button></td></tr>
+                <tr><td><div class="cand-cell"><div class="cand-av" style="background:linear-gradient(135deg,#06b6d4,#0284c7)">RK</div><div><div class="cand-name">Ravi Kumar</div></div></div></td><td style="font-size:13px;">ravi.k@technova.com</td><td><span class="badge badge-pending">Recruiter</span></td><td><span class="badge badge-open">Active</span></td><td><button class="btn btn-outline btn-sm">Edit</button></td></tr>
+                <tr><td><div class="cand-cell"><div class="cand-av" style="background:linear-gradient(135deg,#10b981,#059669)">AM</div><div><div class="cand-name">Ananya Mishra</div></div></div></td><td style="font-size:13px;">ananya.m@technova.com</td><td><span class="badge badge-pending">Recruiter</span></td><td><span class="badge badge-reviewing">Invited</span></td><td><button class="btn btn-outline btn-sm">Edit</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="showToast('Invite sent!','success')"><i class="fa-solid fa-user-plus"></i> Invite Member</button>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="card settings-section" data-tab="notif" style="display:none;">
+          <div class="settings-title"><i class="fa-solid fa-bell"></i> Notification Settings</div>
+          <div class="toggle-item"><div><div class="ti-label">Email Notifications</div><div class="ti-sub">Receive updates via email</div></div><input type="checkbox" checked /></div>
+          <div class="toggle-item"><div><div class="ti-label">Browser Push Notifications</div><div class="ti-sub">Get in-browser alerts</div></div><input type="checkbox" checked /></div>
+          <div class="toggle-item"><div><div class="ti-label">New Application Alert</div><div class="ti-sub">Alert when a candidate applies</div></div><input type="checkbox" checked /></div>
+          <div class="toggle-item"><div><div class="ti-label">Daily Summary Email</div><div class="ti-sub">Receive a daily digest at 9 AM</div></div><input type="checkbox" /></div>
+          <div class="toggle-item"><div><div class="ti-label">Weekly AI Report</div><div class="ti-sub">Weekly screening performance report</div></div><input type="checkbox" checked /></div>
+          <div class="form-actions"><button class="btn btn-primary settings-save-btn"><i class="fa-solid fa-floppy-disk"></i> Save Notifications</button></div>
+        </div>
+
+        <!-- Billing -->
+        <div class="card settings-section" data-tab="billing" style="display:none;">
+          <div class="settings-title"><i class="fa-solid fa-credit-card"></i> Billing & Plan</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+            <div class="card card-p" style="background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.25);">
+              <div style="font-family:var(--ff-head);font-size:12px;font-weight:700;color:var(--clr-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Current Plan</div>
+              <div style="font-family:var(--ff-head);font-size:22px;font-weight:800;color:var(--clr-head);">Pro Plan</div>
+              <div style="font-size:13px;color:var(--clr-muted);margin-top:4px;">₹4,999/month · Unlimited AI</div>
+            </div>
+            <div class="card card-p">
+              <div style="font-family:var(--ff-head);font-size:12px;font-weight:700;color:var(--clr-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Next Billing</div>
+              <div style="font-family:var(--ff-head);font-size:22px;font-weight:800;color:var(--clr-head);">1 Apr 2026</div>
+              <div style="font-size:13px;color:var(--clr-muted);margin-top:4px;">Auto-renewal enabled</div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="showToast('Upgrade options coming soon','info')"><i class="fa-solid fa-bolt"></i> Upgrade Plan</button>
+            <button class="btn btn-outline" onclick="showToast('Billing portal opening…','info')"><i class="fa-solid fa-receipt"></i> View Invoices</button>
+          </div>
+        </div>
+
+        <!-- Integrations -->
+        <div class="card settings-section" data-tab="integrations" style="display:none;">
+          <div class="settings-title"><i class="fa-solid fa-plug"></i> Integrations</div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div class="card card-p" style="display:flex;align-items:center;gap:16px;">
+              <div style="width:42px;height:42px;background:rgba(59,130,246,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;"><i class="fa-brands fa-linkedin" style="color:#60a5fa;"></i></div>
+              <div style="flex:1;"><div style="font-family:var(--ff-head);font-size:14px;font-weight:700;color:var(--clr-head);">LinkedIn Jobs</div><div style="font-size:12px;color:var(--clr-muted);">Auto-post jobs to LinkedIn</div></div>
+              <span class="badge badge-open">Connected</span>
+            </div>
+            <div class="card card-p" style="display:flex;align-items:center;gap:16px;">
+              <div style="width:42px;height:42px;background:rgba(245,158,11,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;"><i class="fa-solid fa-envelope" style="color:#fbbf24;"></i></div>
+              <div style="flex:1;"><div style="font-family:var(--ff-head);font-size:14px;font-weight:700;color:var(--clr-head);">Gmail / SMTP</div><div style="font-size:12px;color:var(--clr-muted);">Send automated candidate emails</div></div>
+              <button class="btn btn-outline btn-sm" onclick="showToast('Connecting Gmail…','info')"><i class="fa-solid fa-plug"></i> Connect</button>
+            </div>
+            <div class="card card-p" style="display:flex;align-items:center;gap:16px;">
+              <div style="width:42px;height:42px;background:rgba(124,58,237,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;"><i class="fa-brands fa-slack" style="color:#a78bfa;"></i></div>
+              <div style="flex:1;"><div style="font-family:var(--ff-head);font-size:14px;font-weight:700;color:var(--clr-head);">Slack</div><div style="font-size:12px;color:var(--clr-muted);">Get hiring alerts in Slack</div></div>
+              <button class="btn btn-outline btn-sm" onclick="showToast('Connecting Slack…','info')"><i class="fa-solid fa-plug"></i> Connect</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security -->
+        <div class="card settings-section" data-tab="security" style="display:none;">
+          <div class="settings-title"><i class="fa-solid fa-shield-halved"></i> Security</div>
+          <div class="toggle-item"><div><div class="ti-label">Two-Factor Authentication (2FA)</div><div class="ti-sub">Add extra security to your account</div></div><input type="checkbox" /></div>
+          <div class="toggle-item"><div><div class="ti-label">Login Activity Alerts</div><div class="ti-sub">Email on new device login</div></div><input type="checkbox" checked /></div>
+          <div class="toggle-item"><div><div class="ti-label">Session Timeout (30 min)</div><div class="ti-sub">Auto logout after inactivity</div></div><input type="checkbox" checked /></div>
+          <div class="divider"></div>
+          <div class="form-group"><label class="form-label"><i class="fa-solid fa-shield"></i>Active Sessions</label></div>
+          <div class="card card-p" style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;">
+            <div><div style="font-family:var(--ff-head);font-size:13px;font-weight:700;color:var(--clr-head);">Chrome · Bangalore, India</div><div style="font-size:12px;color:#34d399;margin-top:2px;"><i class="fa-solid fa-circle" style="font-size:8px;margin-right:4px;"></i>Current session</div></div>
+          </div>
+          <div class="form-actions"><button class="btn btn-primary settings-save-btn"><i class="fa-solid fa-floppy-disk"></i> Save Security Settings</button></div>
+        </div>
+
+      </div><!-- /settings sections -->
+
+    </div><!-- /settings-layout -->
+
+  </main>
+</div></div>
+
+<div class="chatbot-float">
+  <div class="chatbot-tip"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--p1);"></i>AI Recruiter Bot</div>
+  <button class="chatbot-bubble"><i class="fa-solid fa-message"></i></button>
+</div>
+
+<script src="js/toast.js"></script><script src="js/sidebar.js"></script><script src="js/settings.js"></script>
+</body></html>

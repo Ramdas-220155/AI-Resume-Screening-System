@@ -1,0 +1,42 @@
+/* ============================================================
+   postjob.css — Post Job Page Styles
+   ============================================================ */
+
+.post-job-wrap { max-width: 900px; margin: 0 auto; }
+
+.pj-header-card {
+  padding: 22px 26px; margin-bottom: 22px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.14), rgba(192,38,211,0.08));
+  border: 1px solid rgba(124,58,237,0.25);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+}
+.pj-header-title { font-family: var(--ff-head); font-size: 20px; font-weight: 800; color: var(--clr-head); }
+.pj-header-sub   { font-size: 14px; color: var(--clr-muted); margin-top: 4px; }
+
+.pj-form-card { padding: 28px; }
+
+.form-section-title {
+  font-family: var(--ff-head);
+  font-size: 13px; font-weight: 700;
+  color: var(--clr-accent); text-transform: uppercase; letter-spacing: 0.6px;
+  margin-bottom: 16px; padding-bottom: 10px;
+  border-bottom: 1px solid rgba(124,58,237,0.18);
+  display: flex; align-items: center; gap: 8px;
+}
+.form-section-title i { font-size: 13px; color: var(--p1); }
+
+/* AI options box */
+.ai-options-box {
+  padding: 18px 20px; border-radius: var(--radius);
+  background: rgba(124,58,237,0.06);
+  border: 1px solid rgba(124,58,237,0.2);
+  margin-bottom: 18px;
+}
+.ao-title { font-family: var(--ff-head); font-size: 13px; font-weight: 700; color: var(--clr-head); margin-bottom: 13px; display: flex; align-items: center; gap: 7px; }
+.ao-title i { color: var(--p1); }
+.ao-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ao-item { display: flex; align-items: center; gap: 9px; font-size: 14px; cursor: pointer; color: var(--clr-text); }
+.ao-item input { accent-color: var(--p1); width: 16px; height: 16px; cursor: pointer; }
+
+@media (max-width: 640px) { .ao-grid { grid-template-columns: 1fr; } }

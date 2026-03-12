@@ -1,0 +1,46 @@
+/* ============================================================
+   managejobs.css — Manage Jobs Page Styles
+   ============================================================ */
+
+/* ── Toolbar ── */
+.jobs-toolbar { display:flex; gap:12px; margin-bottom:22px; flex-wrap:wrap; }
+
+.search-box { flex:1; position:relative; min-width:200px; }
+.search-box i { position:absolute; left:13px; top:50%; transform:translateY(-50%); color:var(--clr-muted); font-size:14px; pointer-events:none; }
+.search-box input {
+  width:100%; background:rgba(5,9,25,0.88); border:1px solid var(--gb);
+  border-radius:var(--radius-sm); padding:10px 14px 10px 40px;
+  color:var(--clr-head); font-family:var(--ff-body); font-size:14px; outline:none;
+  transition:border-color var(--ease);
+}
+.search-box input:focus { border-color:var(--p1); }
+.search-box input::placeholder { color:var(--clr-muted); }
+
+.filter-sel { background:rgba(5,9,25,0.88); border:1px solid var(--gb); border-radius:var(--radius-sm); padding:10px 14px; color:var(--clr-text); font-family:var(--ff-body); font-size:14px; outline:none; cursor:pointer; min-width:150px; transition:border-color var(--ease); }
+.filter-sel:focus { border-color:var(--p1); }
+.filter-sel option { background:var(--bg3); }
+
+/* ── Summary strip ── */
+.summary-strip { display:flex; gap:14px; margin-bottom:22px; flex-wrap:wrap; }
+.sum-card { display:flex; align-items:center; gap:12px; padding:14px 20px; }
+.sum-icon { font-size:22px; }
+.sum-num   { font-family:var(--ff-head); font-size:22px; font-weight:800; color:var(--clr-head); line-height:1; }
+.sum-label { font-size:12px; color:var(--clr-muted); font-family:var(--ff-head); font-weight:600; }
+
+/* ── Job cards grid ── */
+.job-cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:18px; }
+
+.job-card-item { padding:22px; display:flex; flex-direction:column; gap:12px; }
+.jc-top { display:flex; align-items:flex-start; gap:12px; }
+.jc-icon { width:44px; height:44px; border-radius:11px; background:linear-gradient(135deg,rgba(124,58,237,0.22),rgba(192,38,211,0.12)); border:1px solid rgba(124,58,237,0.22); display:flex; align-items:center; justify-content:center; font-size:19px; flex-shrink:0; color:var(--p1); }
+.jc-title  { font-family:var(--ff-head); font-size:15px; font-weight:700; color:var(--clr-head); }
+.jc-company { font-size:13px; color:var(--clr-muted); margin-top:2px; }
+.jc-meta { display:flex; flex-wrap:wrap; gap:12px; }
+.jc-meta-item { display:flex; align-items:center; gap:5px; font-size:13px; color:var(--clr-muted); }
+.jc-meta-item i { font-size:12px; color:var(--clr-muted); }
+.jc-skills-row { display:flex; flex-wrap:wrap; gap:6px; }
+.jc-footer { display:flex; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid var(--gb); gap:8px; flex-wrap:wrap; }
+.jc-apps-count { font-size:13px; color:var(--clr-muted); display:flex; align-items:center; gap:5px; }
+.jc-actions { display:flex; gap:6px; }
+
+@media (max-width:640px) { .job-cards-grid { grid-template-columns:1fr; } .summary-strip { flex-direction:column; } }

@@ -1,0 +1,71 @@
+/* ============================================================
+   profile.css — HR Profile Page Styles
+   ============================================================ */
+
+.profile-layout { display:grid; grid-template-columns:280px 1fr; gap:22px; align-items:start; }
+
+.profile-left { padding:26px 22px; text-align:center; }
+.prof-av-wrap { position:relative; display:inline-block; margin-bottom:14px; }
+.prof-av {
+  width:86px; height:86px; border-radius:50%; background:var(--grad);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--ff-head); font-size:28px; font-weight:800; color:white;
+  border:3px solid rgba(124,58,237,0.45);
+  box-shadow:0 0 28px rgba(124,58,237,0.32);
+}
+.prof-cam { position:absolute; bottom:2px; right:2px; width:26px; height:26px; border-radius:50%; background:var(--grad); border:2px solid var(--bg); display:flex; align-items:center; justify-content:center; font-size:11px; color:white; cursor:pointer; }
+
+.prof-name { font-family:var(--ff-head); font-size:19px; font-weight:800; color:var(--clr-head); }
+.prof-role { font-size:13px; color:var(--clr-muted); margin:3px 0 18px; }
+.prof-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px; }
+.ps-box { padding:11px 8px; border-radius:var(--radius-sm); background:var(--glass); border:1px solid var(--gb); text-align:center; }
+.ps-num { font-family:var(--ff-head); font-size:20px; font-weight:800; color:var(--clr-head); }
+.ps-lbl { font-family:var(--ff-head); font-size:11px; color:var(--clr-muted); margin-top:2px; }
+
+.contact-list { display:flex; flex-direction:column; gap:8px; text-align:left; }
+.contact-item { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--clr-text); }
+.contact-item i { font-size:13px; color:var(--clr-muted); width:14px; flex-shrink:0; }
+
+.profile-form-card { padding:26px 28px; margin-bottom:20px; }
+.pfc-title { font-family:var(--ff-head); font-size:16px; font-weight:700; color:var(--clr-head); margin-bottom:20px; padding-bottom:14px; border-bottom:1px solid var(--gb); display:flex; align-items:center; gap:9px; }
+.pfc-title i { font-size:15px; color:var(--p1); }
+.form-actions { display:flex; gap:12px; margin-top:22px; padding-top:18px; border-top:1px solid var(--gb); }
+
+.pwd-strength { margin:10px 0; }
+.pwd-bars { display:flex; gap:4px; }
+.pwd-bar { flex:1; height:4px; border-radius:99px; background:rgba(255,255,255,0.07); transition:background 0.3s; }
+.pwd-bar.on { background:var(--green); }
+.pwd-strength-text { font-family:var(--ff-head); font-size:11px; color:var(--green); margin-top:4px; }
+
+@media (max-width:980px) { .profile-layout { grid-template-columns:1fr; } }
+
+/* ============================================================
+   settings.css — Settings Page Styles
+   ============================================================ */
+
+.settings-layout { display:grid; grid-template-columns:220px 1fr; gap:22px; align-items:start; }
+
+.settings-sidebar { padding:18px 14px; }
+.ss-title { font-family:var(--ff-head); font-size:13px; font-weight:700; color:var(--clr-head); margin-bottom:12px; padding-left:6px; }
+.ss-item {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:var(--radius-sm);
+  font-family:var(--ff-head); font-size:13px; font-weight:600;
+  color:var(--clr-muted); cursor:pointer;
+  transition:all var(--ease); margin-bottom:2px;
+}
+.ss-item i { font-size:14px; width:16px; text-align:center; }
+.ss-item:hover { background:rgba(124,58,237,0.1); color:var(--clr-head); }
+.ss-item.active { background:rgba(124,58,237,0.18); color:var(--clr-accent); border:1px solid rgba(124,58,237,0.22); }
+
+.settings-section { padding:24px 28px; margin-bottom:20px; }
+.settings-title { font-family:var(--ff-head); font-size:16px; font-weight:700; color:var(--clr-head); margin-bottom:20px; padding-bottom:14px; border-bottom:1px solid var(--gb); display:flex; align-items:center; gap:9px; }
+.settings-title i { font-size:15px; color:var(--p1); }
+
+.toggle-item { display:flex; align-items:center; justify-content:space-between; padding:13px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+.toggle-item:last-child { border-bottom:none; }
+.ti-label { font-family:var(--ff-head); font-size:14px; font-weight:600; color:var(--clr-head); }
+.ti-sub   { font-size:12px; color:var(--clr-muted); margin-top:2px; }
+input[type="checkbox"] { accent-color:var(--p1); width:17px; height:17px; cursor:pointer; }
+
+@media (max-width:860px) { .settings-layout { grid-template-columns:1fr; } }

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeIQ HR — Manage Jobs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" /><link rel="stylesheet" href="css/managejobs.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+</head>
+<body>
+<div class="sb-overlay" id="sbOverlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-topbar"><div class="sb-brand"><div><div class="sb-brand-name">ResumeIQ</div><div class="sb-brand-sub">HR Portal</div></div></div><button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="sb-user"><div class="sb-user-av">SR</div><div><div class="sb-user-name">Sarah Rao</div><div class="sb-user-role">Talent Acquisition Lead</div><div class="sb-hr-badge"><i class="fa-solid fa-shield-halved"></i> HR Admin</div></div></div>
+  <nav class="sb-nav">
+    <div class="sb-section">Main</div>
+    <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+    <a class="nav-link" href="post-job.html"><i class="fa-solid fa-pen-to-square"></i><span>Post a Job</span></a>
+    <a class="nav-link" href="manage-jobs.html"><i class="fa-solid fa-briefcase"></i><span>Manage Jobs</span><span class="nav-badge">12</span></a>
+    <a class="nav-link" href="candidates.html"><i class="fa-solid fa-users"></i><span>Candidate Rankings</span><span class="nav-badge">8</span></a>
+    <div class="sb-section" style="margin-top:6px;">Account</div>
+    <a class="nav-link" href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+    <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a>
+    <a class="nav-link danger nav-logout" href="#"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+  </nav>
+  <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1);"></i>ResumeIQ HR v3.1 · Pro Plan</div>
+</aside>
+
+<div class="shell"><div class="main">
+  <header class="topbar">
+    <button class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    <div class="topbar-center">
+      <div class="topbar-title">Manage Jobs</div>
+      <div class="topbar-crumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-right"></i>Manage Jobs</div>
+    </div>
+    <div class="topbar-right">
+      <button class="tb-icon-btn" id="notifBtn"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></button>
+      <div class="tb-avatar"><div class="tb-av-circle">SR</div><span class="tb-av-name">Sarah Rao</span></div>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- Toolbar -->
+    <div class="jobs-toolbar">
+      <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="jobSearch" placeholder="Search jobs…" /></div>
+      <select class="filter-sel" id="jobFilter">
+        <option value="all">All Jobs</option>
+        <option value="open">Open Jobs</option>
+        <option value="closed">Closed Jobs</option>
+      </select>
+      <a href="post-job.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Post New Job</a>
+    </div>
+
+    <!-- Summary strip -->
+    <div class="summary-strip">
+      <div class="card sum-card"><div class="sum-icon" style="color:var(--p1)"><i class="fa-solid fa-briefcase"></i></div><div><div class="sum-num">18</div><div class="sum-label">Total Jobs</div></div></div>
+      <div class="card sum-card"><div class="sum-icon" style="color:var(--green)"><i class="fa-solid fa-circle-check"></i></div><div><div class="sum-num" style="color:var(--green)">12</div><div class="sum-label">Open</div></div></div>
+      <div class="card sum-card"><div class="sum-icon" style="color:var(--red)"><i class="fa-solid fa-lock"></i></div><div><div class="sum-num" style="color:var(--red)">6</div><div class="sum-label">Closed</div></div></div>
+      <div class="card sum-card"><div class="sum-icon" style="color:var(--clr-accent)"><i class="fa-solid fa-inbox"></i></div><div><div class="sum-num">342</div><div class="sum-label">Total Applications</div></div></div>
+    </div>
+
+    <!-- Job cards -->
+    <div class="job-cards-grid">
+
+      <!-- Card 1 -->
+      <div class="card job-card-item" data-status="open">
+        <div class="jc-top">
+          <div class="jc-icon"><i class="fa-solid fa-desktop"></i></div>
+          <div style="flex:1;">
+            <div class="jc-title">Senior Frontend Developer</div>
+            <div class="jc-company">TechNova Solutions</div>
+          </div>
+          <span class="badge badge-open">Open</span>
+        </div>
+        <div class="jc-meta">
+          <span class="jc-meta-item"><i class="fa-solid fa-location-dot"></i> Bangalore</span>
+          <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 18–26 LPA</span>
+          <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> Mid-level</span>
+          <span class="jc-meta-item"><i class="fa-regular fa-clock"></i> 3 days ago</span>
+        </div>
+        <div class="jc-skills-row"><span class="skill-chip">React</span><span class="skill-chip">TypeScript</span><span class="skill-chip">CSS</span></div>
+        <div class="jc-footer">
+          <div class="jc-apps-count"><i class="fa-solid fa-users"></i><strong style="color:var(--clr-head);">64</strong> applicants</div>
+          <div class="jc-actions">
+            <a href="candidates.html" class="btn btn-success btn-sm"><i class="fa-solid fa-users"></i> Applicants</a>
+            <button class="btn btn-outline btn-sm toggle-status-btn" data-status="open" onclick="showToast('Job closed','error')"><i class="fa-solid fa-lock"></i></button>
+            <button class="btn btn-danger btn-sm delete-job-btn"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card job-card-item" data-status="open">
+        <div class="jc-top">
+          <div class="jc-icon"><i class="fa-solid fa-robot"></i></div>
+          <div style="flex:1;"><div class="jc-title">AI/ML Engineer</div><div class="jc-company">DeepLogic AI</div></div>
+          <span class="badge badge-open">Open</span>
+        </div>
+        <div class="jc-meta">
+          <span class="jc-meta-item"><i class="fa-solid fa-globe"></i> Remote</span>
+          <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 28–40 LPA</span>
+          <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> Senior</span>
+          <span class="jc-meta-item"><i class="fa-regular fa-clock"></i> Today</span>
+        </div>
+        <div class="jc-skills-row"><span class="skill-chip">Python</span><span class="skill-chip">PyTorch</span><span class="skill-chip">LLMs</span></div>
+        <div class="jc-footer">
+          <div class="jc-apps-count"><i class="fa-solid fa-users"></i><strong style="color:var(--clr-head);">88</strong> applicants</div>
+          <div class="jc-actions">
+            <a href="candidates.html" class="btn btn-success btn-sm"><i class="fa-solid fa-users"></i> Applicants</a>
+            <button class="btn btn-outline btn-sm" onclick="showToast('Job closed','error')"><i class="fa-solid fa-lock"></i></button>
+            <button class="btn btn-danger btn-sm delete-job-btn"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card job-card-item" data-status="open">
+        <div class="jc-top">
+          <div class="jc-icon"><i class="fa-solid fa-palette"></i></div>
+          <div style="flex:1;"><div class="jc-title">Senior UX Designer</div><div class="jc-company">PixelCraft Studio</div></div>
+          <span class="badge badge-open">Open</span>
+        </div>
+        <div class="jc-meta">
+          <span class="jc-meta-item"><i class="fa-solid fa-location-dot"></i> Mumbai</span>
+          <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 14–20 LPA</span>
+          <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> Mid-level</span>
+          <span class="jc-meta-item"><i class="fa-regular fa-clock"></i> 5 days ago</span>
+        </div>
+        <div class="jc-skills-row"><span class="skill-chip">Figma</span><span class="skill-chip">Prototyping</span><span class="skill-chip">Design Systems</span></div>
+        <div class="jc-footer">
+          <div class="jc-apps-count"><i class="fa-solid fa-users"></i><strong style="color:var(--clr-head);">41</strong> applicants</div>
+          <div class="jc-actions">
+            <a href="candidates.html" class="btn btn-success btn-sm"><i class="fa-solid fa-users"></i> Applicants</a>
+            <button class="btn btn-outline btn-sm" onclick="showToast('Job closed','error')"><i class="fa-solid fa-lock"></i></button>
+            <button class="btn btn-danger btn-sm delete-job-btn"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card job-card-item" data-status="open">
+        <div class="jc-top">
+          <div class="jc-icon"><i class="fa-solid fa-rocket"></i></div>
+          <div style="flex:1;"><div class="jc-title">Full Stack Developer</div><div class="jc-company">NexaLabs Inc.</div></div>
+          <span class="badge badge-open">Open</span>
+        </div>
+        <div class="jc-meta">
+          <span class="jc-meta-item"><i class="fa-solid fa-location-dot"></i> Hyderabad</span>
+          <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 16–24 LPA</span>
+          <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> Mid-level</span>
+          <span class="jc-meta-item"><i class="fa-regular fa-clock"></i> 1 week ago</span>
+        </div>
+        <div class="jc-skills-row"><span class="skill-chip">Node.js</span><span class="skill-chip">React</span><span class="skill-chip">MongoDB</span></div>
+        <div class="jc-footer">
+          <div class="jc-apps-count"><i class="fa-solid fa-users"></i><strong style="color:var(--clr-head);">57</strong> applicants</div>
+          <div class="jc-actions">
+            <a href="candidates.html" class="btn btn-success btn-sm"><i class="fa-solid fa-users"></i> Applicants</a>
+            <button class="btn btn-outline btn-sm" onclick="showToast('Job closed','error')"><i class="fa-solid fa-lock"></i></button>
+            <button class="btn btn-danger btn-sm delete-job-btn"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 — Closed -->
+      <div class="card job-card-item" data-status="closed" style="opacity:0.68;">
+        <div class="jc-top">
+          <div class="jc-icon"><i class="fa-solid fa-cloud"></i></div>
+          <div style="flex:1;"><div class="jc-title">DevOps Engineer</div><div class="jc-company">CloudPeak Systems</div></div>
+          <span class="badge badge-closed">Closed</span>
+        </div>
+        <div class="jc-meta">
+          <span class="jc-meta-item"><i class="fa-solid fa-location-dot"></i> Delhi NCR</span>
+          <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 22–32 LPA</span>
+          <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> Senior</span>
+          <span class="jc-meta-item"><i class="fa-regular fa-clock"></i> Closed 2 weeks ago</span>
+        </div>
+        <div class="jc-skills-row"><span class="skill-chip">AWS</span><span class="skill-chip">Kubernetes</span><span class="skill-chip">CI/CD</span></div>
+        <div class="jc-footer">
+          <div class="jc-apps-count"><i class="fa-solid fa-users"></i><strong style="color:var(--clr-head);">92</strong> applicants · <span style="color:#34d399;font-size:12px;">Hired 2</span></div>
+          <div class="jc-actions">
+            <button class="btn btn-outline btn-sm" onclick="showToast('Viewing results…','info')"><i class="fa-solid fa-eye"></i> Results</button>
+            <button class="btn btn-primary btn-sm" onclick="showToast('Job reopened!','success')"><i class="fa-solid fa-rotate"></i> Reopen</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 — Closed -->
+      <div class="card job-card-item" data-status="closed" style="opacity:0.68;">
+        <div class="jc-top">
+          <div class="jc-icon"><i class="fa-solid fa-chart-bar"></i></div>
+          <div style="flex:1;"><div class="jc-title">Data Scientist</div><div class="jc-company">InsightAI Labs</div></div>
+          <span class="badge badge-closed">Closed</span>
+        </div>
+        <div class="jc-meta">
+          <span class="jc-meta-item"><i class="fa-solid fa-location-dot"></i> Bangalore</span>
+          <span class="jc-meta-item"><i class="fa-solid fa-indian-rupee-sign"></i> 24–38 LPA</span>
+          <span class="jc-meta-item"><i class="fa-solid fa-clock"></i> Senior</span>
+          <span class="jc-meta-item"><i class="fa-regular fa-clock"></i> Closed 1 month ago</span>
+        </div>
+        <div class="jc-skills-row"><span class="skill-chip">Python</span><span class="skill-chip">SQL</span><span class="skill-chip">Scikit-learn</span></div>
+        <div class="jc-footer">
+          <div class="jc-apps-count"><i class="fa-solid fa-users"></i><strong style="color:var(--clr-head);">120</strong> applicants · <span style="color:#34d399;font-size:12px;">Hired 1</span></div>
+          <div class="jc-actions">
+            <button class="btn btn-outline btn-sm" onclick="showToast('Viewing results…','info')"><i class="fa-solid fa-eye"></i> Results</button>
+            <button class="btn btn-primary btn-sm" onclick="showToast('Job reopened!','success')"><i class="fa-solid fa-rotate"></i> Reopen</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div></div>
+
+<div class="chatbot-float">
+  <div class="chatbot-tip">AI Recruiter Bot</div>
+  <button class="chatbot-bubble"><i class="fa-solid fa-message"></i></button>
+</div>
+
+<script src="js/toast.js"></script><script src="js/sidebar.js"></script><script src="js/managejobs.js"></script>
+</body></html>

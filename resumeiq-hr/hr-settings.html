@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeIQ HR — Settings</title>
+  <link rel="stylesheet" href="css/hr-style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" />
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">🎯</div>
+      <div class="logo-wordmark"><strong>ResumeIQ</strong><span>HR Panel</span></div>
+      <button class="sidebar-toggle" id="sidebarToggle">
+        <div class="hamburger"><span></span><span></span><span></span></div>
+      </button>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Main</div>
+      <a class="nav-item" href="hr-dashboard.html"><span class="nav-icon">📊</span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" href="hr-jobs.html"><span class="nav-icon">📋</span><span class="nav-label">Job Postings</span><span class="nav-badge">8</span></a>
+      <a class="nav-item" href="hr-candidates.html"><span class="nav-icon">👥</span><span class="nav-label">Candidates</span><span class="nav-badge">142</span></a>
+      <a class="nav-item" href="hr-analytics.html"><span class="nav-icon">📈</span><span class="nav-label">Analytics</span></a>
+      <div class="nav-section-title" style="margin-top:6px">Settings</div>
+      <a class="nav-item active" href="hr-settings.html"><span class="nav-icon">⚙️</span><span class="nav-label">Settings</span></a>
+      <div class="divider" style="margin:8px 0;"></div>
+      <a class="nav-item nav-logout" href="#"><span class="nav-icon">🚪</span><span class="nav-label">Logout</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="sidebar-bottom-text">v2.4.1 · HR Edition</div></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1>Settings</h1>
+        <div class="breadcrumb">hr.resumeiq.app / settings</div>
+      </div>
+      <div class="topbar-right">
+        
+        <div class="hr-avatar">
+          <div class="avatar-circle">PR</div>
+          <div class="avatar-info"><span class="avatar-name">Priya Rajan</span><span class="avatar-role">HR Manager</span></div>
+        </div>
+        <button class="logout-btn">🚪 Logout</button>
+      </div>
+    </header>
+
+    <main class="page-content">
+
+      <div class="settings-layout">
+
+        <!-- Settings Menu -->
+        <div class="card settings-menu">
+          <div class="settings-menu-item active" onclick="showPanel('company')">🏢 Company Profile</div>
+          <div class="settings-menu-item" onclick="showPanel('ai')">🤖 AI Configuration</div>
+          <div class="settings-menu-item" onclick="showPanel('notifs')">🔔 Notifications</div>
+          <div class="settings-menu-item" onclick="showPanel('account')">👤 Account</div>
+          <div class="settings-menu-item" onclick="showPanel('integrations')">🔗 Integrations</div>
+          <div class="settings-menu-item" onclick="showPanel('billing')">💳 Billing</div>
+        </div>
+
+        <!-- Company Profile Panel -->
+        <div class="card settings-panel" id="panel-company">
+          <h3>Company Profile</h3>
+          <div class="sub">Manage your organization details</div>
+
+          <!-- Company logo -->
+          <div style="display:flex;align-items:center;gap:18px;padding:16px;background:rgba(6,182,212,0.04);border-radius:var(--r-sm);border:1px solid var(--glass-b);margin-bottom:20px">
+            <div style="width:60px;height:60px;border-radius:14px;background:linear-gradient(135deg,var(--a1),var(--a3));display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 0 20px var(--a-glow)">🏢</div>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--h)">TechNova Pvt. Ltd.</div>
+              <div style="font-size:12px;color:var(--m);font-family:var(--font-m);margin-top:3px">technova.company.id · PRO Plan</div>
+              <button class="btn-ghost btn-sm" style="margin-top:8px">Change Logo</button>
+            </div>
+          </div>
+
+          <form onsubmit="event.preventDefault();showToastExt('Company profile saved','success')">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div class="form-group"><label class="form-label">Company Name</label><input type="text" class="form-input" value="TechNova Pvt. Ltd." /></div>
+              <div class="form-group"><label class="form-label">Industry</label>
+                <select class="form-select"><option selected>Technology / SaaS</option><option>Finance</option><option>Healthcare</option><option>E-Commerce</option><option>Manufacturing</option></select>
+              </div>
+              <div class="form-group"><label class="form-label">Company Size</label>
+                <select class="form-select"><option>1–10</option><option>11–50</option><option selected>51–200</option><option>201–1000</option><option>1000+</option></select>
+              </div>
+              <div class="form-group"><label class="form-label">Headquarters</label><input type="text" class="form-input" value="Bangalore, India" /></div>
+              <div class="form-group"><label class="form-label">Company Website</label><input type="url" class="form-input" value="https://technova.io" /></div>
+              <div class="form-group"><label class="form-label">HR Contact Email</label><input type="email" class="form-input" value="hr@technova.io" /></div>
+            </div>
+            <div class="form-group"><label class="form-label">Company Description</label>
+              <textarea class="form-textarea">TechNova builds next-generation SaaS products for enterprise clients. We're a fast-growing team of 120+ across engineering, design, and product with offices in Bangalore and Hyderabad.</textarea>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:4px">
+              <button type="submit" class="btn-primary"><span>💾 Save Changes</span></button>
+              <button type="button" class="btn-ghost">Reset</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- AI Config Panel -->
+        <div class="card settings-panel" id="panel-ai" style="display:none">
+          <h3>AI Configuration</h3>
+          <div class="sub">Tune how ResumeIQ AI screens and ranks candidates</div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px">
+            <div class="form-group"><label class="form-label">Min. AI Match Score</label>
+              <input type="number" class="form-input" value="70" min="0" max="100" />
+              <div style="font-size:11px;color:var(--m);margin-top:5px">Candidates below this score are auto-filtered</div>
+            </div>
+            <div class="form-group"><label class="form-label">Screening Model</label>
+              <select class="form-select"><option selected>ResumeIQ Pro (v3)</option><option>ResumeIQ Standard</option><option>Custom Fine-tuned</option></select>
+            </div>
+          </div>
+
+          <div style="margin-bottom:22px">
+            <div style="font-size:13px;font-weight:700;color:var(--h);margin-bottom:14px">Scoring Weights</div>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="width:130px;font-size:13px;color:var(--t)">Skills Match</div>
+                <input type="range" min="0" max="100" value="40" style="flex:1;accent-color:var(--a3)" />
+                <span style="font-family:var(--font-m);font-size:12px;color:var(--a3);width:35px">40%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="width:130px;font-size:13px;color:var(--t)">Experience</div>
+                <input type="range" min="0" max="100" value="30" style="flex:1;accent-color:var(--a3)" />
+                <span style="font-family:var(--font-m);font-size:12px;color:var(--a3);width:35px">30%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="width:130px;font-size:13px;color:var(--t)">Education</div>
+                <input type="range" min="0" max="100" value="15" style="flex:1;accent-color:var(--a3)" />
+                <span style="font-family:var(--font-m);font-size:12px;color:var(--a3);width:35px">15%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="width:130px;font-size:13px;color:var(--t)">Projects</div>
+                <input type="range" min="0" max="100" value="15" style="flex:1;accent-color:var(--a3)" />
+                <span style="font-family:var(--font-m);font-size:12px;color:var(--a3);width:35px">15%</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="font-size:13px;font-weight:700;color:var(--h);margin-bottom:12px">AI Feature Toggles</div>
+          <div class="toggle-row">
+            <div class="toggle-info"><div class="toggle-name">Auto-Shortlisting</div><div class="toggle-desc">AI automatically shortlists candidates above threshold</div></div>
+            <div class="toggle on"></div>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info"><div class="toggle-name">Bias Detection</div><div class="toggle-desc">Flag potentially biased screening criteria</div></div>
+            <div class="toggle on"></div>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info"><div class="toggle-name">Interview Question Generator</div><div class="toggle-desc">AI suggests interview questions based on resume</div></div>
+            <div class="toggle"></div>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info"><div class="toggle-name">Candidate Ranking Explanation</div><div class="toggle-desc">Show recruiters why AI ranked a candidate</div></div>
+            <div class="toggle on"></div>
+          </div>
+
+          <button class="btn-primary" style="margin-top:18px" onclick="showToastExt('AI settings saved','success')"><span>💾 Save AI Settings</span></button>
+        </div>
+
+        <!-- Notifications Panel -->
+        <div class="card settings-panel" id="panel-notifs" style="display:none">
+          <h3>Notification Preferences</h3>
+          <div class="sub">Control what alerts you receive</div>
+          <div class="toggle-row">
+            <div class="toggle-info"><div class="toggle-name">New Application Alert</div><div class="toggle-desc">Notify when a new candidate applies</div></div>
+            <div class="toggle on"></div>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info"><div class="toggle-name">High-Match Candidate Alert</div><div class="toggle-desc">Notify when a candidate scores ≥ 90%</div></div>
+            <div class="toggle on"></div>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info"><div class="toggle-name">Job Posting Expiry Reminder</div><div class="toggle-desc">Remind 5 days before a job post expires</div></div>
+            <div class="toggle on"></div>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info"><div class="toggle-name">Weekly Analytics Report</div><div class="toggle-desc">Email summary every Monday morning</div></div>
+            <div class="toggle"></div>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info"><div class="toggle-name">Interview Reminders</div><div class="toggle-desc">Notify 1 hour before scheduled interviews</div></div>
+            <div class="toggle on"></div>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info"><div class="toggle-name">Candidate Withdrawals</div><div class="toggle-desc">Alert when a candidate withdraws application</div></div>
+            <div class="toggle"></div>
+          </div>
+          <button class="btn-primary" style="margin-top:18px" onclick="showToastExt('Notification preferences saved','success')"><span>💾 Save</span></button>
+        </div>
+
+        <!-- Account Panel -->
+        <div class="card settings-panel" id="panel-account" style="display:none">
+          <h3>Account Settings</h3>
+          <div class="sub">Manage your HR account credentials</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" value="Priya Rajan" /></div>
+            <div class="form-group"><label class="form-label">Job Title</label><input type="text" class="form-input" value="HR Manager" /></div>
+            <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" value="priya.rajan@technova.io" /></div>
+            <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" value="+91 98765 12345" /></div>
+          </div>
+          <div class="divider"></div>
+          <div style="font-size:14px;font-weight:700;color:var(--h);margin-bottom:14px">Change Password</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div class="form-group"><label class="form-label">Current Password</label><input type="password" class="form-input" placeholder="••••••••" /></div>
+            <div class="form-group"></div>
+            <div class="form-group"><label class="form-label">New Password</label><input type="password" class="form-input" placeholder="••••••••" /></div>
+            <div class="form-group"><label class="form-label">Confirm Password</label><input type="password" class="form-input" placeholder="••••••••" /></div>
+          </div>
+          <div style="display:flex;gap:12px;margin-top:4px">
+            <button class="btn-primary" onclick="showToastExt('Account updated','success')"><span>💾 Save Changes</span></button>
+            <button class="btn-danger" onclick="if(confirm('Delete account? This cannot be undone.'))showToastExt('Request submitted','info')">🗑 Delete Account</button>
+          </div>
+        </div>
+
+        <!-- Integrations Panel -->
+        <div class="card settings-panel" id="panel-integrations" style="display:none">
+          <h3>Integrations</h3>
+          <div class="sub">Connect ResumeIQ with your existing tools</div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:16px;border-radius:var(--r-sm);border:1px solid var(--glass-b);background:rgba(6,182,212,0.03)">
+              <div style="display:flex;align-items:center;gap:12px"><span style="font-size:24px">💼</span><div><div style="font-size:13px;font-weight:700;color:var(--h)">LinkedIn Recruiter</div><div style="font-size:12px;color:var(--m)">Sync job postings and candidates</div></div></div>
+              <button class="btn-primary btn-sm">Connect</button>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:16px;border-radius:var(--r-sm);border:1px solid rgba(16,185,129,0.2);background:rgba(16,185,129,0.04)">
+              <div style="display:flex;align-items:center;gap:12px"><span style="font-size:24px">📧</span><div><div style="font-size:13px;font-weight:700;color:var(--h)">Gmail / Google Workspace</div><div style="font-size:12px;color:#34d399">Connected · priya.rajan@technova.io</div></div></div>
+              <button class="btn-danger">Disconnect</button>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:16px;border-radius:var(--r-sm);border:1px solid var(--glass-b);background:rgba(6,182,212,0.03)">
+              <div style="display:flex;align-items:center;gap:12px"><span style="font-size:24px">📅</span><div><div style="font-size:13px;font-weight:700;color:var(--h)">Google Calendar</div><div style="font-size:12px;color:var(--m)">Auto-schedule interview slots</div></div></div>
+              <button class="btn-primary btn-sm">Connect</button>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:16px;border-radius:var(--r-sm);border:1px solid var(--glass-b);background:rgba(6,182,212,0.03)">
+              <div style="display:flex;align-items:center;gap:12px"><span style="font-size:24px">💬</span><div><div style="font-size:13px;font-weight:700;color:var(--h)">Slack</div><div style="font-size:12px;color:var(--m)">Get hiring alerts in Slack channels</div></div></div>
+              <button class="btn-primary btn-sm">Connect</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Billing Panel -->
+        <div class="card settings-panel" id="panel-billing" style="display:none">
+          <h3>Billing & Plan</h3>
+          <div class="sub">Manage your subscription</div>
+          <div style="padding:20px;border-radius:var(--r-sm);background:linear-gradient(135deg,rgba(13,148,136,0.15),rgba(6,182,212,0.08));border:1px solid rgba(6,182,212,0.2);margin-bottom:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+            <div>
+              <div style="font-family:var(--font-m);font-size:11px;color:var(--a3);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Current Plan</div>
+              <div style="font-size:22px;font-weight:800;color:var(--h)">PRO <span style="font-size:13px;color:var(--a3)">₹4,999/mo</span></div>
+              <div style="font-size:12px;color:var(--m);margin-top:4px">Renews on April 11, 2026 · 10 HR seats</div>
+            </div>
+            <button class="btn-primary">Upgrade to Enterprise</button>
+          </div>
+          <div style="font-size:14px;font-weight:700;color:var(--h);margin-bottom:12px">Usage This Month</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px">
+            <div style="padding:14px;border-radius:var(--r-sm);background:rgba(255,255,255,0.03);border:1px solid var(--glass-b);text-align:center">
+              <div style="font-family:var(--font-m);font-size:18px;font-weight:700;color:var(--h)">142<span style="color:var(--m)">/500</span></div>
+              <div style="font-size:11px;color:var(--m);margin-top:4px">Resumes Screened</div>
+            </div>
+            <div style="padding:14px;border-radius:var(--r-sm);background:rgba(255,255,255,0.03);border:1px solid var(--glass-b);text-align:center">
+              <div style="font-family:var(--font-m);font-size:18px;font-weight:700;color:var(--h)">8<span style="color:var(--m)">/20</span></div>
+              <div style="font-size:11px;color:var(--m);margin-top:4px">Active Job Posts</div>
+            </div>
+            <div style="padding:14px;border-radius:var(--r-sm);background:rgba(255,255,255,0.03);border:1px solid var(--glass-b);text-align:center">
+              <div style="font-family:var(--font-m);font-size:18px;font-weight:700;color:var(--h)">4<span style="color:var(--m)">/10</span></div>
+              <div style="font-size:11px;color:var(--m);margin-top:4px">HR Seats Used</div>
+            </div>
+          </div>
+          <button class="btn-ghost" onclick="showToastExt('Invoice downloaded','success')">📄 Download Invoice</button>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="chatbot-float">
+  <div class="chatbot-tooltip">AI Hiring Assistant</div>
+  <button class="chatbot-btn">🤖</button>
+</div>
+
+<script src="js/hr-script.js"></script>
+<script>
+  // Settings panel switcher
+  function showPanel(id) {
+    document.querySelectorAll('[id^="panel-"]').forEach(p => p.style.display = 'none');
+    document.getElementById('panel-' + id).style.display = 'block';
+    document.querySelectorAll('.settings-menu-item').forEach((item, i) => {
+      item.classList.remove('active');
+    });
+    event.target.classList.add('active');
+  }
+
+  // expose toast for inline handlers
+  function showToastExt(msg, type) {
+    // Trigger via creating a custom event
+    const e = new CustomEvent('hr-toast', { detail: { msg, type } });
+    document.dispatchEvent(e);
+  }
+  document.addEventListener('hr-toast', e => {
+    // reuse the toast logic from hr-script.js by dispatching via a button click trick
+    const tmp = document.createElement('button');
+    tmp.dataset.toastMsg  = e.detail.msg;
+    tmp.dataset.toastType = e.detail.type;
+    tmp.style.display = 'none';
+    document.body.appendChild(tmp);
+    // build toast directly
+    let c = document.getElementById('toastContainer');
+    if (!c) {
+      c = document.createElement('div');
+      c.id = 'toastContainer';
+      c.style.cssText = 'position:fixed;top:76px;right:18px;z-index:9999;display:flex;flex-direction:column;gap:9px;';
+      document.body.appendChild(c);
+    }
+    const col = { success:'#0d9488', error:'#ef4444', info:'#06b6d4' };
+    const ico = { success:'✓', error:'✕', info:'◆' };
+    const t = document.createElement('div');
+    const type = e.detail.type;
+    const msg  = e.detail.msg;
+    t.style.cssText = `background:rgba(4,13,20,0.96);border:1px solid ${col[type]};border-radius:10px;padding:13px 18px;color:#e2f0f7;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;display:flex;align-items:center;gap:9px;box-shadow:0 8px 28px rgba(0,0,0,0.55);backdrop-filter:blur(14px);min-width:260px;animation:slideInR 0.32s ease both;cursor:pointer;`;
+    t.innerHTML = `<span style="color:${col[type]};font-weight:800;font-size:15px">${ico[type]}</span><span>${msg}</span>`;
+    c.appendChild(t);
+    setTimeout(() => { t.style.animation = 'fadeOutR 0.28s ease forwards'; setTimeout(() => t.remove(), 280); }, 3000);
+    tmp.remove();
+  });
+</script>
+</body>
+</html>
