@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeIQ HR — Settings</title>
+  <link rel="stylesheet" href="css/hr-style.css" />
+</head>
+<body>
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+      <div class="logo-wordmark"><strong>ResumeIQ</strong><span>HR Panel</span></div>
+      <button class="sidebar-toggle" id="sidebarToggle" title="Collapse"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Main</div>
+      <a class="nav-item" href="hr-dashboard.html"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" href="post-jobs.html"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></span><span class="nav-label">Job Postings</span><span class="nav-badge">8</span></a>
+      <a class="nav-item" href="hr-candidates.html"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span><span class="nav-label">Candidates</span><span class="nav-badge">142</span></a>
+      <a class="nav-item" href="hr-analytics.html"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><span class="nav-label">Analytics</span></a>
+      <div class="nav-section-title" style="margin-top:6px">Account</div>
+      <a class="nav-item active" href="hr-settings.html"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06-.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></span><span class="nav-label">Settings</span></a>
+      <div class="divider"></div>
+      <a class="nav-item nav-logout" href="#"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span><span class="nav-label">Logout</span></a>
+    </nav>
+    <div class="sidebar-bottom">v2.4.1 · HR Edition</div>
+  </aside>
+
+  <div class="main">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left"><h1>Settings</h1><div class="breadcrumb">hr.resumeiq.app / settings</div></div>
+      <div class="topbar-right">
+        <button class="topbar-btn theme-toggle-btn" title="Toggle theme">
+          <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <button class="topbar-btn" data-notif title="Notifications"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg><span class="notif-dot"></span></button>
+        <div class="hr-avatar">
+          <div class="avatar-circle">PR</div>
+          <div class="avatar-info"><span class="avatar-name">Priya Rajan</span><span class="avatar-role">HR Manager</span></div>
+        </div>
+        <button class="logout-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Logout</button>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <div class="settings-layout">
+
+        <!-- Settings menu -->
+        <div class="card settings-menu">
+          <div class="settings-menu-item active" data-panel="company">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Company Profile
+          </div>
+          <div class="settings-menu-item" data-panel="ai">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/></svg>
+            AI Configuration
+          </div>
+          <div class="settings-menu-item" data-panel="notifs">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+            Notifications
+          </div>
+          <div class="settings-menu-item" data-panel="account">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Account
+          </div>
+          <div class="settings-menu-item" data-panel="integrations">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            Integrations
+          </div>
+          <div class="settings-menu-item" data-panel="billing">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Billing
+          </div>
+        </div>
+
+        <!-- ── COMPANY PROFILE ── -->
+        <div class="card settings-panel" id="panel-company">
+          <h3>Company Profile</h3>
+          <div class="sub">Manage your organization details</div>
+
+          <div style="display:flex;align-items:center;gap:18px;padding:16px;background:var(--hover);border-radius:var(--r-sm);border:1px solid var(--card-b);margin-bottom:20px">
+            <div style="width:58px;height:58px;border-radius:13px;background:linear-gradient(135deg,var(--a1),var(--a3));display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px var(--a-glow);flex-shrink:0;color:#fff">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--h)">TechNova Pvt. Ltd.</div>
+              <div style="font-size:11px;color:var(--m);font-family:var(--mono);margin-top:3px">technova.company.id · PRO Plan</div>
+              <button class="btn-ghost btn-sm" style="margin-top:8px" onclick="window.showToast('Logo upload coming soon','info')">Change Logo</button>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+            <div class="form-group"><label class="form-label">Company Name</label><input type="text" class="form-input" value="TechNova Pvt. Ltd." /></div>
+            <div class="form-group"><label class="form-label">Industry</label>
+              <select class="form-select"><option selected>Technology / SaaS</option><option>Finance</option><option>Healthcare</option><option>E-Commerce</option></select>
+            </div>
+            <div class="form-group"><label class="form-label">Company Size</label>
+              <select class="form-select"><option>1–10</option><option>11–50</option><option selected>51–200</option><option>201–1000</option><option>1000+</option></select>
+            </div>
+            <div class="form-group"><label class="form-label">Headquarters</label><input type="text" class="form-input" value="Bangalore, India" /></div>
+            <div class="form-group"><label class="form-label">Company Website</label><input type="url" class="form-input" value="https://technova.io" /></div>
+            <div class="form-group"><label class="form-label">HR Contact Email</label><input type="email" class="form-input" value="hr@technova.io" /></div>
+          </div>
+          <div class="form-group" style="margin-bottom:16px"><label class="form-label">Company Description</label>
+            <textarea class="form-textarea" rows="3">TechNova builds next-generation SaaS products for enterprise clients. We're a fast-growing team of 120+ across engineering, design, and product.</textarea>
+          </div>
+          <div style="display:flex;gap:10px">
+            <button class="btn-primary" onclick="window.showToast('Company profile saved','success')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Save Changes
+            </button>
+            <button class="btn-ghost" onclick="window.showToast('Form reset','info')">Reset</button>
+          </div>
+        </div>
+
+        <!-- ── AI CONFIG ── -->
+        <div class="card settings-panel" id="panel-ai" style="display:none">
+          <h3>AI Configuration</h3>
+          <div class="sub">Tune how ResumeIQ AI screens and ranks candidates</div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px">
+            <div class="form-group">
+              <label class="form-label">Min. AI Match Score</label>
+              <input type="number" class="form-input" value="70" min="0" max="100" />
+              <div style="font-size:11px;color:var(--m);margin-top:4px">Candidates below this score are auto-filtered</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Screening Model</label>
+              <select class="form-select"><option selected>ResumeIQ Pro (v3)</option><option>ResumeIQ Standard</option><option>Custom Fine-tuned</option></select>
+            </div>
+          </div>
+
+          <div style="font-size:13px;font-weight:700;color:var(--h);margin-bottom:12px">Scoring Weights</div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:120px;font-size:13px;color:var(--t)">Skills Match</div><input type="range" min="0" max="100" value="40" style="flex:1;accent-color:var(--a3)" /><span style="font-family:var(--mono);font-size:12px;color:var(--a3);width:32px">40%</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:120px;font-size:13px;color:var(--t)">Experience</div><input type="range" min="0" max="100" value="30" style="flex:1;accent-color:var(--a3)" /><span style="font-family:var(--mono);font-size:12px;color:var(--a3);width:32px">30%</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:120px;font-size:13px;color:var(--t)">Education</div><input type="range" min="0" max="100" value="15" style="flex:1;accent-color:var(--a3)" /><span style="font-family:var(--mono);font-size:12px;color:var(--a3);width:32px">15%</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:120px;font-size:13px;color:var(--t)">Projects</div><input type="range" min="0" max="100" value="15" style="flex:1;accent-color:var(--a3)" /><span style="font-family:var(--mono);font-size:12px;color:var(--a3);width:32px">15%</span></div>
+          </div>
+
+          <div style="font-size:13px;font-weight:700;color:var(--h);margin-bottom:10px">AI Feature Toggles</div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-name">Auto-Shortlisting</div><div class="toggle-desc">AI automatically shortlists candidates above threshold</div></div><div class="toggle on"></div></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-name">Bias Detection</div><div class="toggle-desc">Flag potentially biased screening criteria</div></div><div class="toggle on"></div></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-name">Interview Question Generator</div><div class="toggle-desc">AI suggests interview questions based on resume</div></div><div class="toggle"></div></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-name">Ranking Explanation</div><div class="toggle-desc">Show recruiters why AI ranked a candidate</div></div><div class="toggle on"></div></div>
+
+          <button class="btn-primary" style="margin-top:18px" onclick="window.showToast('AI settings saved','success')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save AI Settings
+          </button>
+        </div>
+
+        <!-- ── NOTIFICATIONS ── -->
+        <div class="card settings-panel" id="panel-notifs" style="display:none">
+          <h3>Notification Preferences</h3>
+          <div class="sub">Control what alerts you receive</div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-name">New Application Alert</div><div class="toggle-desc">Notify when a new candidate applies</div></div><div class="toggle on"></div></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-name">High-Match Candidate Alert</div><div class="toggle-desc">Notify when a candidate scores 90% or above</div></div><div class="toggle on"></div></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-name">Job Posting Expiry Reminder</div><div class="toggle-desc">Remind 5 days before a job post expires</div></div><div class="toggle on"></div></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-name">Weekly Analytics Report</div><div class="toggle-desc">Email summary every Monday morning</div></div><div class="toggle"></div></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-name">Interview Reminders</div><div class="toggle-desc">Notify 1 hour before scheduled interviews</div></div><div class="toggle on"></div></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-name">Candidate Withdrawals</div><div class="toggle-desc">Alert when a candidate withdraws their application</div></div><div class="toggle"></div></div>
+          <button class="btn-primary" style="margin-top:18px" onclick="window.showToast('Notification preferences saved','success')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save Preferences
+          </button>
+        </div>
+
+        <!-- ── ACCOUNT ── -->
+        <div class="card settings-panel" id="panel-account" style="display:none">
+          <h3>Account Settings</h3>
+          <div class="sub">Manage your HR account credentials</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+            <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" value="Priya Rajan" /></div>
+            <div class="form-group"><label class="form-label">Job Title</label><input type="text" class="form-input" value="HR Manager" /></div>
+            <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" value="priya.rajan@technova.io" /></div>
+            <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" value="+91 98765 12345" /></div>
+          </div>
+          <div class="divider" style="margin-bottom:16px"></div>
+          <div style="font-size:14px;font-weight:700;color:var(--h);margin-bottom:14px">Change Password</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
+            <div class="form-group"><label class="form-label">Current Password</label><input type="password" class="form-input" placeholder="••••••••" /></div>
+            <div class="form-group"></div>
+            <div class="form-group"><label class="form-label">New Password</label><input type="password" class="form-input" placeholder="••••••••" /></div>
+            <div class="form-group"><label class="form-label">Confirm Password</label><input type="password" class="form-input" placeholder="••••••••" /></div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <button class="btn-primary" onclick="window.showToast('Account updated','success')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Save Changes
+            </button>
+            <button class="btn-danger" onclick="if(confirm('Delete account? This cannot be undone.')) window.showToast('Deletion request submitted','info')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6m5 0V4a1 1 0 011-1h2a1 1 0 011 1v2"/></svg>
+              Delete Account
+            </button>
+          </div>
+        </div>
+
+        <!-- ── INTEGRATIONS ── -->
+        <div class="card settings-panel" id="panel-integrations" style="display:none">
+          <h3>Integrations</h3>
+          <div class="sub">Connect ResumeIQ with your existing tools</div>
+          <div style="display:flex;flex-direction:column;gap:13px">
+
+            <!-- LinkedIn -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:15px;border-radius:var(--r-sm);border:1px solid var(--card-b);background:var(--hover)">
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="width:40px;height:40px;border-radius:10px;background:rgba(42,112,144,.16);display:flex;align-items:center;justify-content:center;color:var(--b4)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                </div>
+                <div><div style="font-size:13px;font-weight:700;color:var(--h)">LinkedIn Recruiter</div><div style="font-size:12px;color:var(--m)">Sync job postings and candidates</div></div>
+              </div>
+              <button class="btn-primary btn-sm" onclick="window.showToast('Connecting LinkedIn…','info')">Connect</button>
+            </div>
+
+            <!-- Gmail — connected -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:15px;border-radius:var(--r-sm);border:1px solid rgba(52,211,153,.22);background:rgba(52,211,153,.04)">
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="width:40px;height:40px;border-radius:10px;background:rgba(52,211,153,.12);display:flex;align-items:center;justify-content:center;color:#34d399">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div><div style="font-size:13px;font-weight:700;color:var(--h)">Gmail / Google Workspace</div><div style="font-size:12px;color:#34d399">Connected · priya.rajan@technova.io</div></div>
+              </div>
+              <button class="btn-danger btn-sm" onclick="window.showToast('Gmail disconnected','info')">Disconnect</button>
+            </div>
+
+            <!-- Google Calendar -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:15px;border-radius:var(--r-sm);border:1px solid var(--card-b);background:var(--hover)">
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="width:40px;height:40px;border-radius:10px;background:rgba(13,148,136,.12);display:flex;align-items:center;justify-content:center;color:var(--a2)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <div><div style="font-size:13px;font-weight:700;color:var(--h)">Google Calendar</div><div style="font-size:12px;color:var(--m)">Auto-schedule interview slots</div></div>
+              </div>
+              <button class="btn-primary btn-sm" onclick="window.showToast('Connecting Calendar…','info')">Connect</button>
+            </div>
+
+            <!-- Slack -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:15px;border-radius:var(--r-sm);border:1px solid var(--card-b);background:var(--hover)">
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="width:40px;height:40px;border-radius:10px;background:rgba(167,139,250,.12);display:flex;align-items:center;justify-content:center;color:#a78bfa">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </div>
+                <div><div style="font-size:13px;font-weight:700;color:var(--h)">Slack</div><div style="font-size:12px;color:var(--m)">Get hiring alerts in Slack channels</div></div>
+              </div>
+              <button class="btn-primary btn-sm" onclick="window.showToast('Connecting Slack…','info')">Connect</button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── BILLING ── -->
+        <div class="card settings-panel" id="panel-billing" style="display:none">
+          <h3>Billing &amp; Plan</h3>
+          <div class="sub">Manage your subscription</div>
+
+          <div style="padding:20px;border-radius:var(--r-sm);background:linear-gradient(135deg,rgba(13,148,136,.14),rgba(42,112,144,.08));border:1px solid rgba(13,148,136,.24);margin-bottom:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+            <div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--a3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">Current Plan</div>
+              <div style="font-size:22px;font-weight:800;color:var(--h)">PRO <span style="font-size:13px;color:var(--a3)">₹4,999/mo</span></div>
+              <div style="font-size:12px;color:var(--m);margin-top:4px">Renews on April 11, 2026 · 10 HR seats</div>
+            </div>
+            <button class="btn-primary" onclick="window.showToast('Upgrade options coming soon','info')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Upgrade to Enterprise
+            </button>
+          </div>
+
+          <div style="font-size:14px;font-weight:700;color:var(--h);margin-bottom:12px">Usage This Month</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:22px">
+            <div style="padding:14px;border-radius:var(--r-sm);background:var(--hover);border:1px solid var(--card-b);text-align:center">
+              <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:var(--h)">142<span style="color:var(--m)">/500</span></div>
+              <div style="font-size:11px;color:var(--m);margin-top:4px">Resumes Screened</div>
+            </div>
+            <div style="padding:14px;border-radius:var(--r-sm);background:var(--hover);border:1px solid var(--card-b);text-align:center">
+              <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:var(--h)">8<span style="color:var(--m)">/20</span></div>
+              <div style="font-size:11px;color:var(--m);margin-top:4px">Active Job Posts</div>
+            </div>
+            <div style="padding:14px;border-radius:var(--r-sm);background:var(--hover);border:1px solid var(--card-b);text-align:center">
+              <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:var(--h)">4<span style="color:var(--m)">/10</span></div>
+              <div style="font-size:11px;color:var(--m);margin-top:4px">HR Seats Used</div>
+            </div>
+          </div>
+
+          <button class="btn-ghost" onclick="window.showToast('Invoice downloaded','success')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Download Invoice
+          </button>
+        </div>
+
+      </div><!-- /settings-layout -->
+    </main>
+  </div>
+</div>
+
+<div class="chatbot-float">
+  <div class="chatbot-tooltip">AI Hiring Assistant</div>
+  <button class="chatbot-btn" onclick="window.showToast('AI Assistant coming soon!','info')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/></svg></button>
+</div>
+<script src="js/hr-script.js"></script>
+<script>
+  // Settings panel switcher — inline because it needs to init after DOM
+  document.addEventListener('DOMContentLoaded', function() {
+    const items = document.querySelectorAll('.settings-menu-item[data-panel]');
+    items.forEach(function(item) {
+      item.addEventListener('click', function() {
+        items.forEach(function(i){ i.classList.remove('active'); });
+        item.classList.add('active');
+        document.querySelectorAll('.settings-panel').forEach(function(p){
+          p.style.display = p.id === 'panel-' + item.dataset.panel ? 'block' : 'none';
+        });
+      });
+    });
+  });
+</script>
+</body>
+</html>
