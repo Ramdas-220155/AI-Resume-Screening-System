@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Seeker Login — ResumeIQ</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,700;0,800;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#1a56e8;--primary-light:#4f7ef5;--primary-pale:#e8effe;
+  --orange:#f97316;--orange-dark:#c04a00;
+  --bg:#eef1f8;--border:#d0d9ef;--text:#0f172a;
+  --text-muted:#4e6080;--text-light:#8fa3c0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'DM Sans',sans-serif;min-height:100vh;
+  background:linear-gradient(135deg,#fff4ed 0%,#e8effe 50%,#fde8d4 100%);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    radial-gradient(circle at 20% 20%,rgba(249,115,22,.1) 0,transparent 40%),
+    radial-gradient(circle at 80% 80%,rgba(26,86,232,.07) 0,transparent 36%);
+  pointer-events:none;
+}
+
+.auth-wrap{width:100%;max-width:460px;position:relative;z-index:1;}
+
+.back-to-home{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--orange-dark);text-decoration:none;margin-bottom:22px;transition:gap .2s;}
+.back-to-home:hover{gap:10px;}
+
+.auth-card{background:white;border-radius:22px;overflow:hidden;box-shadow:0 20px 60px rgba(249,115,22,.15);}
+
+.auth-top{background:linear-gradient(135deg,var(--orange-dark),var(--orange));padding:28px 32px 24px;}
+.auth-logo{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.auth-logo-name{font-family:'Fraunces',serif;font-size:22px;font-weight:800;color:white;}
+.auth-logo-name .iq{background:linear-gradient(135deg,#fde68a,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.auth-ttl{font-family:'Fraunces',serif;font-size:24px;font-weight:800;color:white;margin-bottom:4px;}
+.auth-sub{font-size:13px;color:rgba(255,255,255,.68);}
+
+.auth-body{padding:26px 32px 32px;}
+.tabs{display:flex;background:#f1f5f9;border-radius:9px;padding:3px;margin-bottom:22px;}
+.tab{flex:1;padding:9px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;border-radius:7px;transition:all .25s;color:var(--text-muted);border:none;background:transparent;font-family:inherit;}
+.tab.active{background:white;color:var(--orange-dark);box-shadow:0 2px 8px rgba(0,0,0,.07);}
+
+.info-box{background:linear-gradient(135deg,#fff7ed,#fde8d4);border:1px solid rgba(249,115,22,.2);border-radius:9px;padding:11px 15px;margin-bottom:18px;display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--orange-dark);line-height:1.55;}
+
+.fg{margin-bottom:16px;}
+.fg label{display:block;font-size:10.5px;font-weight:700;color:var(--text-muted);margin-bottom:6px;letter-spacing:.3px;text-transform:uppercase;}
+.fi{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:9px;padding:10px 13px 10px 38px;color:var(--text);font-family:inherit;font-size:13.5px;outline:none;transition:all .25s;}
+.fi:focus{border-color:var(--orange);background:white;box-shadow:0 0 0 3px rgba(249,115,22,.12);}
+.fi-plain{padding-left:13px;}
+.fw{position:relative;}
+.fw-ic{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.btn-sub{width:100%;padding:12px;background:linear-gradient(135deg,var(--orange-dark),var(--orange));border:none;border-radius:10px;font-family:inherit;font-weight:700;font-size:14px;color:white;cursor:pointer;transition:all .3s;margin-top:4px;}
+.btn-sub:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(249,115,22,.3);}
+.divider{text-align:center;font-size:12px;color:var(--text-light);margin:13px 0;}
+.soc-btn{width:100%;padding:10px;background:white;border:1.5px solid var(--border);border-radius:9px;font-family:inherit;font-weight:600;font-size:13px;color:var(--text);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:9px;}
+.soc-btn:hover{border-color:var(--orange);background:#fff7ed;}
+.link-text{color:var(--orange-dark);font-weight:600;cursor:pointer;}
+.link-text:hover{text-decoration:underline;}
+.helper{text-align:center;font-size:12.5px;color:var(--text-muted);margin-top:14px;}
+
+.role-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:20px;font-size:11.5px;font-weight:700;margin-bottom:16px;background:linear-gradient(135deg,#fde8d4,#fccba8);color:var(--orange-dark);}
+
+.auth-footer{text-align:center;margin-top:18px;font-size:12px;color:var(--text-light);}
+.auth-footer a{color:var(--orange-dark);text-decoration:none;font-weight:500;}
+.auth-footer a:hover{text-decoration:underline;}
+
+.success-msg{background:linear-gradient(135deg,#fff7ed,#fde8d4);border:1.5px solid rgba(249,115,22,.2);border-radius:12px;padding:24px;text-align:center;display:none;}
+.success-msg.show{display:block;}
+.success-msg h3{font-family:'Fraunces',serif;font-size:20px;color:var(--orange-dark);margin:10px 0 6px;}
+.success-msg p{font-size:13px;color:var(--text-muted);}
+</style>
+</head>
+<body>
+<div class="auth-wrap">
+
+  <a class="back-to-home" href="index.html">← Back to ResumeIQ</a>
+
+  <div class="auth-card">
+    <div class="auth-top">
+      <div class="auth-logo">
+        <div class="auth-logo-name">Resume<span class="iq">IQ</span></div>
+      </div>
+      <div class="auth-ttl">Job Seeker Portal</div>
+      <div class="auth-sub">Sign in or create your job seeker account</div>
+    </div>
+
+    <div class="auth-body">
+      <div class="tabs">
+        <button class="tab active" id="tabLogin"  onclick="switchTab('login')">Login</button>
+        <button class="tab"        id="tabSignup" onclick="switchTab('signup')">Sign Up</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="role-badge">&#129489; Job Seeker Portal</div>
+        <div class="info-box">
+          <span style="font-size:15px;flex-shrink:0;">&#128161;</span>
+          <div>Browse jobs posted by HR teams, upload your resume and get instant AI match scores.</div>
+        </div>
+        <div class="fg">
+          <label>Email Address</label>
+          <div class="fw">
+            <span class="fw-ic">&#9993;</span>
+            <input type="email" class="fi" id="loginEmail" placeholder="you@email.com" required>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Password</label>
+          <div class="fw">
+            <span class="fw-ic">&#128274;</span>
+            <input type="password" class="fi" id="loginPass" placeholder="Enter your password" required>
+          </div>
+        </div>
+        <button type="submit" class="btn-sub">Sign In to Job Seeker Portal</button>
+        <div class="divider">or</div>
+        <button type="button" class="soc-btn">
+          <img src="https://www.google.com/favicon.ico" width="15" alt="G"> Continue with Google
+        </button>
+        <div class="helper">No account? <span class="link-text" onclick="switchTab('signup')">Create one free &rarr;</span></div>
+      </form>
+
+      <!-- SIGNUP FORM -->
+      <form id="signupForm" style="display:none;" onsubmit="handleSignup(event)">
+        <div class="role-badge">&#129489; Job Seeker Portal</div>
+        <div class="frow">
+          <div class="fg"><label>First Name</label><input type="text" class="fi fi-plain" placeholder="First name" required></div>
+          <div class="fg"><label>Last Name</label><input type="text" class="fi fi-plain" placeholder="Last name"></div>
+        </div>
+        <div class="fg">
+          <label>Email</label>
+          <div class="fw">
+            <span class="fw-ic">&#9993;</span>
+            <input type="email" class="fi" placeholder="you@email.com" required>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Password</label>
+          <div class="fw">
+            <span class="fw-ic">&#128274;</span>
+            <input type="password" class="fi" placeholder="Create a password" required minlength="6">
+          </div>
+        </div>
+        <div class="fg">
+          <label>Skills <span style="font-weight:400;text-transform:none;font-size:11px;">(comma separated)</span></label>
+          <input type="text" class="fi fi-plain" placeholder="e.g. React, Python, SQL…">
+        </div>
+        <button type="submit" class="btn-sub">Create Job Seeker Account</button>
+        <div class="helper">Already have an account? <span class="link-text" onclick="switchTab('login')">Login &rarr;</span></div>
+      </form>
+
+      <!-- SUCCESS -->
+      <div id="successMsg" class="success-msg">
+        <div style="font-size:40px;">&#127881;</div>
+        <h3>Signed In Successfully!</h3>
+        <p>Redirecting to Job Seeker Dashboard…</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="auth-footer">
+    Are you an HR recruiter? <a href="hr-login.html">HR Login &rarr;</a>
+  </div>
+</div>
+
+<script>
+function switchTab(type) {
+  const isLogin = type === 'login';
+  document.getElementById('tabLogin').classList.toggle('active', isLogin);
+  document.getElementById('tabSignup').classList.toggle('active', !isLogin);
+  document.getElementById('loginForm').style.display  = isLogin ? 'block' : 'none';
+  document.getElementById('signupForm').style.display = isLogin ? 'none'  : 'block';
+  document.getElementById('successMsg').classList.remove('show');
+}
+
+function handleLogin(e) {
+  e.preventDefault();
+  document.getElementById('loginForm').style.display = 'none';
+  document.getElementById('successMsg').classList.add('show');
+  // In a real app: redirect to dashboard after auth
+}
+
+function handleSignup(e) {
+  e.preventDefault();
+  document.getElementById('signupForm').style.display = 'none';
+  const s = document.getElementById('successMsg');
+  s.querySelector('h3').textContent = 'Account Created!';
+  s.querySelector('p').textContent  = 'Redirecting to Job Seeker Dashboard…';
+  s.classList.add('show');
+}
+</script>
+</body>
+</html>
