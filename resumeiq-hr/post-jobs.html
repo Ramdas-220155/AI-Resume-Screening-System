@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeIQ HR — Job Postings</title>
+  <link rel="stylesheet" href="css/hr-style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><circle cx='12' cy='12' r='6'/><circle cx='12' cy='12' r='2'/></svg>" />
+  <style>
+    /* Page-scoped alignment fixes (job cards only) */
+    .jobs-grid{
+      gap:16px;
+    }
+    .jobs-grid .job-post-card{
+      position:relative;
+      padding:18px 18px 16px;
+      border:1px solid var(--card-b);
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+      box-shadow:0 10px 26px rgba(0,0,0,0.22);
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .jobs-grid .job-post-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(34,211,238,.28);
+      box-shadow:0 14px 34px rgba(0,0,0,0.30);
+    }
+    .jobs-grid .job-post-card:focus-within{
+      border-color:rgba(34,211,238,.38);
+      box-shadow:0 0 0 4px rgba(34,211,238,.10), 14px 34px rgba(0,0,0,0.30);
+    }
+    .jobs-grid .job-post-card .jp-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+    }
+    .jobs-grid .job-post-card .jp-title{
+      letter-spacing:.2px;
+      line-height:1.25;
+    }
+    .jobs-grid .job-post-card .jp-dept{
+      margin-top:3px;
+    }
+    .jobs-grid .job-post-card .badge{
+      align-self:flex-start;
+      white-space:nowrap;
+    }
+    .jobs-grid .job-post-card .jp-meta{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:12px;
+      margin-top:10px;
+    }
+    .jobs-grid .job-post-card .jp-meta-item{
+      display:inline-flex;
+      align-items:center;
+      white-space:nowrap;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.07);
+      background:rgba(255,255,255,0.03);
+      color:var(--m);
+      font-size:12px;
+      font-family:var(--mono);
+    }
+    .jobs-grid .job-post-card .jp-stats{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:10px;
+      align-items:stretch;
+      margin-top:12px;
+    }
+    .jobs-grid .job-post-card .jp-stats > div{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:center;
+      min-width:0;
+      padding:10px 12px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .jobs-grid .job-post-card .jp-stat-num{
+      font-family:var(--mono);
+      font-weight:800;
+      color:var(--h);
+      font-size:18px;
+      line-height:1.1;
+    }
+    .jobs-grid .job-post-card .jp-stat-lbl{
+      margin-top:4px;
+      font-size:11px;
+      color:var(--m);
+      font-weight:650;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+    .jobs-grid .job-post-card .jp-actions{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+      gap:8px;
+      margin-top:14px;
+      padding-top:12px;
+      border-top:1px solid rgba(255,255,255,0.06);
+    }
+    .jobs-grid .job-post-card .jp-actions .btn-danger{
+      margin-left:auto;
+    }
+    .jobs-grid .job-post-card .jp-actions button{
+      height:34px;
+      padding:0 12px;
+      border-radius:10px;
+    }
+    @media (max-width: 520px){
+      .jobs-grid .job-post-card{
+        padding:16px 14px 14px;
+      }
+      .jobs-grid .job-post-card .jp-stats{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+      <div class="logo-wordmark"><strong>ResumeIQ</strong><span>HR Panel</span></div>
+      <button class="sidebar-toggle" id="sidebarToggle" title="Collapse"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Main</div>
+      <a class="nav-item" href="hr-dashboard.html"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item active" href="post-jobs.html"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></span><span class="nav-label">Job Postings</span><span class="nav-badge">8</span></a>
+      <a class="nav-item" href="hr-candidates.html"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span><span class="nav-label">Candidates</span><span class="nav-badge">142</span></a>
+      <a class="nav-item" href="hr-analytics.html"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><span class="nav-label">Analytics</span></a>
+      <div class="nav-section-title" style="margin-top:6px">Settings</div>
+      <a class="nav-item" href="hr-settings.html"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06-.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></span><span class="nav-label">Settings</span></a>
+      <div class="divider" style="margin:8px 0;"></div>
+      <a class="nav-item nav-logout" href="#"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span><span class="nav-label">Logout</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="sidebar-bottom-text">v2.4.1 · HR Edition</div></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1>Job Postings</h1>
+        <div class="breadcrumb">hr.resumeiq.app / jobs</div>
+      </div>
+      <div class="topbar-right">
+  
+        <div class="hr-avatar">
+          <div class="avatar-circle">PR</div>
+          <div class="avatar-info"><span class="avatar-name">Priya Rajan</span><span class="avatar-role">HR Manager</span></div>
+        </div>
+        <button class="logout-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Logout</button>
+      </div>
+    </header>
+
+    <main class="page-content">
+
+      <!-- Summary stats -->
+      <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:24px">
+        <div class="card kpi-card">
+          <div class="kpi-top"><div class="kpi-icon icon-teal"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div></div>
+          <div class="kpi-value count-up" data-target="8">0</div>
+          <div class="kpi-label">Active Jobs</div>
+        </div>
+        <div class="card kpi-card">
+          <div class="kpi-top"><div class="kpi-icon icon-green"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div></div>
+          <div class="kpi-value count-up" data-target="142">0</div>
+          <div class="kpi-label">Total Applicants</div>
+        </div>
+        <div class="card kpi-card">
+          <div class="kpi-top"><div class="kpi-icon icon-yellow"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div></div>
+          <div class="kpi-value count-up" data-target="3">0</div>
+          <div class="kpi-label">Expiring Soon</div>
+        </div>
+        <div class="card kpi-card">
+          <div class="kpi-top"><div class="kpi-icon icon-red"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/></svg></div></div>
+          <div class="kpi-value count-up" data-target="2">0</div>
+          <div class="kpi-label">Closed</div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div style="display:flex;gap:12px;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap">
+        <div class="jobs-toolbar" style="margin-bottom:0;flex:1">
+          <div class="search-wrap">
+            <span class="search-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+            <input type="text" class="search-input" id="jobSearch" placeholder="Search job title, department…" />
+          </div>
+          <select class="filter-select" id="jobFilter">
+            <option value="all">All Statuses</option>
+            <option value="open">Open</option>
+            <option value="paused">Paused</option>
+            <option value="closed">Closed</option>
+          </select>
+        </div>
+        <button class="btn-primary" onclick="document.getElementById('postModal').style.display='flex'">
+          <span>+ Post New Job</span>
+        </button>
+      </div>
+
+      <!-- Jobs Grid -->
+      <div class="jobs-grid">
+
+        <div class="card job-post-card" data-title="Senior Frontend Developer" data-dept="engineering" data-status="open">
+          <div class="jp-header">
+            <div>
+              <div class="jp-title">Senior Frontend Developer</div>
+              <div class="jp-dept">Engineering · Full-time</div>
+            </div>
+            <span class="badge badge-open">Open</span>
+          </div>
+          <div class="jp-meta">
+            <span class="jp-meta-item">Bangalore</span>
+            <span class="jp-meta-item">₹18–26 LPA</span>
+            <span class="jp-meta-item">Closes Mar 25</span>
+          </div>
+          <div class="jp-stats">
+            <div><div class="jp-stat-num">34</div><div class="jp-stat-lbl">Applied</div></div>
+            <div><div class="jp-stat-num">9</div><div class="jp-stat-lbl">Shortlisted</div></div>
+            <div><div class="jp-stat-num">3</div><div class="jp-stat-lbl">Interviews</div></div>
+          </div>
+          <div class="jp-actions">
+            <button class="btn-ghost btn-sm" onclick="location.href='hr-candidates.html'">View Candidates</button>
+            <button class="btn-ghost btn-sm">Edit</button>
+            <button class="btn-danger">Pause</button>
+          </div>
+        </div>
+
+        <div class="card job-post-card" data-title="AI/ML Engineer" data-dept="ai" data-status="open">
+          <div class="jp-header">
+            <div>
+              <div class="jp-title">AI/ML Engineer</div>
+              <div class="jp-dept">AI Research · Remote</div>
+            </div>
+            <span class="badge badge-open">Open</span>
+          </div>
+          <div class="jp-meta">
+            <span class="jp-meta-item">Remote</span>
+            <span class="jp-meta-item">₹28–40 LPA</span>
+            <span class="jp-meta-item">Closes Apr 1</span>
+          </div>
+          <div class="jp-stats">
+            <div><div class="jp-stat-num">28</div><div class="jp-stat-lbl">Applied</div></div>
+            <div><div class="jp-stat-num">7</div><div class="jp-stat-lbl">Shortlisted</div></div>
+            <div><div class="jp-stat-num">2</div><div class="jp-stat-lbl">Interviews</div></div>
+          </div>
+          <div class="jp-actions">
+            <button class="btn-ghost btn-sm" onclick="location.href='hr-candidates.html'">View Candidates</button>
+            <button class="btn-ghost btn-sm">Edit</button>
+            <button class="btn-danger">Pause</button>
+          </div>
+        </div>
+
+        <div class="card job-post-card" data-title="Data Scientist" data-dept="data" data-status="open">
+          <div class="jp-header">
+            <div>
+              <div class="jp-title">Data Scientist</div>
+              <div class="jp-dept">Data Team · Hybrid</div>
+            </div>
+            <span class="badge badge-open">Open</span>
+          </div>
+          <div class="jp-meta">
+            <span class="jp-meta-item">Bangalore</span>
+            <span class="jp-meta-item">₹22–35 LPA</span>
+            <span class="jp-meta-item">Closes Mar 30</span>
+          </div>
+          <div class="jp-stats">
+            <div><div class="jp-stat-num">22</div><div class="jp-stat-lbl">Applied</div></div>
+            <div><div class="jp-stat-num">5</div><div class="jp-stat-lbl">Shortlisted</div></div>
+            <div><div class="jp-stat-num">1</div><div class="jp-stat-lbl">Interviews</div></div>
+          </div>
+          <div class="jp-actions">
+            <button class="btn-ghost btn-sm" onclick="location.href='hr-candidates.html'">View Candidates</button>
+            <button class="btn-ghost btn-sm">Edit</button>
+            <button class="btn-danger">Pause</button>
+          </div>
+        </div>
+
+        <div class="card job-post-card" data-title="DevOps Engineer" data-dept="infra" data-status="open">
+          <div class="jp-header">
+            <div>
+              <div class="jp-title">DevOps Engineer</div>
+              <div class="jp-dept">Infrastructure · Full-time</div>
+            </div>
+            <span class="badge badge-open">Open</span>
+          </div>
+          <div class="jp-meta">
+            <span class="jp-meta-item">Delhi NCR</span>
+            <span class="jp-meta-item">₹20–30 LPA</span>
+            <span class="jp-meta-item">Closes Apr 10</span>
+          </div>
+          <div class="jp-stats">
+            <div><div class="jp-stat-num">19</div><div class="jp-stat-lbl">Applied</div></div>
+            <div><div class="jp-stat-num">4</div><div class="jp-stat-lbl">Shortlisted</div></div>
+            <div><div class="jp-stat-num">2</div><div class="jp-stat-lbl">Interviews</div></div>
+          </div>
+          <div class="jp-actions">
+            <button class="btn-ghost btn-sm" onclick="location.href='hr-candidates.html'">View Candidates</button>
+            <button class="btn-ghost btn-sm">Edit</button>
+            <button class="btn-danger">Pause</button>
+          </div>
+        </div>
+
+        <div class="card job-post-card" data-title="Cloud Architect" data-dept="infra" data-status="paused">
+          <div class="jp-header">
+            <div>
+              <div class="jp-title">Cloud Architect</div>
+              <div class="jp-dept">Infrastructure · Full-time</div>
+            </div>
+            <span class="badge badge-paused">Paused</span>
+          </div>
+          <div class="jp-meta">
+            <span class="jp-meta-item">Hyderabad</span>
+            <span class="jp-meta-item">₹35–55 LPA</span>
+            <span class="jp-meta-item">Paused Mar 5</span>
+          </div>
+          <div class="jp-stats">
+            <div><div class="jp-stat-num">12</div><div class="jp-stat-lbl">Applied</div></div>
+            <div><div class="jp-stat-num">3</div><div class="jp-stat-lbl">Shortlisted</div></div>
+            <div><div class="jp-stat-num">1</div><div class="jp-stat-lbl">Hired</div></div>
+          </div>
+          <div class="jp-actions">
+            <button class="btn-ghost btn-sm" onclick="location.href='hr-candidates.html'">View Candidates</button>
+            <button class="btn-primary btn-sm">Resume</button>
+            <button class="btn-danger">Close</button>
+          </div>
+        </div>
+
+        <div class="card job-post-card" data-title="Product Manager" data-dept="product" data-status="open">
+          <div class="jp-header">
+            <div>
+              <div class="jp-title">Product Manager</div>
+              <div class="jp-dept">Product · Full-time</div>
+            </div>
+            <span class="badge badge-open">Open</span>
+          </div>
+          <div class="jp-meta">
+            <span class="jp-meta-item">Delhi NCR</span>
+            <span class="jp-meta-item">₹24–38 LPA</span>
+            <span class="jp-meta-item">Closes Apr 5</span>
+          </div>
+          <div class="jp-stats">
+            <div><div class="jp-stat-num">16</div><div class="jp-stat-lbl">Applied</div></div>
+            <div><div class="jp-stat-num">5</div><div class="jp-stat-lbl">Shortlisted</div></div>
+            <div><div class="jp-stat-num">2</div><div class="jp-stat-lbl">Interviews</div></div>
+          </div>
+          <div class="jp-actions">
+            <button class="btn-ghost btn-sm" onclick="location.href='hr-candidates.html'">View Candidates</button>
+            <button class="btn-ghost btn-sm">Edit</button>
+            <button class="btn-danger">Pause</button>
+          </div>
+        </div>
+
+        <div class="card job-post-card" data-title="UI/UX Designer" data-dept="design" data-status="closed">
+          <div class="jp-header">
+            <div>
+              <div class="jp-title">UI/UX Designer</div>
+              <div class="jp-dept">Design · Full-time</div>
+            </div>
+            <span class="badge badge-closed">Closed</span>
+          </div>
+          <div class="jp-meta">
+            <span class="jp-meta-item">Mumbai</span>
+            <span class="jp-meta-item">₹12–18 LPA</span>
+            <span class="jp-meta-item">Closed Feb 28</span>
+          </div>
+          <div class="jp-stats">
+            <div><div class="jp-stat-num">58</div><div class="jp-stat-lbl">Applied</div></div>
+            <div><div class="jp-stat-num">8</div><div class="jp-stat-lbl">Interviewed</div></div>
+            <div><div class="jp-stat-num">2</div><div class="jp-stat-lbl">Hired</div></div>
+          </div>
+          <div class="jp-actions">
+            <button class="btn-ghost btn-sm" onclick="location.href='hr-candidates.html'">View Candidates</button>
+            <button class="btn-primary btn-sm">Reopen</button>
+          </div>
+        </div>
+
+        <div class="card job-post-card" data-title="Backend Developer" data-dept="engineering" data-status="open">
+          <div class="jp-header">
+            <div>
+              <div class="jp-title">Backend Developer</div>
+              <div class="jp-dept">Engineering · Remote</div>
+            </div>
+            <span class="badge badge-open">Open</span>
+          </div>
+          <div class="jp-meta">
+            <span class="jp-meta-item">Remote</span>
+            <span class="jp-meta-item">₹14–22 LPA</span>
+            <span class="jp-meta-item">Closes Apr 15</span>
+          </div>
+          <div class="jp-stats">
+            <div><div class="jp-stat-num">11</div><div class="jp-stat-lbl">Applied</div></div>
+            <div><div class="jp-stat-num">3</div><div class="jp-stat-lbl">Shortlisted</div></div>
+            <div><div class="jp-stat-num">1</div><div class="jp-stat-lbl">Interviews</div></div>
+          </div>
+          <div class="jp-actions">
+            <button class="btn-ghost btn-sm" onclick="location.href='hr-candidates.html'">View Candidates</button>
+            <button class="btn-ghost btn-sm">Edit</button>
+            <button class="btn-danger">Pause</button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ── Post Job Modal ──────────────────────────────── -->
+<div id="postModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:1000;align-items:center;justify-content:center;padding:20px">
+  <div class="card" style="width:100%;max-width:640px;max-height:90vh;overflow-y:auto;padding:28px 32px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px">
+      <div>
+        <div style="font-size:17px;font-weight:800;color:var(--h)">Post New Job</div>
+        <div style="font-size:12px;color:var(--m);font-family:var(--font-m)">Fill in the details below</div>
+      </div>
+      <button onclick="document.getElementById('postModal').style.display='none'" style="background:none;border:none;color:var(--m);font-size:22px;cursor:pointer;line-height:1">×</button>
+    </div>
+    <form id="postJobForm">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="form-group"><label class="form-label">Job Title</label><input type="text" class="form-input" placeholder="e.g. Senior React Developer" required /></div>
+        <div class="form-group"><label class="form-label">Department</label>
+          <select class="form-select"><option>Engineering</option><option>Product</option><option>Design</option><option>Data / AI</option><option>Infrastructure</option><option>Marketing</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Location</label><input type="text" class="form-input" placeholder="Bangalore / Remote" /></div>
+        <div class="form-group"><label class="form-label">Work Mode</label>
+          <select class="form-select"><option>Full-time</option><option>Remote</option><option>Hybrid</option><option>Contract</option><option>Internship</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Salary Range</label><input type="text" class="form-input" placeholder="e.g. ₹18–26 LPA" /></div>
+        <div class="form-group"><label class="form-label">Experience Required</label><input type="text" class="form-input" placeholder="e.g. 3–5 years" /></div>
+      </div>
+      <div class="form-group"><label class="form-label">Required Skills (comma-separated)</label><input type="text" class="form-input" placeholder="React, TypeScript, Node.js, …" /></div>
+      <div class="form-group"><label class="form-label">Job Description</label><textarea class="form-textarea" style="min-height:110px" placeholder="Describe responsibilities, requirements, and what you offer…"></textarea></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="form-group"><label class="form-label">Application Deadline</label><input type="date" class="form-input" /></div>
+        <div class="form-group"><label class="form-label">Number of Openings</label><input type="number" class="form-input" min="1" value="1" /></div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:8px">
+        <button type="submit" class="btn-primary"><span>Post Job</span></button>
+        <button type="button" class="btn-ghost" onclick="document.getElementById('postModal').style.display='none'">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="chatbot-float">
+  <div class="chatbot-tooltip">AI Hiring Assistant</div>
+  <button class="chatbot-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/></svg></button>
+</div>
+
+<script src="js/hr-script.js"></script>
+</body>
+</html>
