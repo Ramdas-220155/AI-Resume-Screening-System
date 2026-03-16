@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>ResumeIQ — My Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/global.css"/>
+  <link rel="stylesheet" href="../css/profile.css"/>
+</head>
+<body>
+<div class="sb-overlay" id="sbOverlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-topbar"><div class="sb-brand"><span class="sb-brand-name">ResumeIQ</span></div><button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="sb-user"><div class="sb-user-av" data-user-initials>U</div><div><div class="sb-user-name" data-user-name>Loading…</div><div class="sb-user-role">Job Seeker · Free</div></div></div>
+  <nav class="sb-nav">
+    <div class="sb-section">Navigation</div>
+    <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a class="nav-link" href="jobs.html"><i class="fa-solid fa-briefcase"></i><span>Browse Jobs</span></a>
+    <a class="nav-link" href="applications.html"><i class="fa-solid fa-file-lines"></i><span>My Applications</span></a>
+    <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a>
+    <div class="sb-section" style="margin-top:8px;">Account</div>
+    <a class="nav-link danger nav-logout" href="#"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+  </nav>
+  <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1)"></i>ResumeIQ v3.0</div>
+</aside>
+<div class="shell"><div class="main">
+  <header class="topbar">
+    <button class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    <div class="topbar-center"><div class="topbar-title">My Profile</div><div class="topbar-crumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-right"></i>Profile</div></div>
+    <div class="topbar-right">
+      <button class="theme-btn"><i class="fa-solid fa-sun theme-icon"></i></button>
+      <button class="tb-notif" id="notifBtn"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></button>
+      <div class="tb-avatar"><div class="tb-av-circle" data-user-initials>U</div><span class="tb-av-name" data-user-name>User</span></div>
+    </div>
+  </header>
+  <main class="page">
+    <div class="profile-layout">
+      <!-- LEFT CARD -->
+      <div class="card profile-card-left">
+        <div class="prof-av-wrap"><div class="prof-av" data-user-initials>U</div><div class="prof-av-edit"><i class="fa-solid fa-camera"></i></div></div>
+        <div class="prof-name" data-user-name>Loading…</div>
+        <div class="prof-role">Job Seeker · Free</div>
+        <div class="completeness-bar-wrap">
+          <div class="completeness-label"><span>Profile Strength</span><span id="complPct">0%</span></div>
+          <div class="completeness-track"><div class="completeness-fill" style="width:0%"></div></div>
+        </div>
+        <div class="prof-stats">
+          <div class="prof-stat"><div class="prof-stat-num" data-stat="apps">—</div><div class="prof-stat-lbl">Applied</div></div>
+          <div class="prof-stat"><div class="prof-stat-num" data-stat="short" style="color:#34d399;">—</div><div class="prof-stat-lbl">Shortlisted</div></div>
+        </div>
+        <div class="divider"></div>
+        <div style="margin-bottom:16px;"><div class="skill-badges-label">Skills</div><div class="skill-badges" id="skillBadges"><span style="font-size:13px;color:var(--clr-muted);">Loading…</span></div></div>
+        <div class="divider"></div>
+        <div class="contact-list">
+          <div class="contact-item"><i class="fa-solid fa-phone"></i><span data-contact="phone">—</span></div>
+          <div class="contact-item"><i class="fa-solid fa-location-dot"></i><span data-contact="location">—</span></div>
+          <div class="contact-item"><i class="fa-brands fa-linkedin"></i><span data-contact="linkedin">—</span></div>
+        </div>
+      </div>
+      <!-- RIGHT COLUMN -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <!-- Edit Profile -->
+        <div class="card profile-form-card">
+          <div class="pfc-title"><i class="fa-solid fa-pen-to-square"></i> Edit Profile</div>
+          <form id="editProfileForm">
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" type="text" id="editName" placeholder="Your full name" required/></div>
+              <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" id="editEmail" readonly style="opacity:0.6;cursor:not-allowed;"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="tel" id="editPhone" placeholder="+91 9876543210"/></div>
+              <div class="form-group"><label class="form-label">Location</label><input class="form-input" type="text" id="editLocation" placeholder="City, State"/></div>
+            </div>
+            <div class="form-group"><label class="form-label">Bio</label><textarea class="form-textarea" id="editBio" placeholder="Brief summary of your background…"></textarea></div>
+            <div class="form-group"><label class="form-label">Skills <span style="color:var(--clr-muted);font-weight:400;text-transform:none;">(comma-separated)</span></label><input class="form-input" type="text" id="editSkills" placeholder="React, TypeScript, Node.js…"/></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">LinkedIn</label><input class="form-input" type="url" id="editLinkedin" placeholder="https://linkedin.com/in/…"/></div>
+              <div class="form-group"><label class="form-label">GitHub</label><input class="form-input" type="url" id="editGithub" placeholder="https://github.com/…"/></div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+              <button type="reset" class="btn btn-outline"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            </div>
+          </form>
+        </div>
+        <!-- Resume Upload -->
+        <div class="card profile-form-card">
+          <div class="pfc-title"><i class="fa-solid fa-file-arrow-up"></i> Resume Upload</div>
+          <div class="file-zone" id="resumeZone">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Drag &amp; drop your resume, or <strong>click to browse</strong></p>
+            <p style="font-size:12px;margin-top:5px;color:var(--clr-muted);">Accepted: <strong>PDF, DOC, DOCX</strong> · Max 5 MB</p>
+          </div>
+          <input type="file" id="resumeFile" accept=".pdf,.doc,.docx" style="display:none;"/>
+          <div id="resumeInfo" style="margin-top:12px;font-family:var(--ff-head);font-size:13px;color:var(--clr-muted);"></div>
+        </div>
+        <!-- Change Password -->
+        <div class="card profile-form-card">
+          <div class="pfc-title"><i class="fa-solid fa-lock"></i> Change Password</div>
+          <form id="passwordForm">
+            <div class="form-group"><label class="form-label">Current Password</label><input class="form-input" type="password" id="currPwd" placeholder="Enter current password" required/></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">New Password</label><input class="form-input" type="password" id="newPwd" placeholder="Min 6 characters" required/></div>
+              <div class="form-group"><label class="form-label">Confirm Password</label><input class="form-input" type="password" id="confPwd" placeholder="Repeat password" required/></div>
+            </div>
+            <div class="pwd-strength"><div class="pwd-strength-label">Password Strength</div><div class="pwd-bars"><div class="pwd-bar"></div><div class="pwd-bar"></div><div class="pwd-bar"></div><div class="pwd-bar"></div></div><div class="pwd-strength-text" id="pwdStrengthText"></div></div>
+            <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-key"></i> Update Password</button></div>
+          </form>
+        </div>
+        <!-- Notifications -->
+        <div class="card profile-form-card">
+          <div class="pfc-title"><i class="fa-solid fa-bell"></i> Notification Preferences</div>
+          <div class="notif-pref-item"><div><div class="notif-pref-label">New Job Matches</div><div class="notif-pref-sub">Alert when matching jobs are posted</div></div><input type="checkbox" id="notifNewMatch"/></div>
+          <div class="notif-pref-item"><div><div class="notif-pref-label">Application Status Updates</div><div class="notif-pref-sub">Notify when status changes</div></div><input type="checkbox" id="notifStatus"/></div>
+          <div class="notif-pref-item"><div><div class="notif-pref-label">Weekly Digest</div><div class="notif-pref-sub">Top job openings weekly</div></div><input type="checkbox" id="notifWeekly"/></div>
+          <div class="notif-pref-item"><div><div class="notif-pref-label">Marketing &amp; Tips</div><div class="notif-pref-sub">Product updates and career tips</div></div><input type="checkbox" id="notifMarketing"/></div>
+          <div class="form-actions"><button type="button" id="saveNotifBtn" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Preferences</button></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div></div>
+<div class="chatbot-float"><div class="chatbot-tip">AI Assistant</div><button class="chatbot-bubble"><i class="fa-solid fa-message"></i></button></div>
+<script src="../js/toast.js"></script><script src="../js/api.js"></script><script src="../js/profile.js"></script>
+</body></html>

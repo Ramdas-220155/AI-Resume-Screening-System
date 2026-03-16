@@ -1,0 +1,24 @@
+{
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "editor.rulers": [100],
+  "files.associations": {
+    "*.php": "php",
+    "*.css": "css",
+    "*.js": "javascript",
+    "*.html": "html"
+  },
+  "emmet.includeLanguages": { "php": "html" },
+  "php.validate.enable": true,
+  "liveServer.settings.port": 5502,
+  "liveServer.settings.root": "/frontend",
+  "liveServer.settings.donotVerifyTags": true,
+  "extensions.recommendations": [
+    "bmewburn.vscode-intelephense-client",
+    "esbenp.prettier-vscode",
+    "ritwickdey.liveserver",
+    "formulahendry.auto-rename-tag",
+    "mongodb.mongodb-vscode"
+  ]
+}
