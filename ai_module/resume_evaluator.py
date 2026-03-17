@@ -35,7 +35,4 @@ if __name__ == "__main__":
     print("Education Score:", result["education_score"])
     print("Projects Score:", result["projects_score"])
 
-    print("\nExtracted Sections\n")
-    print(sections)
-
     print("\nFinal Score:", result["final_score"])
