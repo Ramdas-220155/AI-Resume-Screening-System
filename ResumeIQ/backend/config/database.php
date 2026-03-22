@@ -1,5 +1,6 @@
 <?php
 /* database.php — MongoDB Connection · ResumeIQ v3.0 */
+/*previously used mongodb compass and now mongodb atlas is used*/
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use MongoDB\Client;
