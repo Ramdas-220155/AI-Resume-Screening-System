@@ -1,14 +1,32 @@
 <?php
-/* database.php — MongoDB Connection · ResumeIQ v3.0 */
-/*previously used mongodb compass and now mongodb atlas is used*/
+/* database.php — MongoDB Connection · ResumeIQ v3.0
+   Reads MONGODB_URI from backend/.env for Atlas support
+   ─────────────────────────────────────────────────── */
+   /*previously used mongodb compass and now mongodb atlas is used*/
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use MongoDB\Client;
-define('MONGO_URI',    'mongodb://localhost:27017');
-define('MONGO_DB',     'resumeiq');
-define('UPLOAD_DIR',   __DIR__ . '/../uploads/resumes/');
+
+/* ── Load .env file ─────────────────────────────────── */
+$envFile = __DIR__ . '/../.env';
+if (file_exists($envFile)) {
+    foreach (file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        $line = trim($line);
+        if ($line === '' || str_starts_with($line, '#')) continue;
+        if (str_contains($line, '=')) {
+            [$key, $value] = explode('=', $line, 2);
+            $_ENV[trim($key)] = trim($value);
+        }
+    }
+}
+
+/* ── Connection settings ────────────────────────────── */
+// Uses Atlas URI from .env if available, falls back to localhost
+define('MONGO_URI',     $_ENV['MONGODB_URI']  ?? 'mongodb://localhost:27017');
+define('MONGO_DB',      $_ENV['MONGODB_DB']   ?? 'resumeiq');
+define('UPLOAD_DIR',    __DIR__ . '/../uploads/resumes/');
 define('MAX_FILE_SIZE', 5 * 1024 * 1024);
-define('ALLOWED_EXTS', ['pdf', 'doc', 'docx']);
+define('ALLOWED_EXTS',  ['pdf', 'doc', 'docx']);
 
 function getDB(): MongoDB\Database {
     static $db = null;
