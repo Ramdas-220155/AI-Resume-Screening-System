@@ -2,51 +2,31 @@ import pdfplumber
 import docx
 import os
 
-
-def read_pdf(file_path):
-
+def read_pdf(path):
     text = ""
-
-    with pdfplumber.open(file_path) as pdf:
+    with pdfplumber.open(path) as pdf:
         for page in pdf.pages:
             page_text = page.extract_text()
-
             if page_text:
                 text += page_text + " "
+    return text.lower()
 
-    return text
+def read_docx(path):
+    doc = docx.Document(path)
+    return " ".join([p.text for p in doc.paragraphs]).lower()
 
+def read_txt(path):
+    with open(path, "r", encoding="utf-8") as f:
+        return f.read().lower()
 
-def read_docx(file_path):
+def extract_resume_text(path):
+    ext = os.path.splitext(path)[1].lower()
 
-    doc = docx.Document(file_path)
-
-    text = ""
-
-    for para in doc.paragraphs:
-        text += para.text + " "
-
-    return text
-
-
-def read_txt(file_path):
-
-    with open(file_path, "r", encoding="utf-8") as f:
-        return f.read()
-
-
-def extract_resume_text(file_path):
-
-    extension = os.path.splitext(file_path)[1].lower()
-
-    if extension == ".pdf":
-        return read_pdf(file_path)
-
-    elif extension == ".docx":
-        return read_docx(file_path)
-
-    elif extension == ".txt":
-        return read_txt(file_path)
-
+    if ext == ".pdf":
+        return read_pdf(path)
+    elif ext == ".docx":
+        return read_docx(path)
+    elif ext == ".txt":
+        return read_txt(path)
     else:
-        raise ValueError("Unsupported file format")
+        raise ValueError("Unsupported format")

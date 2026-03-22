@@ -11,33 +11,16 @@ def extract_sections(text):
         "projects": ""
     }
 
-    skills_patterns = ["skills", "technical skills", "core competencies"]
-    experience_patterns = ["experience", "work experience", "professional experience"]
-    education_patterns = ["education", "academic background", "qualifications"]
-    project_patterns = ["projects", "portfolio"]
+    patterns = {
+        "skills": r"(skills|technical skills)(.*?)(experience|education|projects)",
+        "experience": r"(experience|work experience)(.*?)(education|projects)",
+        "education": r"(education|academic)(.*?)(projects)",
+        "projects": r"(projects|portfolio)(.*)"
+    }
 
-    for pattern in skills_patterns:
-        match = re.search(pattern + r"(.*?)(experience|education|projects)", text, re.DOTALL)
+    for key, pattern in patterns.items():
+        match = re.search(pattern, text, re.DOTALL)
         if match:
-            sections["skills"] = match.group(1)
-            break
-
-    for pattern in experience_patterns:
-        match = re.search(pattern + r"(.*?)(education|projects)", text, re.DOTALL)
-        if match:
-            sections["experience"] = match.group(1)
-            break
-
-    for pattern in education_patterns:
-        match = re.search(pattern + r"(.*?)(projects)", text, re.DOTALL)
-        if match:
-            sections["education"] = match.group(1)
-            break
-
-    for pattern in project_patterns:
-        match = re.search(pattern + r"(.*)", text, re.DOTALL)
-        if match:
-            sections["projects"] = match.group(1)
-            break
+            sections[key] = match.group(2)
 
     return sections

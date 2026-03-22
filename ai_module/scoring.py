@@ -1,6 +1,5 @@
 from section_matcher import semantic_score
 
-
 def evaluate_sections(resume_sections, job_requirements):
 
     skills_score = semantic_score(
