@@ -1,167 +1,161 @@
+/* hr-jobs.js — HR Manage Jobs (Backend Connected) */
 document.addEventListener("DOMContentLoaded", async () => {
-  const grid = document.getElementById("jobsGrid");
+  if (!Auth.requireLogin("hr")) return;
+  applyIdentityToDOM();
+
+  const tableBody = document.querySelector("#hrJobsTable tbody");
   const searchInput = document.getElementById("jobSearch");
-  const typeFilter = document.getElementById("typeFilter");
-  const locFilter = document.getElementById("locFilter");
-  const levelFilter = document.getElementById("levelFilter");
-  const resultCount = document.getElementById("resultCount");
+  const statusF = document.getElementById("statusFilter");
+  const countEl = document.getElementById("jobCount");
 
   let allJobs = [];
 
-  /* Remove emojis for better search */
-  function stripEmojis(str) {
-    return (str || "").replace(
-      /([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD83C-\uDBFF\uDC00-\uDFFF])/g,
-      "",
-    );
+  /* ── Build table row ── */
+  function buildRow(job) {
+    const statusBadge =
+      job.status === "active"
+        ? `<span class="badge badge-active">Active</span>`
+        : `<span class="badge badge-closed">Closed</span>`;
+
+    const typeLabel =
+      {
+        "full-time": "Full-time",
+        remote: "Remote",
+        internship: "Internship",
+        "part-time": "Part-time",
+        contract: "Contract",
+      }[job.type] || job.type;
+
+    return `<tr data-id="${job.id}">
+      <td>
+        
+            <div style="font-weight:700;color:var(--clr-head);font-size:14px;">${escHtml(job.title)}</div>
+            <div style="font-size:12px;color:var(--clr-muted);">${escHtml(job.company || "")}</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="jc-type jt-${job.type === "full-time" ? "full" : job.type === "remote" ? "remote" : job.type === "internship" ? "intern" : "full"}" style="font-size:11px;">${typeLabel}</span></td>
+      <td style="color:var(--clr-muted);">${escHtml(job.loc || "")}</td>
+      <td style="color:var(--clr-muted);">${capitalize(job.level || "")}</td>
+      <td><span style="font-weight:700;color:var(--clr-accent);">${job.app_count || 0}</span></td>
+      <td>${statusBadge}</td>
+      <td style="color:var(--clr-muted);font-size:13px;">${job.posted_at || ""}</td>
+      <td>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <a href="candidates.html?job=${job.id}" class="btn btn-xs btn-outline" title="View candidates">
+            <i class="fa-solid fa-users"></i> Candidates
+          </a>
+          <button class="btn btn-xs btn-danger close-btn" data-id="${job.id}"
+            ${job.status !== "active" ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ""}
+            title="${job.status === "active" ? "Close this job" : "Already closed"}">
+            <i class="fa-solid fa-ban"></i> Close
+          </button>
+        </div>
+      </td>
+    </tr>`;
   }
 
-  /* Create Job Card */
-  function buildCard(job) {
-    const skills = (job.skills || [])
-      .map((s) => `<span class="skill-tag">${s}</span>`)
-      .join("");
-
-    return `
-<div class="job-card">
-
-  <div class="jc-title">${job.title}</div>
-
-  <div class="jc-company">${job.company}</div>
-
-  <div class="jc-meta">
-    <i class="fa-solid fa-location-dot"></i> ${job.loc}
-  </div>
-
-  <div class="jc-meta">
-    <i class="fa-solid fa-layer-group"></i> ${job.level}
-  </div>
-
-  <div class="jc-skills">
-    ${skills}
-  </div>
-
-  <div class="jc-meta">
-    ${job.salary || ""}
-  </div>
-
-  <button class="btn btn-primary apply-btn"
-      data-id="${job.id}"
-      data-title="${job.title}">
-      Apply
-  </button>
-
-</div>
-`;
-  }
-
-  /* Render Jobs */
-  function renderCards(jobs) {
-    if (!grid) return;
+  /* ── Render table ── */
+  function renderTable(jobs) {
+    if (!tableBody) return;
 
     if (!jobs.length) {
-      grid.innerHTML = "<h3>No jobs found</h3>";
-
-      if (resultCount) resultCount.textContent = "0 jobs";
-
+      tableBody.innerHTML = `
+        <tr><td colspan="8" style="text-align:center;padding:44px;color:var(--clr-muted);">
+          <i class="fa-solid fa-briefcase" style="font-size:28px;display:block;margin-bottom:10px;"></i>
+          No job listings found.
+          <a href="post-job.html" style="color:var(--clr-accent);margin-left:6px;">Post your first job →</a>
+        </td></tr>`;
+      if (countEl) countEl.textContent = "0 jobs";
       return;
     }
 
-    grid.innerHTML = jobs.map(buildCard).join("");
+    tableBody.innerHTML = jobs.map(buildRow).join("");
+    if (countEl)
+      countEl.textContent = `${jobs.length} job${jobs.length !== 1 ? "s" : ""}`;
 
-    if (resultCount) resultCount.textContent = `${jobs.length} jobs`;
+    /* Bind close buttons */
+    document.querySelectorAll(".close-btn:not([disabled])").forEach((btn) => {
+      btn.addEventListener("click", async function () {
+        const id = this.dataset.id;
+        if (
+          !confirm("Close this job? It will stop accepting new applications.")
+        )
+          return;
 
-    bindApplyBtns();
-  }
+        this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+        this.disabled = true;
 
-  /* Filter Jobs */
-  function filterJobs() {
-    const q = stripEmojis((searchInput?.value || "").toLowerCase());
-
-    const type = typeFilter?.value || "all";
-    const loc = locFilter?.value || "all";
-    const level = levelFilter?.value || "all";
-
-    const filtered = allJobs.filter((j) => {
-      const matchQuery =
-        !q ||
-        [j.title, j.company, ...(j.skills || [])].some((v) =>
-          stripEmojis(v).toLowerCase().includes(q),
-        );
-
-      return (
-        matchQuery &&
-        (type === "all" || j.type === type) &&
-        (loc === "all" || j.loc === loc) &&
-        (level === "all" || j.level === level)
-      );
-    });
-
-    renderCards(filtered);
-  }
-
-  /* Apply Button */
-  function bindApplyBtns() {
-    document.querySelectorAll(".apply-btn").forEach((btn) => {
-      btn.addEventListener("click", function () {
-        this.classList.add("applied");
-
-        this.innerHTML = "Applied";
+        const res = await JobsAPI.close(id);
+        if (res.success) {
+          showToast("Job closed successfully", "info");
+          /* Update local state and re-render */
+          const job = allJobs.find((j) => j.id === id);
+          if (job) job.status = "closed";
+          filterJobs();
+        } else {
+          this.disabled = false;
+          this.innerHTML = '<i class="fa-solid fa-ban"></i> Close';
+          showToast(res.error || "Failed to close job", "error");
+        }
       });
     });
   }
 
-  /* Load Jobs (Demo Data) */
-  async function loadJobs() {
-    allJobs = [
-      {
-        id: "1",
-        title: "Frontend Developer",
-        company: "TechCorp",
-        type: "full-time",
-        loc: "Hyderabad",
-        level: "Junior",
-        skills: ["HTML", "CSS", "JavaScript"],
-        salary: "6 LPA",
-      },
+  /* ── Filter (matches jobs.html: jobSearch + statusFilter only) ── */
+  function filterJobs() {
+    const q = (searchInput?.value || "").toLowerCase();
+    const s = statusF?.value || "all";
 
-      {
-        id: "2",
-        title: "Backend Developer",
-        company: "InnovateX",
-        type: "remote",
-        loc: "Remote",
-        level: "Mid",
-        skills: ["NodeJS", "MongoDB"],
-        salary: "10 LPA",
-      },
+    const filtered = allJobs.filter((job) => {
+      const matchQ =
+        !q ||
+        (job.title || "").toLowerCase().includes(q) ||
+        (job.company || "").toLowerCase().includes(q) ||
+        (job.loc || "").toLowerCase().includes(q);
+      const matchS = s === "all" || job.status === s;
+      return matchQ && matchS;
+    });
 
-      {
-        id: "3",
-        title: "UI Designer",
-        company: "PixelLab",
-        type: "internship",
-        loc: "Bangalore",
-        level: "Junior",
-        skills: ["Figma", "UX"],
-        salary: "Stipend",
-      },
-    ];
-
-    renderCards(allJobs);
+    renderTable(filtered);
   }
 
-  /* Event Listeners (Safe) */
+  /* ── Load from backend ── */
+  async function loadJobs() {
+    if (tableBody) {
+      tableBody.innerHTML = `
+        <tr><td colspan="8" style="text-align:center;padding:40px;color:var(--clr-muted);">
+          <i class="fa-solid fa-spinner fa-spin" style="font-size:22px;"></i>
+        </td></tr>`;
+    }
 
+    const res = await JobsAPI.myJobs();
+
+    if (res.success) {
+      allJobs = res.jobs || [];
+      renderTable(allJobs);
+    } else {
+      showToast(res.error || "Failed to load jobs", "error");
+      if (tableBody) {
+        tableBody.innerHTML = `
+          <tr><td colspan="8" style="text-align:center;padding:40px;color:var(--clr-muted);">
+            ${escHtml(res.error || "Failed to load")} —
+            <a href="post-job.html" style="color:var(--clr-accent);">Post a job first →</a>
+          </td></tr>`;
+      }
+    }
+  }
+
+  /* ── Event listeners ── */
   searchInput?.addEventListener("input", filterJobs);
+  statusF?.addEventListener("change", filterJobs);
 
-  typeFilter?.addEventListener("change", filterJobs);
+  /* ── Init ── */
+  await loadJobs();
 
-  locFilter?.addEventListener("change", filterJobs);
-
-  levelFilter?.addEventListener("change", filterJobs);
-
-  /* Load Jobs */
-
-  loadJobs();
+  document
+    .getElementById("notifBtn")
+    ?.addEventListener("click", () =>
+      showToast("No new notifications", "info"),
+    );
 });

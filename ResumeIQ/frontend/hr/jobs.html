@@ -11,8 +11,14 @@
 <body class="hr-theme">
 <div class="sb-overlay" id="sbOverlay"></div>
 <aside class="sidebar" id="sidebar">
-  <div class="sb-topbar"><div class="sb-brand"><span class="sb-brand-name">ResumeIQ</span></div><button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button></div>
-  <div class="sb-user"><div class="sb-user-av" data-user-initials>H</div><div><div class="sb-user-name" data-user-name>Loading…</div><div class="sb-user-role">Recruiter · Free</div></div></div>
+  <div class="sb-topbar">
+    <div class="sb-brand"><span class="sb-brand-name">ResumeIQ</span></div>
+    <button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="sb-user">
+    <div class="sb-user-av" data-user-initials>H</div>
+    <div><div class="sb-user-name" data-user-name>Loading…</div><div class="sb-user-role">Recruiter · Free</div></div>
+  </div>
   <nav class="sb-nav">
     <div class="sb-section">Recruiter</div>
     <a class="nav-link" href="index.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a>
@@ -26,29 +32,68 @@
   </nav>
   <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1)"></i>ResumeIQ v3.0 · HR</div>
 </aside>
+
 <div class="shell"><div class="main">
   <header class="topbar">
     <button class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></button>
-    <div class="topbar-center"><div class="topbar-title">Manage Jobs</div><div class="topbar-crumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-right"></i>Jobs</div></div>
+    <div class="topbar-center">
+      <div class="topbar-title">Manage Jobs</div>
+      <div class="topbar-crumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-right"></i>Jobs</div>
+    </div>
     <div class="topbar-right">
-      <button class="theme-btn"><i class="fa-solid fa-sun theme-icon"></i></button>
+      <button class="theme-btn" title="Toggle theme"><i class="fa-solid fa-sun theme-icon"></i></button>
       <a href="post-job.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Post Job</a>
-      <div class="tb-avatar"><div class="tb-av-circle" data-user-initials>H</div><span class="tb-av-name" data-user-name>HR</span></div>
+      <div class="tb-avatar">
+        <div class="tb-av-circle" data-user-initials>H</div>
+        <span class="tb-av-name" data-user-name>HR</span>
+      </div>
     </div>
   </header>
+
   <main class="page">
+    <!-- Toolbar: search + status filter + count -->
     <div class="app-toolbar" style="margin-bottom:20px;">
-      <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="jobSearch" placeholder="Search your job listings…"/></div>
-      <select class="filter-select" id="statusFilter"><option value="all">All Statuses</option><option value="active">Active</option><option value="closed">Closed</option></select>
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="jobSearch" placeholder="Search job title, company, location…" autocomplete="off"/>
+      </div>
+      <select class="filter-select" id="statusFilter">
+        <option value="all">All Statuses</option>
+        <option value="active">Active</option>
+        <option value="closed">Closed</option>
+      </select>
       <span id="jobCount" class="result-count">Loading…</span>
     </div>
+
+    <!-- Jobs Table -->
     <div class="tbl-wrap">
       <table id="hrJobsTable">
-        <thead><tr><th>Job Title</th><th>Type</th><th>Location</th><th>Level</th><th>Applications</th><th>Status</th><th>Posted</th><th>Actions</th></tr></thead>
-        <tbody><tr><td colspan="8" style="text-align:center;padding:40px;color:var(--clr-muted);"><i class="fa-solid fa-spinner fa-spin" style="font-size:22px;"></i></td></tr></tbody>
+        <thead>
+          <tr>
+            <th><i class="fa-solid fa-briefcase" style="margin-right:6px;"></i>Job Title</th>
+            <th><i class="fa-solid fa-tag" style="margin-right:6px;"></i>Type</th>
+            <th><i class="fa-solid fa-location-dot" style="margin-right:6px;"></i>Location</th>
+            <th><i class="fa-solid fa-layer-group" style="margin-right:6px;"></i>Level</th>
+            <th><i class="fa-solid fa-file-lines" style="margin-right:6px;"></i>Applications</th>
+            <th><i class="fa-solid fa-circle-dot" style="margin-right:6px;"></i>Status</th>
+            <th><i class="fa-regular fa-clock" style="margin-right:6px;"></i>Posted</th>
+            <th><i class="fa-solid fa-bolt" style="margin-right:6px;"></i>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="8" style="text-align:center;padding:40px;color:var(--clr-muted);">
+              <i class="fa-solid fa-spinner fa-spin" style="font-size:22px;"></i>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </main>
 </div></div>
-<script src="../js/toast.js"></script><script src="../js/api.js"></script><script src="../js/hr-jobs.js"></script>
-</body></html>
+
+<script src="../js/toast.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/hr-jobs.js"></script>
+</body>
+</html>
