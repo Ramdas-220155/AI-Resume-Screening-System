@@ -211,8 +211,7 @@ const JobsAPI = {
 };
 
 const ApplicationsAPI = {
-  list: (p = {}) =>
-    apiFetch(`applications/list?${new URLSearchParams(p)}`),
+  list: (p = {}) => apiFetch(`applications/list?${new URLSearchParams(p)}`),
   withdraw: (app_id) =>
     apiFetch("applications/withdraw", {
       method: "POST",
@@ -220,9 +219,7 @@ const ApplicationsAPI = {
     }),
   stats: () => apiFetch("applications/stats"),
   forJob: (job_id, p = {}) =>
-    apiFetch(
-      `applications/for_job?job_id=${job_id}&${new URLSearchParams(p)}`,
-    ),
+    apiFetch(`applications/for_job?job_id=${job_id}&${new URLSearchParams(p)}`),
   updateStatus: (app_id, status, notes = "") =>
     apiFetch("applications/update_status", {
       method: "POST",

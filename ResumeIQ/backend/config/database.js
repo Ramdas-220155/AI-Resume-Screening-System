@@ -1,9 +1,9 @@
 // config/database.js — MongoDB Atlas Connection · ResumeIQ v3.0
-const { MongoClient, ObjectId } = require('mongodb');
-require('dotenv').config();
+const { MongoClient, ObjectId } = require("mongodb");
+require("dotenv").config();
 
 const MONGO_URI = process.env.MONGODB_URI;
-const MONGO_DB  = process.env.MONGODB_DB || 'resumeiq';
+const MONGO_DB = process.env.MONGODB_DB || "resumeiq";
 
 let _db = null;
 
@@ -30,13 +30,26 @@ function nowUTC() {
 }
 
 function msToDate(dt) {
-  if (!dt) return '';
+  if (!dt) return "";
   const d = dt instanceof Date ? dt : new Date(dt);
-  return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  return d.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
 }
 
-const UPLOAD_DIR    = __dirname + '/../uploads/resumes/';
+const UPLOAD_DIR = __dirname + "/../uploads/resumes/";
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
-const ALLOWED_EXTS  = ['pdf', 'doc', 'docx'];
+const ALLOWED_EXTS = ["pdf", "doc", "docx"];
 
-module.exports = { getDB, getCol, toObjId, nowUTC, msToDate, UPLOAD_DIR, MAX_FILE_SIZE, ALLOWED_EXTS };
+module.exports = {
+  getDB,
+  getCol,
+  toObjId,
+  nowUTC,
+  msToDate,
+  UPLOAD_DIR,
+  MAX_FILE_SIZE,
+  ALLOWED_EXTS,
+};

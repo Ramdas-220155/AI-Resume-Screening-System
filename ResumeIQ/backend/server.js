@@ -1,42 +1,35 @@
-// server.js — ResumeIQ Backend · Node.js + MongoDB Atlas v3.0
-require('dotenv').config();
-const express = require('express');
-const cors    = require('cors');
-const path    = require('path');
+const express = require("express");
+const path = require("path");
 
-const app = express();
+const app = express(); // ✅ FIRST create app
 
-/* ── CORS ──────────────────────────────────────────────── */
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-User-ID', 'X-User-Role'],
-}));
-
-/* ── BODY PARSERS ──────────────────────────────────────── */
+// Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-/* ── STATIC: resume downloads ──────────────────────────── */
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Serve frontend
+app.use(express.static(path.join(__dirname, "../frontend")));
 
-/* ── ROUTES ────────────────────────────────────────────── */
-app.use('/api/auth',         require('./routes/auth'));
-app.use('/api/jobs',         require('./routes/jobs'));
-app.use('/api/applications', require('./routes/applications'));
-app.use('/api/profile',      require('./routes/profile'));
-app.use('/api/dashboard',    require('./routes/dashboard'));
-app.use('/api/hr_dashboard', require('./routes/hr_dashboard'));
-app.use('/api/contact',      require('./routes/contact'));
+// Routes
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/jobs", require("./routes/jobs"));
+app.use("/api/applications", require("./routes/applications"));
+app.use("/api/profile", require("./routes/profile"));
+app.use("/api/dashboard", require("./routes/dashboard"));
+app.use("/api/hr_dashboard", require("./routes/hr_dashboard"));
+app.use("/api/contact", require("./routes/contact"));
 
-/* ── HEALTH CHECK ──────────────────────────────────────── */
-app.get('/api/health', (req, res) => res.json({ status: 'ok', service: 'ResumeIQ API', version: '3.0.0' }));
+// Root route → index.html
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend", "index.html"));
+});
 
-/* ── 404 ───────────────────────────────────────────────── */
-app.use((req, res) => res.status(404).json({ success: false, error: 'Route not found' }));
+// 404 handler
+app.use((req, res) =>
+  res.status(404).json({ success: false, error: "Route not found" }),
+);
 
-/* ── START ─────────────────────────────────────────────── */
+// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 ResumeIQ API running on http://localhost:${PORT}`);
+  console.log(`Server running on port http://localhost:${PORT}`);
 });
