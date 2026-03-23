@@ -129,14 +129,11 @@ document
     hideFormMsg();
 
     try {
-      // Determine API base — same logic as api.js
-      const folder =
-        window.location.pathname.split("/").filter(Boolean)[0] || "ResumeIQ";
-      const apiBase = window.location.pathname.startsWith("/unique")
-        ? "/unique/AI-Resume-Screening-System/ResumeIQ/backend/api" // GitHub/custom path
-        : `http://localhost/${folder}/backend/api`; // WAMP/XAMPP
+      // API base — matches the API_BASE in api.js
+      // 🔧 Change this to your deployed backend URL when hosting online
+      const apiBase = "http://localhost:5000/api";
 
-      const res = await fetch(`${apiBase}/contact.php?action=send`, {
+      const res = await fetch(`${apiBase}/contact/send`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, subject, message }),
