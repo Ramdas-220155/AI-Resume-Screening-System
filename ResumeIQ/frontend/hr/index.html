@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>ResumeIQ — HR Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/global.css"/>
+  <link rel="stylesheet" href="../css/hr.css"/>
+</head>
+<body class="hr-theme">
+<div class="sb-overlay" id="sbOverlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-topbar"><div class="sb-brand"><span class="sb-brand-name">ResumeIQ</span></div><button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="sb-user"><div class="sb-user-av" data-user-initials>H</div><div><div class="sb-user-name" data-user-name>Loading…</div><div class="sb-user-role">Recruiter · Free</div></div></div>
+  <nav class="sb-nav">
+    <div class="sb-section">Recruiter</div>
+    <a class="nav-link" href="index.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a>
+    <a class="nav-link" href="jobs.html"><i class="fa-solid fa-briefcase"></i><span>Manage Jobs</span></a>
+    <a class="nav-link" href="candidates.html"><i class="fa-solid fa-users"></i><span>Candidates</span></a>
+    <a class="nav-link" href="applications.html"><i class="fa-solid fa-file-lines"></i><span>Applications</span></a>
+    <a class="nav-link" href="interviews.html"><i class="fa-solid fa-calendar-check"></i><span>Interviews</span></a>
+    <a class="nav-link" href="post-job.html"><i class="fa-solid fa-plus-circle"></i><span>Post a Job</span></a>
+    <div class="sb-section" style="margin-top:8px;">Account</div>
+    <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user"></i><span>HR Profile</span></a>
+    <a class="nav-link danger nav-logout" href="#"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+  </nav>
+  <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1)"></i>ResumeIQ v3.0 · HR</div>
+</aside>
+<div class="shell"><div class="main">
+  <header class="topbar">
+    <button class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    <div class="topbar-center"><div class="topbar-title">HR Dashboard</div><div class="topbar-crumb"><i class="fa-solid fa-gauge-high"></i><i class="fa-solid fa-chevron-right"></i>Overview</div></div>
+    <div class="topbar-right">
+      <button class="theme-btn"><i class="fa-solid fa-sun theme-icon"></i></button>
+    
+      <div class="tb-avatar"><div class="tb-av-circle" data-user-initials>H</div><span class="tb-av-name" data-user-name>HR</span></div>
+    </div>
+  </header>
+  <main class="page">
+    <!-- Welcome Banner -->
+    <div class="hr-welcome-banner">
+      <div class="hr-wb-left">
+        <div class="hr-wb-badge"><i class="fa-solid fa-building-user"></i> HR Dashboard</div>
+        <h2>Welcome back, <span data-user-name>Recruiter</span>!</h2>
+        <p>You have <strong class="highlight-green" id="newAppsCount">—</strong> new applications to review across <strong class="highlight-teal" id="activeJobsCount">—</strong> active job postings.</p>
+        <div class="welcome-actions" style="margin-top:18px;">
+          <a href="post-job.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Post New Job</a>
+          <a href="candidates.html" class="btn btn-outline"><i class="fa-solid fa-users"></i> View Candidates</a>
+        </div>
+      </div>
+    </div>
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="card stat-card"><div class="stat-num" data-stat="active_jobs">—</div><div class="stat-label">Active Jobs</div><div class="stat-delta delta-up"><i class="fa-solid fa-arrow-trend-up"></i> Live</div></div>
+      <div class="card stat-card"><div class="stat-num" data-stat="total_apps">—</div><div class="stat-label">Total Applications</div><div class="stat-delta delta-up"><i class="fa-solid fa-arrow-trend-up"></i> All time</div></div>
+      <div class="card stat-card"><div class="stat-num" data-stat="shortlisted">—</div><div class="stat-label">Shortlisted</div><div class="stat-delta delta-up"><i class="fa-solid fa-arrow-trend-up"></i> This week</div></div>
+      <div class="card stat-card"><div class="stat-num" data-stat="hired">—</div><div class="stat-label">Hired</div><div class="stat-delta delta-up"><i class="fa-solid fa-arrow-trend-up"></i> Total</div></div>
+    </div>
+    <!-- Quick Actions -->
+    <div class="sec-head"><div class="sec-title">Quick Actions</div></div>
+    <div class="qa-row">
+      <div class="card qa-card" data-href="post-job.html"><div class="qa-icon"><i class="fa-solid fa-plus-circle"></i></div><div><div class="qa-text-title">Post a Job</div><div class="qa-text-sub">Create new listing</div></div></div>
+      <div class="card qa-card" data-href="candidates.html"><div class="qa-icon"><i class="fa-solid fa-users"></i></div><div><div class="qa-text-title">Browse Candidates</div><div class="qa-text-sub" id="hrQaCandSub">View applicants</div></div></div>
+      <div class="card qa-card" data-href="applications.html"><div class="qa-icon"><i class="fa-solid fa-file-lines"></i></div><div><div class="qa-text-title">All Applications</div><div class="qa-text-sub" id="hrQaAppSub">Review &amp; update status</div></div></div>
+    </div>
+    <div class="divider"></div>
+    <!-- Recent Applications -->
+    <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-clock-rotate-left"></i>Recent Applications</div><a href="applications.html" style="font-size:13px;color:var(--clr-accent);font-family:var(--ff-head);font-weight:600;">View all →</a></div>
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table id="recentAppsTable">
+        <thead><tr><th>Candidate</th><th>Job Position</th><th>AI Score</th><th>Status</th><th>Applied</th><th>Actions</th></tr></thead>
+        <tbody><tr><td colspan="6" style="text-align:center;padding:32px;color:var(--clr-muted);"><i class="fa-solid fa-spinner fa-spin" style="font-size:20px;"></i></td></tr></tbody>
+      </table>
+    </div>
+    <!-- Active Jobs -->
+    <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-briefcase"></i>My Active Jobs</div><a href="jobs.html" style="font-size:13px;color:var(--clr-accent);font-family:var(--ff-head);font-weight:600;">Manage all →</a></div>
+    <div class="tbl-wrap">
+      <table id="activeJobsTable">
+        <thead><tr><th>Job Title</th><th>Type</th><th>Location</th><th>Applications</th><th>Posted</th><th>Actions</th></tr></thead>
+        <tbody><tr><td colspan="6" style="text-align:center;padding:32px;color:var(--clr-muted);"><i class="fa-solid fa-spinner fa-spin" style="font-size:20px;"></i></td></tr></tbody>
+      </table>
+    </div>
+  </main>
+</div></div>
+<div class="chatbot-float"><div class="chatbot-tip">AI Assistant</div><button class="chatbot-bubble"><i class="fa-solid fa-message"></i></button></div>
+<script src="../js/toast.js"></script><script src="../js/api.js"></script><script src="../js/hr-dashboard.js"></script>
+</body></html>

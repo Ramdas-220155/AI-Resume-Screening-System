@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>ResumeIQ — AI-Powered Hiring Platform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/landing.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>"/>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav class="lnav" id="lnav">
+  <div class="lnav-inner">
+    <a class="lnav-brand" href="#">
+      
+      <span>ResumeIQ</span>
+    </a>
+    <ul class="lnav-links" id="lnavLinks">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-it-works">How it Works</a></li>
+      <li><a href="#stats">Stats</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="lnav-right">
+      <button class="lnav-theme-btn" id="themeBtn" title="Toggle theme">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+      </button>
+      <div class="login-drop-wrap" id="loginDropWrap">
+        <button class="btn btn-primary lnav-login-btn" id="loginTrigger">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span>Login</span>
+          <i class="fa-solid fa-chevron-down lnav-chevron" id="loginChevron"></i>
+        </button>
+        <div class="login-dropdown" id="loginDropdown">
+          <div class="login-drop-head">Sign in as</div>
+          <a href="user/login.html" class="login-drop-item">
+            <div class="ldi-icon ldi-user"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="ldi-text">
+              <div class="ldi-title">Job Seeker</div>
+              <div class="ldi-sub">Browse jobs · Track applications</div>
+            </div>
+            <i class="fa-solid fa-arrow-right ldi-arrow"></i>
+          </a>
+          <a href="hr/login.html" class="login-drop-item">
+            <div class="ldi-icon ldi-hr"><i class="fa-solid fa-building-user"></i></div>
+            <div class="ldi-text">
+              <div class="ldi-title">HR / Recruiter</div>
+              <div class="ldi-sub">Post jobs · Screen candidates</div>
+            </div>
+            <i class="fa-solid fa-arrow-right ldi-arrow"></i>
+          </a>
+        </div>
+      </div>
+      <button class="lnav-mob-btn" id="lnavMobBtn"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+  <!-- Mobile nav panel -->
+  <div class="lnav-mob-panel" id="lnavMobPanel">
+    <a href="#features">Features</a>
+    <a href="#how-it-works">How it Works</a>
+    <a href="#stats">Stats</a>
+    <a href="#contact">Contact</a>
+    <div class="mob-login-group">
+      <a href="user/login.html" class="btn btn-primary" style="width:100%;justify-content:center;"><i class="fa-solid fa-user-tie"></i> Job Seeker Login</a>
+      <a href="hr/login.html" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:10px;"><i class="fa-solid fa-building-user"></i> HR Login</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero-bg-mesh"></div>
+  <div class="hero-glow hero-glow1"></div>
+  <div class="hero-glow hero-glow2"></div>
+
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      AI-Powered · Live Matching · Real-time Analytics
+    </div>
+    <h1 class="hero-title">
+      Hire Smarter.<br/>
+      <span class="hero-grad-text">Land Faster.</span>
+    </h1>
+    <p class="hero-sub">
+      ResumeIQ bridges top talent and great companies with AI-driven resume screening,
+      intelligent job matching, and seamless end-to-end hiring workflows.
+    </p>
+    <div class="hero-ctas">
+      <a href="user/login.html" class="btn btn-primary hero-cta-btn">
+        <i class="fa-solid fa-user-tie"></i> I'm a Job Seeker
+      </a>
+      <a href="hr/login.html" class="btn btn-outline hero-cta-btn">
+        <i class="fa-solid fa-building-user"></i> I'm an HR Recruiter
+      </a>
+    </div>
+    <div class="hero-trust">
+      <div class="hero-trust-item">
+        <span class="count-up" data-target="12400">0</span>
+        <span class="hero-trust-lbl">Jobs Posted</span>
+      </div>
+      <div class="hero-trust-div"></div>
+      <div class="hero-trust-item">
+        <span class="count-up" data-target="38000">0</span>
+        <span class="hero-trust-lbl">Registered Users</span>
+      </div>
+      <div class="hero-trust-div"></div>
+      <div class="hero-trust-item">
+        <span class="count-up" data-target="94">0</span>
+        <span class="hero-trust-lbl">% Match Accuracy</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating preview card -->
+  <div class="hero-preview-wrap">
+    <div class="hero-preview card">
+      <div class="hp-head">
+        <div class="hp-dots"><span class="hpd r"></span><span class="hpd y"></span><span class="hpd g"></span></div>
+        <span class="hp-label">ResumeIQ Dashboard</span>
+      </div>
+      <div class="hp-stats-row">
+        <div class="hp-mini-stat"><div class="hms-num" style="color:var(--clr-accent)">14</div><div class="hms-lbl">Applied</div></div>
+        <div class="hp-mini-stat"><div class="hms-num" style="color:#34d399">5</div><div class="hms-lbl">Shortlisted</div></div>
+        <div class="hp-mini-stat"><div class="hms-num" style="color:#fbbf24">87%</div><div class="hms-lbl">AI Score</div></div>
+      </div>
+      <div class="hp-rows">
+        <div class="hp-row-item">
+          <span class="hp-row-title">Frontend Dev — TechNova</span>
+          <div class="hp-row-bar"><div class="hp-row-fill" style="width:92%"></div></div>
+          <span class="hp-row-pct">92%</span>
+        </div>
+        <div class="hp-row-item">
+          <span class="hp-row-title">React Eng — Velocity</span>
+          <div class="hp-row-bar"><div class="hp-row-fill" style="width:85%"></div></div>
+          <span class="hp-row-pct">85%</span>
+        </div>
+        <div class="hp-row-item">
+          <span class="hp-row-title">Full Stack — NexaLabs</span>
+          <div class="hp-row-bar"><div class="hp-row-fill" style="width:78%"></div></div>
+          <span class="hp-row-pct">78%</span>
+        </div>
+      </div>
+      <div class="hp-badges">
+        <span class="badge badge-shortlisted">Shortlisted</span>
+        <span class="badge badge-applied">Applied</span>
+        <span class="badge badge-interview">Interview</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FEATURES ═══════════ -->
+<section class="lsec" id="features">
+  <div class="container">
+    <div class="lsec-head">
+      <div class="lsec-tag">Features</div>
+      <h2 class="lsec-title">Everything you need to succeed</h2>
+      <p class="lsec-sub">Built for both job seekers and HR professionals — one intelligent platform, two powerful experiences.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card card">
+        <div class="feat-icon fi-teal"><i class="fa-solid fa-brain"></i></div>
+        <h3>AI Resume Screening</h3>
+        <p>Instant match scores between resumes and job descriptions. Best candidates surface automatically.</p>
+      </div>
+      <div class="feat-card card">
+        <div class="feat-icon fi-cyan"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        <h3>Intelligent Job Matching</h3>
+        <p>Job seekers see curated listings ranked by their unique skills. No irrelevant scrolling.</p>
+      </div>
+      <div class="feat-card card">
+        <div class="feat-icon fi-green"><i class="fa-solid fa-file-arrow-up"></i></div>
+        <h3>Seamless Resume Upload</h3>
+        <p>Upload PDF, DOC, DOCX resumes securely. Auto-attached to every application.</p>
+      </div>
+      <div class="feat-card card">
+        <div class="feat-icon fi-blue"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Real-time Analytics</h3>
+        <p>HR dashboards with live application funnels, shortlist ratios, and pipeline stages.</p>
+      </div>
+      <div class="feat-card card">
+        <div class="feat-icon fi-purple"><i class="fa-solid fa-users-gear"></i></div>
+        <h3>Candidate Management</h3>
+        <p>Move candidates Applied → Shortlisted → Interview → Hired with one click.</p>
+      </div>
+      <div class="feat-card card">
+        <div class="feat-icon fi-orange"><i class="fa-solid fa-bell-concierge"></i></div>
+        <h3>Smart Notifications</h3>
+        <p>Applicants receive real-time updates. Recruiters alerted when high-match candidates apply.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HOW IT WORKS ═══════════ -->
+<section class="lsec lsec-alt" id="how-it-works">
+  <div class="container">
+    <div class="lsec-head">
+      <div class="lsec-tag">How it Works</div>
+      <h2 class="lsec-title">Simple for everyone</h2>
+    </div>
+    <div class="hiw-grid">
+      <div class="hiw-col">
+        <div class="hiw-role hiw-role-user"><i class="fa-solid fa-user-tie"></i> For Job Seekers</div>
+        <div class="hiw-steps">
+          <div class="hiw-step"><div class="hiw-num">01</div><div><h4>Create Your Profile</h4><p>Sign up, add skills, bio, and upload your resume in minutes.</p></div></div>
+          <div class="hiw-line"></div>
+          <div class="hiw-step"><div class="hiw-num">02</div><div><h4>Browse & Apply</h4><p>Filter jobs by type, location, level. Apply with one click.</p></div></div>
+          <div class="hiw-line"></div>
+          <div class="hiw-step"><div class="hiw-num">03</div><div><h4>Track Everything</h4><p>Watch applications move from Applied → Shortlisted → Hired in real time.</p></div></div>
+        </div>
+      </div>
+      <div class="hiw-divider"></div>
+      <div class="hiw-col">
+        <div class="hiw-role hiw-role-hr"><i class="fa-solid fa-building-user"></i> For HR / Recruiters</div>
+        <div class="hiw-steps">
+          <div class="hiw-step"><div class="hiw-num hiw-num-hr">01</div><div><h4>Post Job Listings</h4><p>Create detailed postings with required skills, salary, location. Live instantly.</p></div></div>
+          <div class="hiw-line hiw-line-hr"></div>
+          <div class="hiw-step"><div class="hiw-num hiw-num-hr">02</div><div><h4>Review AI-Ranked Candidates</h4><p>See applicants ranked by AI score. Download resumes, compare profiles.</p></div></div>
+          <div class="hiw-line hiw-line-hr"></div>
+          <div class="hiw-step"><div class="hiw-num hiw-num-hr">03</div><div><h4>Update & Notify</h4><p>Move candidates through stages. Status changes push to applicants automatically.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STATS BAND ═══════════ -->
+<section class="stats-band" id="stats">
+  <div class="container stats-band-inner">
+    <div class="sb-item"><span class="count-up sb-num" data-target="12400">0</span><span class="sb-lbl">Jobs Posted</span></div>
+    <div class="sb-div"></div>
+    <div class="sb-item"><span class="count-up sb-num" data-target="38000">0</span><span class="sb-lbl">Registered Users</span></div>
+    <div class="sb-div"></div>
+    <div class="sb-item"><span class="count-up sb-num" data-target="4200">0</span><span class="sb-lbl">Hires Made</span></div>
+    <div class="sb-div"></div>
+    <div class="sb-item"><span class="count-up sb-num" data-target="94">0</span><span class="sb-lbl">% AI Accuracy</span></div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section class="lsec" id="contact">
+  <div class="container">
+    <div class="lsec-head">
+      <div class="lsec-tag">Contact</div>
+      <h2 class="lsec-title">Get in touch</h2>
+      <p class="lsec-sub">Have questions? We'd love to hear from you.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="ci-row"><div class="ci-icon"><i class="fa-solid fa-envelope"></i></div><div><div class="ci-title">Email Us</div><div class="ci-val">hello@resumeiq.ai</div></div></div>
+        <div class="ci-row"><div class="ci-icon"><i class="fa-solid fa-phone"></i></div><div><div class="ci-title">Call Us</div><div class="ci-val">+91 98765 43210</div></div></div>
+        <div class="ci-row"><div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div><div><div class="ci-title">Office</div><div class="ci-val">Hyderabad, Telangana, India</div></div></div>
+      </div>
+      <form class="contact-form card card-p" id="contactForm">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Name</label><input class="form-input" type="text" placeholder="Your name" required/></div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@email.com" required/></div>
+        </div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell us how we can help…" required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="lfoot">
+  <div class="container lfoot-inner">
+    <div class="lfoot-brand">
+      
+      <span class="sb-brand-name">ResumeIQ</span>
+    </div>
+    <div class="lfoot-copy">© 2026 ResumeIQ · All rights reserved</div>
+    <div class="lfoot-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#contact">Contact</a></div>
+  </div>
+</footer>
+
+<script src="js/toast.js"></script>
+<script src="js/landing.js"></script>
+</body>
+</html>
