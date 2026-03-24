@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>ResumeIQ — HR Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/global.css"/>
+  <link rel="stylesheet" href="../css/auth.css"/>
+  <style>
+    .google-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      border: 1.5px solid var(--gb);
+      border-radius: var(--radius-sm);
+      background: var(--glass);
+      color: var(--clr-text);
+      font-family: var(--ff-head);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--ease);
+      text-decoration: none;
+      margin-bottom: 6px;
+    }
+    .google-btn:hover {
+      border-color: #818cf8;
+      background: rgba(79,70,229,0.08);
+      color: var(--clr-head);
+    }
+    .google-btn img {
+      width: 18px;
+      height: 18px;
+    }
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0;
+      color: var(--clr-muted);
+      font-size: 12px;
+      font-family: var(--ff-head);
+      font-weight: 600;
+    }
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gb);
+    }
+  </style>
+</head>
+<body class="auth-body hr-auth hr-theme">
+<div class="auth-orb auth-orb1"></div>
+<div class="auth-orb auth-orb2"></div>
+<div class="auth-wrap">
+  <a class="auth-back" href="../index.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+  <div class="auth-brand" style="background:linear-gradient(135deg,#4f46e5,#06b6d4);-webkit-background-clip:text;color:transparent;">
+    ResumeIQ
+  </div>
+  <div class="auth-card card">
+    <div class="auth-role-badge auth-role-hr"><i class="fa-solid fa-building-user"></i> HR / Recruiter Portal</div>
+    <div class="auth-tabs">
+      <button class="auth-tab-btn active" data-tab="login" style="border-bottom-color:#818cf8">Sign In</button>
+      <button class="auth-tab-btn" data-tab="register">Register Company</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="loginPanel" class="auth-panel">
+      <div class="auth-panel-head"><h2>HR Dashboard</h2><p>Sign in to manage candidates and jobs</p></div>
+      <div id="loginError" class="auth-error-msg" style="display:none;"></div>
+
+      <!-- Google Sign In -->
+      <a class="google-btn" href="http://localhost:5000/api/auth/google?role=hr">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google"/>
+        Continue with Google
+      </a>
+
+      <div class="auth-divider">or sign in with email</div>
+
+      <form id="loginForm">
+        <div class="form-group"><label class="form-label">Work Email</label><div class="input-icon-wrap"><i class="fa-solid fa-envelope"></i><input class="form-input" type="email" id="loginEmail" placeholder="hr@company.com" required autocomplete="email"/></div></div>
+        <div class="form-group"><label class="form-label">Password</label><div class="input-icon-wrap"><i class="fa-solid fa-lock"></i><input class="form-input" type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password"/><button type="button" class="pwd-toggle" data-target="loginPassword"><i class="fa-solid fa-eye"></i></button></div></div>
+        <button type="submit" class="btn btn-primary auth-submit-btn" style="background:linear-gradient(135deg,#4f46e5,#06b6d4);"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+      </form>
+      <p class="auth-switch-text">No account? <a class="auth-switch-link" data-switch="register" style="color:#818cf8;">Register your company →</a></p>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="regPanel" class="auth-panel hidden">
+      <div class="auth-panel-head"><h2>Register your company</h2><p>Create an HR account to start hiring</p></div>
+      <div id="regError" class="auth-error-msg" style="display:none;"></div>
+
+      <!-- Google Sign Up -->
+      <a class="google-btn" href="http://localhost:5000/api/auth/google?role=hr">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google"/>
+        Sign up with Google
+      </a>
+
+      <div class="auth-divider">or register with email</div>
+
+      <form id="registerForm">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Your Name</label><div class="input-icon-wrap"><i class="fa-solid fa-user"></i><input class="form-input" type="text" id="regName" placeholder="Jane Smith" required/></div></div>
+          <div class="form-group"><label class="form-label">Company Name</label><div class="input-icon-wrap"><i class="fa-solid fa-building"></i><input class="form-input" type="text" id="regCompany" placeholder="Acme Corp" required/></div></div>
+        </div>
+        <div class="form-group"><label class="form-label">Work Email</label><div class="input-icon-wrap"><i class="fa-solid fa-envelope"></i><input class="form-input" type="email" id="regEmail" placeholder="hr@company.com" required/></div></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Password</label><div class="input-icon-wrap"><i class="fa-solid fa-lock"></i><input class="form-input" type="password" id="regPassword" placeholder="Min 6 chars" required/><button type="button" class="pwd-toggle" data-target="regPassword"><i class="fa-solid fa-eye"></i></button></div></div>
+          <div class="form-group"><label class="form-label">Confirm</label><div class="input-icon-wrap"><i class="fa-solid fa-lock"></i><input class="form-input" type="password" id="regConfirm" placeholder="Repeat password" required/></div></div>
+        </div>
+        <button type="submit" class="btn btn-primary auth-submit-btn" style="background:linear-gradient(135deg,#4f46e5,#06b6d4);"><i class="fa-solid fa-building-user"></i> Create HR Account</button>
+      </form>
+      <p class="auth-switch-text">Already registered? <a class="auth-switch-link" data-switch="login" style="color:#818cf8;">Sign in →</a></p>
+    </div>
+  </div>
+  <div class="auth-footer"><button class="auth-theme-btn" id="authThemeBtn"><i class="fa-solid fa-moon theme-icon"></i></button><i class="fa-solid fa-shield-halved" style="color:#818cf8;margin-right:4px;"></i>ResumeIQ v3.0 · Secured</div>
+</div>
+<!-- Google OAuth: handle callback BEFORE anything else loads -->
+<script>
+ (function() {
+  console.log('[GoogleAuth] Script running. Full URL:', window.location.href);
+
+  const hash = window.location.hash;
+  let raw = null;
+
+  if (hash.includes('google_auth=')) {
+    raw = hash.split('google_auth=')[1];
+  }
+
+  console.log('[GoogleAuth] google_auth param:', raw ? raw.substring(0, 80) + '...' : 'NOT FOUND');
+
+  if (raw) {
+    try {
+      const data = JSON.parse(decodeURIComponent(raw));
+
+      localStorage.setItem('riq_uid', data.user_id);
+      localStorage.setItem('riq_name', data.name);
+      localStorage.setItem('riq_init', data.initials || (data.name ? data.name[0].toUpperCase() : 'U'));
+      localStorage.setItem('riq_plan', data.plan || 'Free');
+      localStorage.setItem('riq_email', data.email || '');
+      localStorage.setItem('riq_role', 'user');
+
+      console.log('[GoogleAuth] Redirecting to dashboard...');
+      window.location.replace('http://localhost:3000/user/index.html');
+
+    } catch(e) {
+      console.error('[GoogleAuth] PARSE ERROR:', e);
+    }
+  } else {
+    console.log('[GoogleAuth] No google_auth param — normal login page load');
+  }
+})();
+</script>
+<script src="../js/toast.js"></script><script src="../js/api.js"></script>
+<script>
+
+document.addEventListener('DOMContentLoaded',()=>{
+  if(Auth.isLoggedIn()&&Auth.isHR()){window.location.replace('http://localhost:3000/hr/index.html');return;}
+
+  const params = new URLSearchParams(window.location.search);
+
+  if(params.get('error')){
+    const errMap = {
+      google_denied: 'Google sign-in was cancelled.',
+      google_failed: 'Google sign-in failed. Please try again.',
+      wrong_portal:  'This Google account is registered as a Job Seeker. Please use the User portal.',
+    };
+    const msg = errMap[params.get('error')] || 'An error occurred.';
+    const errEl = document.getElementById('loginError');
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+    showToast(msg, 'error');
+  }
+
+  // Clean URL
+  if (params.toString()) window.history.replaceState({}, '', window.location.pathname);
+
+  /* ── Tabs ───────────────────────────────────────────── */
+  document.querySelectorAll('.auth-tab-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); const t = btn.dataset.tab; document.getElementById('loginPanel').classList.toggle('hidden', t !== 'login'); document.getElementById('regPanel').classList.toggle('hidden', t !== 'register'); }); });
+  document.querySelectorAll('.auth-switch-link').forEach(a => { a.addEventListener('click', e => { e.preventDefault(); const t = a.dataset.switch; document.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === t)); document.getElementById('loginPanel').classList.toggle('hidden', t !== 'login'); document.getElementById('regPanel').classList.toggle('hidden', t !== 'register'); }); });
+  document.querySelectorAll('.pwd-toggle').forEach(btn => { btn.addEventListener('click', () => { const inp = document.getElementById(btn.dataset.target); const ic = btn.querySelector('i'); inp.type = inp.type === 'password' ? 'text' : 'password'; ic.className = inp.type === 'text' ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'; }); });
+
+  /* ── Login ──────────────────────────────────────────── */
+  document.getElementById('loginForm').addEventListener('submit', async function(e) { e.preventDefault(); const btn = this.querySelector('[type="submit"]'); const orig = btn.innerHTML; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in…'; btn.disabled = true; const res = await AuthAPI.login(document.getElementById('loginEmail').value.trim(), document.getElementById('loginPassword').value, 'hr'); btn.disabled = false; btn.innerHTML = orig; if (res.success) { Auth.save(res, 'hr'); showToast(`Welcome, ${res.name.split(' ')[0]}! 👋`, 'success'); setTimeout(() => window.location.replace('http://localhost:3000/hr/index.html'), 900); } else { const e = document.getElementById('loginError'); e.textContent = res.error || 'Login failed'; e.style.display = 'block'; showToast(res.error || 'Login failed', 'error'); } });
+
+  /* ── Register ───────────────────────────────────────── */
+  document.getElementById('registerForm').addEventListener('submit', async function(e) { e.preventDefault(); const btn = this.querySelector('[type="submit"]'); const orig = btn.innerHTML; const pwd = document.getElementById('regPassword').value; if (pwd !== document.getElementById('regConfirm').value) { showToast('Passwords do not match', 'error'); return; } btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating…'; btn.disabled = true; const res = await AuthAPI.register(document.getElementById('regName').value.trim(), document.getElementById('regEmail').value.trim(), pwd, 'hr', document.getElementById('regCompany').value.trim()); btn.disabled = false; btn.innerHTML = orig; if (res.success) { Auth.save(res, 'hr'); showToast(`HR account created! Welcome, ${res.name.split(' ')[0]}! 🎉`, 'success'); setTimeout(() => window.location.replace('http://localhost:3000/hr/index.html'), 1000); } else { const e = document.getElementById('regError'); e.textContent = res.error || 'Registration failed'; e.style.display = 'block'; showToast(res.error || 'Registration failed', 'error'); } });
+
+  document.getElementById('authThemeBtn')?.addEventListener('click', toggleTheme);
+});
+</script>
+</body></html>

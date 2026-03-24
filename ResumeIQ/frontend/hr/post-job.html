@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>ResumeIQ — Post a Job</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/global.css"/>
+  <link rel="stylesheet" href="../css/post.css"/>
+</head>
+<body class="hr-theme">
+<div class="sb-overlay" id="sbOverlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-topbar"><div class="sb-brand"><span class="sb-brand-name">ResumeIQ</span></div><button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="sb-user"><div class="sb-user-av" data-user-initials>H</div><div><div class="sb-user-name" data-user-name>Loading…</div><div class="sb-user-role">Recruiter · Free</div></div></div>
+  <nav class="sb-nav">
+    <div class="sb-section">Recruiter</div>
+    <a class="nav-link" href="index.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a>
+    <a class="nav-link" href="jobs.html"><i class="fa-solid fa-briefcase"></i><span>Manage Jobs</span></a>
+    <a class="nav-link" href="candidates.html"><i class="fa-solid fa-users"></i><span>Candidates</span></a>
+    <a class="nav-link" href="applications.html"><i class="fa-solid fa-file-lines"></i><span>Applications</span></a>
+    <a class="nav-link" href="post-job.html"><i class="fa-solid fa-plus-circle"></i><span>Post a Job</span></a>
+    <div class="sb-section" style="margin-top:8px;">Account</div>
+    <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user"></i><span>HR Profile</span></a>
+    <a class="nav-link danger nav-logout" href="#"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+  </nav>
+  <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1)"></i>ResumeIQ v3.0 · HR</div>
+</aside>
+<div class="shell"><div class="main">
+  <header class="topbar">
+    <button class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    <div class="topbar-center"><div class="topbar-title">Post a Job</div><div class="topbar-crumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-right"></i>New Job</div></div>
+    <div class="topbar-right">
+      <button class="theme-btn"><i class="fa-solid fa-sun theme-icon"></i></button>
+     
+      <div class="tb-avatar"><div class="tb-av-circle" data-user-initials>H</div><span class="tb-av-name" data-user-name>HR</span></div>
+    </div>
+  </header>
+  <main class="page">
+    <div class="post-job-wrap">
+      <div class="card profile-form-card">
+        <div class="pfc-title"><i class="fa-solid fa-plus-circle"></i> Create New Job Listing</div>
+        <form id="postJobForm">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Job Title <span class="req">*</span></label><input class="form-input" type="text" id="jobTitle" placeholder="e.g. Frontend Developer" required/></div>
+            <div class="form-group"><label class="form-label">Company Name <span class="req">*</span></label><input class="form-input" type="text" id="jobCompany" placeholder="Your company" required/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Job Type <span class="req">*</span></label>
+              <select class="form-select" id="jobType" required>
+                <option value="">Select type</option>
+                <option value="full-time">Full-time</option>
+                <option value="remote">Remote</option>
+                <option value="part-time">Part-time</option>
+                <option value="contract">Contract</option>
+                <option value="internship">Internship</option>
+              </select>
+            </div>
+            <div class="form-group"><label class="form-label">Experience Level <span class="req">*</span></label>
+              <select class="form-select" id="jobLevel" required>
+                <option value="">Select level</option>
+                <option value="intern">Intern</option>
+                <option value="junior">Junior (0–2 yrs)</option>
+                <option value="mid">Mid-level (2–5 yrs)</option>
+                <option value="senior">Senior (5+ yrs)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Location <span class="req">*</span></label>
+              <select class="form-select" id="jobLoc" required>
+                <option value="">Select location</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Pune">Pune</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Remote">Remote</option>
+              </select>
+            </div>
+            <div class="form-group"><label class="form-label">Salary / Package</label><input class="form-input" type="text" id="jobSalary" placeholder="e.g. ₹8L–₹14L/yr"/></div>
+          </div>
+         
+          <div class="form-group"><label class="form-label">Required Skills <span class="req">*</span> <span style="color:var(--clr-muted);font-weight:400;text-transform:none;">(comma-separated)</span></label><input class="form-input" type="text" id="jobSkills" placeholder="React, TypeScript, Node.js…" required/></div>
+          <div class="form-group"><label class="form-label">Job Description <span class="req">*</span></label><textarea class="form-textarea" id="jobDesc" style="min-height:140px;" placeholder="Describe the role, responsibilities, and what makes this opportunity great…" required></textarea></div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Openings</label><input class="form-input" type="number" id="jobOpenings" placeholder="e.g. 3" min="1" value="1"/></div>
+            <div class="form-group"><label class="form-label">Application Deadline</label><input class="form-input" type="date" id="jobDeadline"/></div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Post Job</button>
+            <a href="jobs.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Cancel</a>
+          </div>
+        </form>
+      </div>
+      <!-- Preview card -->
+      <div class="post-job-preview">
+        <div class="pjp-title">Live Preview</div>
+        <div class="card job-preview-card" id="jobPreviewCard">
+          <div class="jc-header">
+           
+            <div class="jc-title-wrap"><div class="jc-title" id="prevTitle">Job Title</div><div class="jc-company" id="prevCompany">Company Name</div></div>
+            <span class="jc-type jt-full" id="prevType">Full-time</span>
+          </div>
+          <div class="jc-meta">
+            <span class="jc-meta-item"><i class="fa-solid fa-location-dot"></i><span id="prevLoc">Location</span></span>
+            <span class="jc-meta-item"><i class="fa-solid fa-layer-group"></i><span id="prevLevel">Level</span></span>
+          </div>
+          <div class="jc-skills" id="prevSkills"><span class="skill-tag">Skills</span></div>
+          <div class="jc-salary" id="prevSalary" style="display:none;"></div>
+          <div class="jc-footer">
+            <span class="jc-posted"><i class="fa-regular fa-clock"></i>Posted today</span>
+            <button class="btn btn-sm btn-primary" disabled>Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div></div>
+<script src="../js/toast.js"></script><script src="../js/api.js"></script><script src="../js/post-job.js"></script>
+</body></html>
