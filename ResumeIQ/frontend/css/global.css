@@ -31,13 +31,13 @@
   --clr-accent: #2dd4bf;
   --clr-inv: #030c0e;
 
-  --green: #10b981;
+  --green: #0d066d;
   --yellow: #f59e0b;
   --red: #ef4444;
   --blue: #3b82f6;
 
   --badge-short-bg: rgba(16, 185, 129, 0.12);
-  --badge-short-clr: #34d399;
+  --badge-short-clr: #16207e;
   --badge-pend-bg: rgba(245, 158, 11, 0.12);
   --badge-pend-clr: #fbbf24;
   --badge-rej-bg: rgba(239, 68, 68, 0.12);
@@ -47,7 +47,7 @@
   --badge-int-bg: rgba(59, 130, 246, 0.12);
   --badge-int-clr: #60a5fa;
   --badge-hire-bg: rgba(16, 185, 129, 0.15);
-  --badge-hire-clr: #10b981;
+  --badge-hire-clr: #0b088b;
 
   --radius: 14px;
   --radius-sm: 8px;
@@ -69,7 +69,7 @@
   --grad: linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
   --grad-r: linear-gradient(135deg, #0891b2 0%, #0d9488 100%);
 
-  --bg: linear-gradient(rgba(85, 168, 236, 0.938), white);
+  --bg: linear-gradient(rgba(239, 242, 250, 0.938), rgb(117, 157, 243));
   --bg2: #e6faf5;
   --bg3: #ffffff;
   --bg4: #f8fffe;
@@ -79,26 +79,26 @@
   --gb2: rgba(0, 0, 0, 0.06);
 
   --clr-head: #0c2825;
-  --clr-text: #2d6b62;
-  --clr-muted: #6aadaa;
-  --clr-accent: #0d9488;
+  --clr-text: #0e0f0f;
+  --clr-muted: #171b1b;
+  --clr-accent: #050505;
   --clr-inv: #f0fdf9;
 
   --shadow: 0 4px 24px rgba(13, 148, 136, 0.1);
   --glow: 0 0 20px rgba(13, 148, 136, 0.14);
 
   --badge-short-bg: rgba(16, 185, 129, 0.1);
-  --badge-short-clr: #059669;
+  --badge-short-clr: #051812;
   --badge-pend-bg: rgba(245, 158, 11, 0.1);
   --badge-pend-clr: #d97706;
   --badge-rej-bg: rgba(239, 68, 68, 0.1);
   --badge-rej-clr: #dc2626;
   --badge-app-bg: rgba(13, 148, 136, 0.1);
-  --badge-app-clr: #0d9488;
+  --badge-app-clr: #080808;
   --badge-int-bg: rgba(59, 130, 246, 0.1);
   --badge-int-clr: #2563eb;
   --badge-hire-bg: rgba(16, 185, 129, 0.1);
-  --badge-hire-clr: #059669;
+  --badge-hire-clr: #151817;
 }
 
 /* ── HR THEME ACCENT (applied on HR pages) ────────────── */
