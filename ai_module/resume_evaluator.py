@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
     job_description = input("Enter Job Description:\n")
 
-    resume_path = r"C:\Users\raman\OneDrive\Desktop\ai_module_hr\AI-Resume-Screening-System\ai_module\CVmeha.pdf"
+    resume_path = r"C:\Users\raman\OneDrive\Desktop\ai_module_hr\AI-Resume-Screening-System\ai_module\resume .pdf"
     result = evaluate_resume(resume_path, job_description)
 
     print("\n RESULT \n")
