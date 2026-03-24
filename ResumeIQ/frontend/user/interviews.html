@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>ResumeIQ — My Interviews</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/interviews.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+</head>
+
+<body>
+  <div class="sb-overlay" id="sbOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-topbar">
+      <div class="sb-brand"><span class="sb-brand-name">ResumeIQ</span></div>
+      <button class="sb-close-btn" id="sbCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="sb-user">
+      <div class="sb-user-av" data-user-initials>U</div>
+      <div>
+        <div class="sb-user-name" data-user-name>Loading…</div>
+        <div class="sb-user-role">Job Seeker · Free</div>
+      </div>
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-section">Navigation</div>
+      <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a class="nav-link" href="jobs.html"><i class="fa-solid fa-briefcase"></i><span>Browse Jobs</span></a>
+      <a class="nav-link" href="applications.html"><i class="fa-solid fa-file-lines"></i><span>My
+          Applications</span></a>
+      <a class="nav-link" href="resume-builder.html"><i class="fa-solid fa-file-pen"></i><span>Resume Builder</span></a>
+      <a class="nav-link active" href="interviews.html"><i class="fa-solid fa-calendar-check"></i><span>My
+          Interviews</span></a>
+      <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a>
+      <div class="sb-section" style="margin-top:8px;">Account</div>
+      <a class="nav-link danger nav-logout" href="#"><i
+          class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+    </nav>
+    <div class="sb-footer"><i class="fa-solid fa-shield-halved" style="margin-right:6px;color:var(--p1)"></i>ResumeIQ
+      v3.0 · Free Plan</div>
+  </aside>
+
+  <div class="shell">
+    <div class="main">
+      <header class="topbar">
+        <button class="hamburger-btn" id="hamburgerBtn"><i class="fa-solid fa-bars"></i></button>
+        <div class="tb-title"><i class="fa-solid fa-calendar-check" style="color:var(--p1)"></i> My Interviews</div>
+        <div class="tb-right" style="display:flex;margin-left:auto">
+          <button class="btn btn-outline btn-sm theme-btn"><i class="fa-solid theme-icon fa-sun"></i></button>
+          <div class="tb-av-circle" data-user-initials>U</div>
+        </div>
+      </header>
+
+      <div class="page-body">
+
+        <!-- Stats Row -->
+        <div class="iv-stats-row">
+          <div class="card card-p iv-stat-card">
+            <div class="iv-stat-icon" style="background:rgba(13,148,136,0.12);color:var(--p1)"><i
+                class="fa-solid fa-calendar-check"></i></div>
+            <div>
+              <div class="iv-stat-val" id="statTotal">0</div>
+              <div class="iv-stat-lbl">Total Interviews</div>
+            </div>
+          </div>
+          <div class="card card-p iv-stat-card">
+            <div class="iv-stat-icon" style="background:rgba(59,130,246,0.12);color:#60a5fa"><i
+                class="fa-solid fa-clock"></i></div>
+            <div>
+              <div class="iv-stat-val" id="statUpcoming">0</div>
+              <div class="iv-stat-lbl">Upcoming</div>
+            </div>
+          </div>
+          <div class="card card-p iv-stat-card">
+            <div class="iv-stat-icon" style="background:rgba(245,158,11,0.12);color:#fbbf24"><i
+                class="fa-solid fa-rotate"></i></div>
+            <div>
+              <div class="iv-stat-val" id="statPending">0</div>
+              <div class="iv-stat-lbl">Reschedule Pending</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interviews List -->
+        <div class="card">
+          <div class="iv-list-head">
+            <h3 class="iv-list-title">Scheduled Interviews</h3>
+            <select class="form-input form-select" id="ivFilter" style="width:180px" onchange="filterInterviews()">
+              <option value="all">All Interviews</option>
+              <option value="scheduled">Scheduled</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div id="ivList" class="iv-list">
+            <div class="iv-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading interviews…</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Reschedule Request Modal -->
+  <div class="iv-modal-overlay" id="rescheduleModal">
+    <div class="iv-modal card card-p">
+      <div class="iv-modal-head">
+        <h3><i class="fa-solid fa-calendar-xmark"></i> Request Reschedule</h3>
+        <button onclick="closeReschedule()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <input type="hidden" id="rescheduleIvId" />
+      <div class="form-group" style="margin-bottom:14px">
+        <label class="form-label">Reason for Rescheduling *</label>
+        <textarea class="form-input form-textarea" id="rescheduleReason" rows="3"
+          placeholder="Explain why you need to reschedule…"></textarea>
+      </div>
+      <div class="form-row" style="margin-bottom:18px">
+        <div class="form-group">
+          <label class="form-label">Preferred Date *</label>
+          <input class="form-input" id="rescheduleDate" type="date" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Time *</label>
+          <input class="form-input" id="rescheduleTime" type="time" />
+        </div>
+      </div>
+      <div class="iv-modal-foot">
+        <button class="btn btn-outline" onclick="closeReschedule()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitReschedule()"><i class="fa-solid fa-paper-plane"></i> Submit
+          Request</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/toast.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/interviews.js"></script>
+</body>
+
+</html>

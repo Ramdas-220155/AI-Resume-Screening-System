@@ -1,0 +1,318 @@
+/* interviews.css — Interview Scheduling · ResumeIQ v3.0 */
+
+.iv-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 22px;
+}
+@media (max-width: 640px) {
+  .iv-stats-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.iv-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.iv-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.iv-stat-val {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--clr-head);
+  font-family: var(--ff-head);
+  line-height: 1;
+}
+.iv-stat-lbl {
+  font-size: 12px;
+  color: var(--clr-muted);
+  margin-top: 3px;
+}
+
+.iv-list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--gb);
+}
+.iv-list-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--clr-head);
+}
+
+.iv-loading {
+  padding: 48px;
+  text-align: center;
+  color: var(--clr-muted);
+  font-size: 14px;
+}
+
+.iv-empty {
+  padding: 56px 20px;
+  text-align: center;
+  color: var(--clr-muted);
+}
+.iv-empty i {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 12px;
+  color: var(--gb);
+}
+.iv-empty p {
+  font-size: 14px;
+}
+
+/* Interview Card */
+.iv-card {
+  background: var(--bg2);
+  border: 1px solid var(--gb);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform var(--ease), border-color var(--ease);
+}
+.iv-card:last-child {
+  margin-bottom: 0;
+}
+.iv-card:hover {
+  border-color: var(--p1);
+  transform: translateY(-2px);
+}
+.iv-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.iv-card-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.iv-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--grad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.iv-card-company {
+  font-size: 11px;
+  color: var(--clr-muted);
+  margin-bottom: 2px;
+}
+.iv-card-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--clr-head);
+  font-family: var(--ff-head);
+}
+.iv-card-candidate {
+  font-size: 13px;
+  color: var(--clr-muted);
+  margin-top: 2px;
+}
+.iv-card-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.iv-card-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--gb2);
+}
+.iv-detail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--clr-muted);
+  background: var(--bg3);
+  padding: 5px 10px;
+  border-radius: 99px;
+  border: 1px solid var(--gb);
+}
+.iv-detail i {
+  color: var(--p1);
+  font-size: 11px;
+}
+.iv-detail a {
+  color: var(--clr-accent);
+}
+
+.iv-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* Reschedule badge */
+.iv-reschedule-banner {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Alert cards for reschedule requests */
+.iv-alert-card {
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.iv-alert-info {
+  font-size: 13px;
+  color: var(--clr-head);
+}
+.iv-alert-info strong {
+  color: #fbbf24;
+}
+.iv-alert-info span {
+  font-size: 12px;
+  color: var(--clr-muted);
+  display: block;
+  margin-top: 2px;
+}
+.iv-alert-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Status badges */
+.badge-scheduled {
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+}
+.badge-cancelled {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+}
+.badge-rescheduled {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+}
+
+/* Modals */
+.iv-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+}
+.iv-modal-overlay.open {
+  display: flex;
+}
+.iv-modal {
+  max-width: 520px;
+  width: 100%;
+  margin: 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.iv-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.iv-modal-head h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--clr-head);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.iv-modal-head h3 i {
+  color: var(--p1);
+}
+.iv-modal-head button {
+  background: none;
+  border: none;
+  color: var(--clr-muted);
+  cursor: pointer;
+  font-size: 16px;
+}
+.iv-modal-foot {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 0;
+}
+.form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--clr-muted);
+}
+
+.iv-reschedule-review {
+  background: var(--bg3);
+  border: 1px solid var(--gb);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+.iv-reschedule-review .rv-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.iv-reschedule-review .rv-label {
+  color: var(--clr-muted);
+  font-size: 12px;
+}
+.iv-reschedule-review .rv-val {
+  color: var(--clr-head);
+  font-weight: 600;
+}

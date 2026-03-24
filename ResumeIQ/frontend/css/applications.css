@@ -13,11 +13,16 @@
 }
 
 .app-stat-card {
-  padding: 18px 20px;
+  padding: 22px;
   text-align: center;
-  background-color: var(--clr-bg-alt);
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: var(--bg2);
+  border: 1px solid var(--gb);
+  border-radius: var(--radius);
+  transition: transform var(--ease), border-color var(--ease);
+}
+.app-stat-card:hover {
+  border-color: var(--p1);
+  transform: translateY(-2px);
 }
 
 .app-stat-num {
@@ -94,7 +99,7 @@
 .toolbar-left .search-box input {
   width: 100%;
   background: var(--bg3);
-  border: 2px solid var(--gb);
+  border: 1px solid var(--gb);
   border-radius: var(--radius-sm);
   padding: 10px 14px 10px 40px;
   color: var(--clr-head);
@@ -124,7 +129,7 @@
 .toolbar-right .filter-select {
   width: 100%;
   background: var(--bg3);
-  border: 2px solid var(--gb);
+  border: 1px solid var(--gb);
   border-radius: var(--radius-sm);
   padding: 10px 14px;
   color: var(--clr-text);
@@ -153,9 +158,10 @@
    ========================= */
 .tbl-wrap {
   overflow-x: auto;
-  background-color: var(--clr-bg-alt);
-  border-radius: 8px;
-  padding: 12px;
+  background: var(--bg2);
+  border: 1px solid var(--gb);
+  border-radius: var(--radius);
+  padding: 16px;
 }
 
 #appsTable {

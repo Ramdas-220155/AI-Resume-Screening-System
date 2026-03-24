@@ -244,6 +244,21 @@ const ContactAPI = {
     }),
 };
 
+const InterviewAPI = {
+  myInterviews: () => apiFetch("interviews/my"),
+  requestReschedule: (data) => apiFetch("interviews/request-reschedule", { method: "POST", body: JSON.stringify(data) }),
+  hrList: (p = {}) => apiFetch(`interviews/hr-list?${new URLSearchParams(p)}`),
+  schedule: (data) => apiFetch("interviews/schedule", { method: "POST", body: JSON.stringify(data) }),
+  cancel: (id) => apiFetch("interviews/cancel", { method: "POST", body: JSON.stringify({ interview_id: id }) }),
+  approveReschedule: (data) => apiFetch("interviews/approve-reschedule", { method: "POST", body: JSON.stringify(data) }),
+};
+
+const ResumeAPI = {
+  get: () => apiFetch("resume/get"),
+  save: (data) => apiFetch("resume/save", { method: "POST", body: JSON.stringify(data) }),
+  sendEmail: (data) => apiFetch("resume/send-email", { method: "POST", body: JSON.stringify(data) }),
+};
+
 /* ── DOM identity ───────────────────────────────────────── */
 function applyIdentityToDOM() {
   const name = Auth.userName || "User";
