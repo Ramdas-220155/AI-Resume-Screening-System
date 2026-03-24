@@ -76,11 +76,13 @@ const Auth = {
   requireLogin(expectedRole = null) {
     if (!this.isLoggedIn()) {
       const base = expectedRole === "hr" ? "hr/login.html" : "user/login.html";
-      window.location.href =
-        window.location.pathname.includes("/hr/") ||
-        window.location.pathname.includes("/user/")
-          ? "../" + base.split("/")[1] + "/login.html"
-          : base;
+      const isHrPath = window.location.pathname.includes("/hr/");
+      const isUserPath = window.location.pathname.includes("/user/");
+      if (isHrPath || isUserPath) {
+        window.location.replace("http://localhost:3000/" + base);
+      } else {
+        window.location.replace("http://localhost:3000/" + base);
+      }
       return false;
     }
     if (expectedRole && this.role !== expectedRole) {
@@ -208,14 +210,11 @@ const JobsAPI = {
       method: "POST",
       body: JSON.stringify({ job_id: id }),
     }),
-  aggregate: () =>
-    apiFetch("aggregate/jobs", {
-      method: "POST"
-    }),
 };
 
 const ApplicationsAPI = {
-  list: (p = {}) => apiFetch(`applications/list?${new URLSearchParams(p)}`),
+  list: (p = {}) =>
+    apiFetch(`applications/list?${new URLSearchParams(p)}`),
   withdraw: (app_id) =>
     apiFetch("applications/withdraw", {
       method: "POST",
@@ -223,7 +222,9 @@ const ApplicationsAPI = {
     }),
   stats: () => apiFetch("applications/stats"),
   forJob: (job_id, p = {}) =>
-    apiFetch(`applications/for_job?job_id=${job_id}&${new URLSearchParams(p)}`),
+    apiFetch(
+      `applications/for_job?job_id=${job_id}&${new URLSearchParams(p)}`,
+    ),
   updateStatus: (app_id, status, notes = "") =>
     apiFetch("applications/update_status", {
       method: "POST",
@@ -246,28 +247,6 @@ const ContactAPI = {
       method: "POST",
       body: JSON.stringify(data),
     }),
-};
-
-const InterviewAPI = {
-  myInterviews: () => apiFetch("interviews/my"),
-  requestReschedule: (data) => apiFetch("interviews/reschedule", { method: "PUT", body: JSON.stringify(data) }),
-  hrList: (p = {}) => apiFetch(`interviews/hr-list?${new URLSearchParams(p)}`),
-  schedule: (data) => apiFetch("interviews/schedule", { method: "POST", body: JSON.stringify(data) }),
-  cancel: (id) => apiFetch("interviews/cancel", { method: "POST", body: JSON.stringify({ interview_id: id }) }),
-  approveReschedule: (data) => apiFetch("interviews/approve-reschedule", { method: "PUT", body: JSON.stringify(data) }),
-  accept: (id) => apiFetch("interviews/accept", { method: "PUT", body: JSON.stringify({ interview_id: id }) }),
-};
-
-const ResumeAPI = {
-  get: () => apiFetch("resume/get"),
-  save: (data) => apiFetch("resume/save", { method: "POST", body: JSON.stringify(data) }),
-  sendEmail: (data) => apiFetch("resume/send-email", { method: "POST", body: JSON.stringify(data) }),
-};
-
-const AIChatAPI = {
-  send: (message) => apiFetch("chat", { method: "POST", body: JSON.stringify({ message }) }),
-  autoShortlist: () => apiFetch("ai/shortlist", { method: "POST" }),
-  getShortlisted: () => apiFetch("ai/shortlisted"),
 };
 
 /* ── DOM identity ───────────────────────────────────────── */
@@ -313,9 +292,9 @@ document.addEventListener("DOMContentLoaded", () => {
         Auth.clear();
         if (typeof showToast === "function") showToast("Logged out", "info");
         setTimeout(() => {
-          window.location.href = isHR
-            ? "../hr/login.html"
-            : "../user/login.html";
+          window.location.replace(isHR
+            ? "http://localhost:3000/hr/login.html"
+            : "http://localhost:3000/user/login.html");
         }, 700);
       }
     });
@@ -354,108 +333,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (a.getAttribute("href") === cur) a.classList.add("active");
     });
   }
-
-  /* ── Socket.io Initialization ── */
-  initAdvancedFeatures();
 });
-
-async function initAdvancedFeatures() {
-  // 1. Inject Socket.io Script if missing
-  if (typeof io === 'undefined') {
-    const s = document.createElement('script');
-    s.src = "https://cdn.socket.io/4.7.2/socket.io.min.js";
-    s.onload = () => setupSocketSync();
-    document.head.appendChild(s);
-  } else {
-    setupSocketSync();
-  }
-
-  // 2. Inject Chatbot CSS
-  const c = document.createElement('link');
-  c.rel = "stylesheet";
-  const isSub = window.location.pathname.includes('/user/') || window.location.pathname.includes('/hr/');
-  c.href = (isSub ? "../" : "") + "css/chatbot.css";
-  document.head.appendChild(c);
-
-  // 3. Inject Chatbot HTML
-  const chatHtml = `
-    <div class="rig-chatbot-container">
-      <button class="chat-bubble" id="chatBubble"><i class="fa-solid fa-robot"></i></button>
-      <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-          <div style="width:32px;height:32px;background:var(--grad);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;"><i class="fa-solid fa-robot" style="font-size:16px;"></i></div>
-          <div class="chat-header-info">
-            <h4>ResumeIQ Assistant</h4>
-            <span>Online · AI Powered</span>
-          </div>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-          <div class="msg ai">Hi! I'm ResumeIQ AI. Ask me about jobs or your applications!</div>
-        </div>
-        <form class="chat-input-area" id="chatForm">
-          <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything..." autocomplete="off">
-          <button type="submit" class="chat-send"><i class="fa-solid fa-paper-plane"></i></button>
-        </form>
-      </div>
-    </div>
-  `;
-  document.body.insertAdjacentHTML('beforeend', chatHtml);
-
-  // 4. Chatbot Logic
-  const bubble = document.getElementById('chatBubble');
-  const window_ = document.getElementById('chatWindow');
-  const form = document.getElementById('chatForm');
-  const input = document.getElementById('chatInput');
-  const messages = document.getElementById('chatMessages');
-
-  bubble?.addEventListener('click', () => {
-    window_.style.display = window_.style.display === 'flex' ? 'none' : 'flex';
-    if (window_.style.display === 'flex') input?.focus();
-  });
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const val = input.value.trim();
-    if (!val) return;
-    
-    // User message
-    appendMsg(val, 'user');
-    input.value = '';
-
-    const res = await AIChatAPI.send(val);
-    if (res.success) {
-      appendMsg(res.reply, 'ai');
-      if (res.action) {
-        setTimeout(() => {
-          if (confirm(`AI suggests: Go to ${res.action.replace('navigate_', '')}. Proceed?`)) {
-            window.location.href = res.action === 'navigate_jobs' ? (isSub ? 'jobs.html' : 'user/jobs.html') : (isSub ? 'applications.html' : 'user/applications.html');
-          }
-        }, 1500);
-      }
-    } else {
-      appendMsg("Sorry, I'm having trouble connecting to the brain center.", 'ai');
-    }
-  });
-
-  function appendMsg(txt, side) {
-    const d = document.createElement('div');
-    d.className = `msg ${side}`;
-    d.textContent = txt;
-    messages?.appendChild(d);
-    messages.scrollTop = messages.scrollHeight;
-  }
-}
-
-function setupSocketSync() {
-  if (typeof io === 'undefined') return;
-  const socket = io("http://localhost:5000");
-  
-  socket.on('notification', (data) => {
-    if (data.user_id && data.user_id !== Auth.userId) return;
-    if (data.hr_id && data.hr_id !== Auth.userId) return;
-    if (typeof showToast === 'function') showToast(data.message, 'success');
-  });
-}
 
 /* ── Utils ──────────────────────────────────────────────── */
 function escHtml(str) {
