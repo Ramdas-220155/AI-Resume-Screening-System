@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>ResumeIQ — HR Login</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -147,7 +148,7 @@
       localStorage.setItem('riq_role', 'user');
 
       console.log('[GoogleAuth] Redirecting to dashboard...');
-      window.location.replace('http://localhost:3000/user/index.html');
+      window.location.replace('http://localhost:5000/user/index.html');
 
     } catch(e) {
       console.error('[GoogleAuth] PARSE ERROR:', e);
@@ -161,7 +162,7 @@
 <script>
 
 document.addEventListener('DOMContentLoaded',()=>{
-  if(Auth.isLoggedIn()&&Auth.isHR()){window.location.replace('http://localhost:3000/hr/index.html');return;}
+  if(Auth.isLoggedIn()&&Auth.isHR()){window.location.replace('http://localhost:5000/hr/index.html');return;}
 
   const params = new URLSearchParams(window.location.search);
 
@@ -187,10 +188,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.pwd-toggle').forEach(btn => { btn.addEventListener('click', () => { const inp = document.getElementById(btn.dataset.target); const ic = btn.querySelector('i'); inp.type = inp.type === 'password' ? 'text' : 'password'; ic.className = inp.type === 'text' ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'; }); });
 
   /* ── Login ──────────────────────────────────────────── */
-  document.getElementById('loginForm').addEventListener('submit', async function(e) { e.preventDefault(); const btn = this.querySelector('[type="submit"]'); const orig = btn.innerHTML; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in…'; btn.disabled = true; const res = await AuthAPI.login(document.getElementById('loginEmail').value.trim(), document.getElementById('loginPassword').value, 'hr'); btn.disabled = false; btn.innerHTML = orig; if (res.success) { Auth.save(res, 'hr'); showToast(`Welcome, ${res.name.split(' ')[0]}! 👋`, 'success'); setTimeout(() => window.location.replace('http://localhost:3000/hr/index.html'), 900); } else { const e = document.getElementById('loginError'); e.textContent = res.error || 'Login failed'; e.style.display = 'block'; showToast(res.error || 'Login failed', 'error'); } });
+  document.getElementById('loginForm').addEventListener('submit', async function(e) { e.preventDefault(); const btn = this.querySelector('[type="submit"]'); const orig = btn.innerHTML; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in…'; btn.disabled = true; const res = await AuthAPI.login(document.getElementById('loginEmail').value.trim(), document.getElementById('loginPassword').value, 'hr'); btn.disabled = false; btn.innerHTML = orig; if (res.success) { Auth.save(res, 'hr'); showToast(`Welcome, ${res.name.split(' ')[0]}! 👋`, 'success'); setTimeout(() => window.location.replace('http://localhost:5000/hr/index.html'), 900); } else { const e = document.getElementById('loginError'); e.textContent = res.error || 'Login failed'; e.style.display = 'block'; showToast(res.error || 'Login failed', 'error'); } });
 
   /* ── Register ───────────────────────────────────────── */
-  document.getElementById('registerForm').addEventListener('submit', async function(e) { e.preventDefault(); const btn = this.querySelector('[type="submit"]'); const orig = btn.innerHTML; const pwd = document.getElementById('regPassword').value; if (pwd !== document.getElementById('regConfirm').value) { showToast('Passwords do not match', 'error'); return; } btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating…'; btn.disabled = true; const res = await AuthAPI.register(document.getElementById('regName').value.trim(), document.getElementById('regEmail').value.trim(), pwd, 'hr', document.getElementById('regCompany').value.trim()); btn.disabled = false; btn.innerHTML = orig; if (res.success) { Auth.save(res, 'hr'); showToast(`HR account created! Welcome, ${res.name.split(' ')[0]}! 🎉`, 'success'); setTimeout(() => window.location.replace('http://localhost:3000/hr/index.html'), 1000); } else { const e = document.getElementById('regError'); e.textContent = res.error || 'Registration failed'; e.style.display = 'block'; showToast(res.error || 'Registration failed', 'error'); } });
+  document.getElementById('registerForm').addEventListener('submit', async function(e) { e.preventDefault(); const btn = this.querySelector('[type="submit"]'); const orig = btn.innerHTML; const pwd = document.getElementById('regPassword').value; if (pwd !== document.getElementById('regConfirm').value) { showToast('Passwords do not match', 'error'); return; } btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating…'; btn.disabled = true; const res = await AuthAPI.register(document.getElementById('regName').value.trim(), document.getElementById('regEmail').value.trim(), pwd, 'hr', document.getElementById('regCompany').value.trim()); btn.disabled = false; btn.innerHTML = orig; if (res.success) { Auth.save(res, 'hr'); showToast(`HR account created! Welcome, ${res.name.split(' ')[0]}! 🎉`, 'success'); setTimeout(() => window.location.replace('http://localhost:5000/hr/index.html'), 1000); } else { const e = document.getElementById('regError'); e.textContent = res.error || 'Registration failed'; e.style.display = 'block'; showToast(res.error || 'Registration failed', 'error'); } });
 
   document.getElementById('authThemeBtn')?.addEventListener('click', toggleTheme);
 });

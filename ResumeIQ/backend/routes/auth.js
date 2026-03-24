@@ -1,5 +1,5 @@
 // routes/auth.js — Register & Login (User + HR) + Google OAuth · ResumeIQ v3.0
-
+//new
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
@@ -139,7 +139,7 @@ router.get('/google/callback', async (req, res) => {
 
   if (error) {
     const loginPage = state === 'hr' ? '/hr/login.html' : '/user/login.html';
-    return res.redirect(`http://localhost:3000${loginPage}?error=google_denied`);
+    return res.redirect(`http://localhost:5000${loginPage}?error=google_denied`);
   }
 
   try {
@@ -168,7 +168,7 @@ router.get('/google/callback', async (req, res) => {
     if (user) {
       if ((user.role || 'user') !== role) {
         const loginPage = role === 'hr' ? '/hr/login.html' : '/user/login.html';
-        return res.redirect(`http://localhost:3000${loginPage}?error=wrong_portal`);
+        return res.redirect(`http://localhost:5000${loginPage}?error=wrong_portal`);
       }
 
       if (!user.google_id) {
@@ -212,15 +212,16 @@ router.get('/google/callback', async (req, res) => {
 
     console.log("🚀 Redirecting to frontend");
 
+    const successPage = role === 'hr' ? '/hr/login.html' : '/user/login.html';
     return res.redirect(
-      `http://localhost:3000/user/login.html#google_auth=${userData}`
+      `http://localhost:5000${successPage}#google_auth=${userData}`
     );
 
   } catch (e) {
     console.error("❌ Google OAuth error:", e);
 
     const loginPage = state === 'hr' ? '/hr/login.html' : '/user/login.html';
-    return res.redirect(`http://localhost:3000${loginPage}?error=google_failed`);
+    return res.redirect(`http://localhost:5000${loginPage}?error=google_failed`);
   }
 });
 

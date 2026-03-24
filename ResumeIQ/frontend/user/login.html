@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+ 
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
@@ -196,7 +197,7 @@
       localStorage.setItem('riq_role', 'user');
 
       console.log('[GoogleAuth] Redirecting to dashboard...');
-      window.location.replace('http://localhost:3000/user/index.html');
+      window.location.replace('http://localhost:5000/user/index.html');
 
     } catch(e) {
       console.error('[GoogleAuth] PARSE ERROR:', e);
@@ -211,7 +212,7 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (Auth.isLoggedIn() && Auth.isUser()) { window.location.replace('http://localhost:3000/user/index.html'); return; }
+  if (Auth.isLoggedIn() && Auth.isUser()) { window.location.replace('http://localhost:5000/user/index.html'); return; }
 
   const params = new URLSearchParams(window.location.search);
 
@@ -273,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (res.success) {
       Auth.save(res, 'user');
       showToast(`Welcome back, ${res.name.split(' ')[0]}! 👋`, 'success');
-      setTimeout(() => window.location.replace('http://localhost:3000/user/index.html'), 900);
+      setTimeout(() => window.location.replace('http://localhost:5000/user/index.html'), 900);
     } else {
       const errEl = document.getElementById('loginError');
       errEl.textContent = res.error || 'Login failed'; errEl.style.display = 'block';
@@ -296,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (res.success) {
       Auth.save(res, 'user');
       showToast(`Account created! Welcome, ${res.name.split(' ')[0]}! 🎉`, 'success');
-      setTimeout(() => window.location.replace('http://localhost:3000/user/index.html'), 1000);
+      setTimeout(() => window.location.replace('http://localhost:5000/user/index.html'), 1000);
     } else {
       const errEl = document.getElementById('regError');
       errEl.textContent = res.error || 'Registration failed'; errEl.style.display = 'block';

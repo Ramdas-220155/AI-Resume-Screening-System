@@ -9,7 +9,7 @@
 // Local dev:   http://localhost:5000/api
 // Render/Railway/etc: https://your-app.onrender.com/api
 const API_BASE = "http://localhost:5000/api";
-
+//new
 /* ── Theme init ─────────────────────────────────────────── */
 (function initTheme() {
   const t = localStorage.getItem("riq_theme") || "dark";
@@ -79,9 +79,9 @@ const Auth = {
       const isHrPath = window.location.pathname.includes("/hr/");
       const isUserPath = window.location.pathname.includes("/user/");
       if (isHrPath || isUserPath) {
-        window.location.replace("http://localhost:3000/" + base);
+        window.location.replace("http://localhost:5000/" + base);
       } else {
-        window.location.replace("http://localhost:3000/" + base);
+        window.location.replace("http://localhost:5000/" + base);
       }
       return false;
     }
@@ -293,8 +293,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (typeof showToast === "function") showToast("Logged out", "info");
         setTimeout(() => {
           window.location.replace(isHR
-            ? "http://localhost:3000/hr/login.html"
-            : "http://localhost:3000/user/login.html");
+            ? "http://localhost:5000/hr/login.html"
+            : "http://localhost:5000/user/login.html");
         }, 700);
       }
     });
