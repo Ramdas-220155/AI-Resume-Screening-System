@@ -5,11 +5,16 @@
    ============================================================ */
 
 /* ── API Base URL ────────────────────────────────────────── */
-// 🔧 CHANGE THIS to your deployed backend URL when hosting online
-// Local dev:   http://localhost:5000/api
-// Render/Railway/etc: https://your-app.onrender.com/api
-const API_BASE = "http://localhost:5000/api";
-//new
+// Use same-origin API so this works in local/dev/prod without edits.
+const API_BASE = "/api";
+const API_ORIGIN =
+  typeof window !== "undefined" && window.location && window.location.origin
+    ? window.location.origin
+    : "";
+if (typeof window !== "undefined") {
+  window.RIQ_API_BASE = API_BASE;
+  window.RIQ_API_ORIGIN = API_ORIGIN;
+}
 /* ── Theme init ─────────────────────────────────────────── */
 (function initTheme() {
   const t = localStorage.getItem("riq_theme") || "dark";
@@ -76,13 +81,7 @@ const Auth = {
   requireLogin(expectedRole = null) {
     if (!this.isLoggedIn()) {
       const base = expectedRole === "hr" ? "hr/login.html" : "user/login.html";
-      const isHrPath = window.location.pathname.includes("/hr/");
-      const isUserPath = window.location.pathname.includes("/user/");
-      if (isHrPath || isUserPath) {
-        window.location.replace("http://localhost:5000/" + base);
-      } else {
-        window.location.replace("http://localhost:5000/" + base);
-      }
+      window.location.href = "/" + base;
       return false;
     }
     if (expectedRole && this.role !== expectedRole) {
@@ -152,6 +151,11 @@ const AuthAPI = {
     apiFetch("auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password, role }),
+    }),
+  oauthComplete: (code) =>
+    apiFetch("auth/oauth/complete", {
+      method: "POST",
+      body: JSON.stringify({ code }),
     }),
 };
 
@@ -292,9 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
         Auth.clear();
         if (typeof showToast === "function") showToast("Logged out", "info");
         setTimeout(() => {
-          window.location.replace(isHR
-            ? "http://localhost:5000/hr/login.html"
-            : "http://localhost:5000/user/login.html");
+          window.location.href = isHR ? "../hr/login.html" : "../user/login.html";
         }, 700);
       }
     });

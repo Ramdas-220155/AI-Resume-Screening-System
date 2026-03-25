@@ -85,7 +85,7 @@
       <div id="loginError" class="auth-error-msg" style="display:none;"></div>
 
       <!-- Google Sign In -->
-      <a class="google-btn" id="googleLoginBtn" href="#">
+      <a class="google-btn" id="googleLoginBtn" href="http://localhost:5000/api/auth/google?role=user">
         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google"/>
         Continue with Google
       </a>
@@ -119,7 +119,7 @@
       <div id="regError" class="auth-error-msg" style="display:none;"></div>
 
       <!-- Google Sign Up -->
-      <a class="google-btn" id="googleSignupBtn" href="#">
+      <a class="google-btn" href="http://localhost:5000/api/auth/google?role=user">
         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google"/>
         Sign up with Google
       </a>
@@ -171,33 +171,66 @@
   </div>
 </div>
 
+<!-- Google OAuth: handle callback BEFORE anything else loads -->
+<script>
+  (function() {
+  console.log('[GoogleAuth] Script running. Full URL:', window.location.href);
+
+  const hash = window.location.hash;
+  let raw = null;
+
+  if (hash.includes('google_auth=')) {
+    raw = hash.split('google_auth=')[1];
+  }
+
+  console.log('[GoogleAuth] google_auth param:', raw ? raw.substring(0, 80) + '...' : 'NOT FOUND');
+
+  if (raw) {
+    try {
+      const data = JSON.parse(decodeURIComponent(raw));
+
+      localStorage.setItem('riq_uid', data.user_id);
+      localStorage.setItem('riq_name', data.name);
+      localStorage.setItem('riq_init', data.initials || (data.name ? data.name[0].toUpperCase() : 'U'));
+      localStorage.setItem('riq_plan', data.plan || 'Free');
+      localStorage.setItem('riq_email', data.email || '');
+      localStorage.setItem('riq_role', 'user');
+
+      console.log('[GoogleAuth] Redirecting to dashboard...');
+      window.location.replace('http://localhost:5000/user/index.html');
+
+    } catch(e) {
+      console.error('[GoogleAuth] PARSE ERROR:', e);
+    }
+  } else {
+    console.log('[GoogleAuth] No google_auth param — normal login page load');
+  }
+})();
+</script>
 <script src="../js/toast.js"></script>
 <script src="../js/api.js"></script>
 <script>
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (Auth.isLoggedIn() && Auth.isUser()) { window.location.href = 'index.html'; return; }
+  if (Auth.isLoggedIn() && Auth.isUser()) { window.location.replace('http://localhost:5000/user/index.html'); return; }
 
-  const oauthParam = new URLSearchParams(location.search).get('oauth');
-  if (oauthParam) {
-    const oauthMsgs = {
-      fail: 'Google sign-in was cancelled or failed.',
-      error: 'Something went wrong during Google sign-in.',
-      noemail: 'Google did not return an email for this account.',
-      missing: 'Sign-in session expired. Please try again.',
-      wrongportal: 'This account uses a different portal (Job Seeker vs HR). Open the correct login page.',
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get('error')) {
+    const errMap = {
+      google_denied:  'Google sign-in was cancelled.',
+      google_failed:  'Google sign-in failed. Please try again.',
+      wrong_portal:   'This Google account is registered as HR. Please use the HR portal.',
     };
-    showToast(oauthMsgs[oauthParam] || 'Sign-in could not be completed.', 'error');
-    history.replaceState({}, '', 'login.html');
+    const msg = errMap[params.get('error')] || 'An error occurred.';
+    const errEl = document.getElementById('loginError');
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+    showToast(msg, 'error');
   }
 
-  const startGoogleOAuth = (e) => {
-    e.preventDefault();
-    const origin = window.RIQ_API_ORIGIN || window.location.origin;
-    window.location.href = origin + '/api/auth/google?role=user';
-  };
-  document.getElementById('googleLoginBtn')?.addEventListener('click', startGoogleOAuth);
-  document.getElementById('googleSignupBtn')?.addEventListener('click', startGoogleOAuth);
+  // Clean URL
+  if (params.toString()) window.history.replaceState({}, '', window.location.pathname);
 
   /* ── Tabs ───────────────────────────────────────────── */
   document.querySelectorAll('.auth-tab-btn').forEach(btn => {
@@ -241,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (res.success) {
       Auth.save(res, 'user');
       showToast(`Welcome back, ${res.name.split(' ')[0]}! 👋`, 'success');
-      setTimeout(() => window.location.href = 'index.html', 900);
+      setTimeout(() => window.location.replace('http://localhost:5000/user/index.html'), 900);
     } else {
       const errEl = document.getElementById('loginError');
       errEl.textContent = res.error || 'Login failed'; errEl.style.display = 'block';
@@ -264,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (res.success) {
       Auth.save(res, 'user');
       showToast(`Account created! Welcome, ${res.name.split(' ')[0]}! 🎉`, 'success');
-      setTimeout(() => window.location.href = 'index.html', 1000);
+      setTimeout(() => window.location.replace('http://localhost:5000/user/index.html'), 1000);
     } else {
       const errEl = document.getElementById('regError');
       errEl.textContent = res.error || 'Registration failed'; errEl.style.display = 'block';

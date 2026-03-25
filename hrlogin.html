@@ -77,7 +77,7 @@
       <div id="loginError" class="auth-error-msg" style="display:none;"></div>
 
       <!-- Google Sign In -->
-      <a class="google-btn" id="googleSignInHr" href="#">
+      <a class="google-btn" href="http://localhost:5000/api/auth/google?role=hr">
         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google"/>
         Continue with Google
       </a>
@@ -98,7 +98,7 @@
       <div id="regError" class="auth-error-msg" style="display:none;"></div>
 
       <!-- Google Sign Up -->
-      <a class="google-btn" id="googleSignupHr" href="#">
+      <a class="google-btn" href="http://localhost:5000/api/auth/google?role=hr">
         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google"/>
         Sign up with Google
       </a>
@@ -122,21 +122,65 @@
   </div>
   <div class="auth-footer"><button class="auth-theme-btn" id="authThemeBtn"><i class="fa-solid fa-moon theme-icon"></i></button><i class="fa-solid fa-shield-halved" style="color:#818cf8;margin-right:4px;"></i>ResumeIQ v3.0 · Secured</div>
 </div>
+<!-- Google OAuth: handle callback BEFORE anything else loads -->
+<script>
+ (function() {
+  console.log('[GoogleAuth] Script running. Full URL:', window.location.href);
+
+  const hash = window.location.hash;
+  let raw = null;
+
+  if (hash.includes('google_auth=')) {
+    raw = hash.split('google_auth=')[1];
+  }
+
+  console.log('[GoogleAuth] google_auth param:', raw ? raw.substring(0, 80) + '...' : 'NOT FOUND');
+
+  if (raw) {
+    try {
+      const data = JSON.parse(decodeURIComponent(raw));
+
+      localStorage.setItem('riq_uid', data.user_id);
+      localStorage.setItem('riq_name', data.name);
+      localStorage.setItem('riq_init', data.initials || (data.name ? data.name[0].toUpperCase() : 'U'));
+      localStorage.setItem('riq_plan', data.plan || 'Free');
+      localStorage.setItem('riq_email', data.email || '');
+      localStorage.setItem('riq_role', 'user');
+
+      console.log('[GoogleAuth] Redirecting to dashboard...');
+      window.location.replace('http://localhost:5000/user/index.html');
+
+    } catch(e) {
+      console.error('[GoogleAuth] PARSE ERROR:', e);
+    }
+  } else {
+    console.log('[GoogleAuth] No google_auth param — normal login page load');
+  }
+})();
+</script>
 <script src="../js/toast.js"></script><script src="../js/api.js"></script>
 <script>
 
 document.addEventListener('DOMContentLoaded',()=>{
-  if(Auth.isLoggedIn()&&Auth.isHR()){window.location.href='index.html';return;}
+  if(Auth.isLoggedIn()&&Auth.isHR()){window.location.replace('http://localhost:5000/hr/index.html');return;}
 
-  const oauthParam = new URLSearchParams(location.search).get('oauth');
-  if(oauthParam){
-    const oauthMsgs={fail:'Google sign-in was cancelled or failed.',error:'Something went wrong during Google sign-in.',noemail:'Google did not return an email for this account.',missing:'Sign-in session expired. Please try again.',wrongportal:'This account uses the Job Seeker portal. Sign in at the job seeker login.'};
-    showToast(oauthMsgs[oauthParam]||'Sign-in could not be completed.','error');
-    history.replaceState({},'','login.html');
+  const params = new URLSearchParams(window.location.search);
+
+  if(params.get('error')){
+    const errMap = {
+      google_denied: 'Google sign-in was cancelled.',
+      google_failed: 'Google sign-in failed. Please try again.',
+      wrong_portal:  'This Google account is registered as a Job Seeker. Please use the User portal.',
+    };
+    const msg = errMap[params.get('error')] || 'An error occurred.';
+    const errEl = document.getElementById('loginError');
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+    showToast(msg, 'error');
   }
-  const startGoogleOAuth=(e)=>{e.preventDefault();const o=window.RIQ_API_ORIGIN||window.location.origin;window.location.href=o+'/api/auth/google?role=hr';};
-  document.getElementById('googleSignInHr')?.addEventListener('click',startGoogleOAuth);
-  document.getElementById('googleSignupHr')?.addEventListener('click',startGoogleOAuth);
+
+  // Clean URL
+  if (params.toString()) window.history.replaceState({}, '', window.location.pathname);
 
   /* ── Tabs ───────────────────────────────────────────── */
   document.querySelectorAll('.auth-tab-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); const t = btn.dataset.tab; document.getElementById('loginPanel').classList.toggle('hidden', t !== 'login'); document.getElementById('regPanel').classList.toggle('hidden', t !== 'register'); }); });
@@ -144,10 +188,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.pwd-toggle').forEach(btn => { btn.addEventListener('click', () => { const inp = document.getElementById(btn.dataset.target); const ic = btn.querySelector('i'); inp.type = inp.type === 'password' ? 'text' : 'password'; ic.className = inp.type === 'text' ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'; }); });
 
   /* ── Login ──────────────────────────────────────────── */
-  document.getElementById('loginForm').addEventListener('submit', async function(e) { e.preventDefault(); const btn = this.querySelector('[type="submit"]'); const orig = btn.innerHTML; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in…'; btn.disabled = true; const res = await AuthAPI.login(document.getElementById('loginEmail').value.trim(), document.getElementById('loginPassword').value, 'hr'); btn.disabled = false; btn.innerHTML = orig; if (res.success) { Auth.save(res, 'hr'); showToast(`Welcome, ${res.name.split(' ')[0]}! 👋`, 'success'); setTimeout(() => window.location.href='index.html', 900); } else { const e = document.getElementById('loginError'); e.textContent = res.error || 'Login failed'; e.style.display = 'block'; showToast(res.error || 'Login failed', 'error'); } });
+  document.getElementById('loginForm').addEventListener('submit', async function(e) { e.preventDefault(); const btn = this.querySelector('[type="submit"]'); const orig = btn.innerHTML; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in…'; btn.disabled = true; const res = await AuthAPI.login(document.getElementById('loginEmail').value.trim(), document.getElementById('loginPassword').value, 'hr'); btn.disabled = false; btn.innerHTML = orig; if (res.success) { Auth.save(res, 'hr'); showToast(`Welcome, ${res.name.split(' ')[0]}! 👋`, 'success'); setTimeout(() => window.location.replace('http://localhost:5000/hr/index.html'), 900); } else { const e = document.getElementById('loginError'); e.textContent = res.error || 'Login failed'; e.style.display = 'block'; showToast(res.error || 'Login failed', 'error'); } });
 
   /* ── Register ───────────────────────────────────────── */
-  document.getElementById('registerForm').addEventListener('submit', async function(e) { e.preventDefault(); const btn = this.querySelector('[type="submit"]'); const orig = btn.innerHTML; const pwd = document.getElementById('regPassword').value; if (pwd !== document.getElementById('regConfirm').value) { showToast('Passwords do not match', 'error'); return; } btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating…'; btn.disabled = true; const res = await AuthAPI.register(document.getElementById('regName').value.trim(), document.getElementById('regEmail').value.trim(), pwd, 'hr', document.getElementById('regCompany').value.trim()); btn.disabled = false; btn.innerHTML = orig; if (res.success) { Auth.save(res, 'hr'); showToast(`HR account created! Welcome, ${res.name.split(' ')[0]}! 🎉`, 'success'); setTimeout(() => window.location.href='index.html', 1000); } else { const e = document.getElementById('regError'); e.textContent = res.error || 'Registration failed'; e.style.display = 'block'; showToast(res.error || 'Registration failed', 'error'); } });
+  document.getElementById('registerForm').addEventListener('submit', async function(e) { e.preventDefault(); const btn = this.querySelector('[type="submit"]'); const orig = btn.innerHTML; const pwd = document.getElementById('regPassword').value; if (pwd !== document.getElementById('regConfirm').value) { showToast('Passwords do not match', 'error'); return; } btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating…'; btn.disabled = true; const res = await AuthAPI.register(document.getElementById('regName').value.trim(), document.getElementById('regEmail').value.trim(), pwd, 'hr', document.getElementById('regCompany').value.trim()); btn.disabled = false; btn.innerHTML = orig; if (res.success) { Auth.save(res, 'hr'); showToast(`HR account created! Welcome, ${res.name.split(' ')[0]}! 🎉`, 'success'); setTimeout(() => window.location.replace('http://localhost:5000/hr/index.html'), 1000); } else { const e = document.getElementById('regError'); e.textContent = res.error || 'Registration failed'; e.style.display = 'block'; showToast(res.error || 'Registration failed', 'error'); } });
 
   document.getElementById('authThemeBtn')?.addEventListener('click', toggleTheme);
 });

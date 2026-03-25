@@ -1,5 +1,6 @@
 // routes/auth.js — Register & Login (User + HR) + Google OAuth · ResumeIQ v3.0
 //new
+const crypto = require('crypto');
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
@@ -9,7 +10,23 @@ const { ok, fail } = require('../middleware/helpers');
 
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-const REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI;
+const REDIRECT_URI =
+  process.env.GOOGLE_REDIRECT_URI ||
+  `http://localhost:${process.env.PORT || 5000}/api/auth/google/callback`;
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || `http://localhost:${process.env.PORT || 5000}`;
+
+/* one-time auth codes returned after OAuth callback */
+const pendingCodes = new Map();
+const CODE_TTL_MS = 5 * 60 * 1000;
+
+function issueCode(payload) {
+  const code = crypto.randomBytes(32).toString('hex');
+  pendingCodes.set(code, { payload, exp: Date.now() + CODE_TTL_MS });
+  for (const [k, v] of pendingCodes) {
+    if (v.exp < Date.now()) pendingCodes.delete(k);
+  }
+  return code;
+}
 
 /* ── REGISTER ──────────────────────────────────────────── */
 router.post('/register', async (req, res) => {
@@ -113,6 +130,9 @@ router.post('/login', async (req, res) => {
 
 /* ── GOOGLE OAUTH: REDIRECT ────────────────────────────── */
 router.get('/google', (req, res) => {
+  if (!CLIENT_ID || !CLIENT_SECRET) {
+    return fail(res, 'Google OAuth is not configured on server', 500);
+  }
   const role = ['user', 'hr'].includes(req.query.role) ? req.query.role : 'user';
 
   const client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET);
@@ -125,21 +145,16 @@ router.get('/google', (req, res) => {
     redirect_uri: REDIRECT_URI // ✅ FIX
   });
 
-  console.log("🔗 Google Auth URL:", url);
-
   res.redirect(url);
 });
 
 /* ── GOOGLE OAUTH: CALLBACK ────────────────────────────── */
 router.get('/google/callback', async (req, res) => {
-  console.log("🔥 CALLBACK HIT");
-  console.log("Query:", req.query);
-
   const { code, state, error } = req.query;
 
   if (error) {
     const loginPage = state === 'hr' ? '/hr/login.html' : '/user/login.html';
-    return res.redirect(`http://localhost:5000${loginPage}?error=google_denied`);
+    return res.redirect(`${FRONTEND_ORIGIN}${loginPage}?oauth=fail`);
   }
 
   try {
@@ -157,7 +172,6 @@ router.get('/google/callback', async (req, res) => {
     });
 
     const payload = ticket.getPayload();
-    console.log("👤 Google User:", payload);
 
     const { email, name, sub: googleId, picture } = payload;
 
@@ -168,7 +182,7 @@ router.get('/google/callback', async (req, res) => {
     if (user) {
       if ((user.role || 'user') !== role) {
         const loginPage = role === 'hr' ? '/hr/login.html' : '/user/login.html';
-        return res.redirect(`http://localhost:5000${loginPage}?error=wrong_portal`);
+        return res.redirect(`${FRONTEND_ORIGIN}${loginPage}?oauth=wrongportal`);
       }
 
       if (!user.google_id) {
@@ -200,7 +214,7 @@ router.get('/google/callback', async (req, res) => {
       user = { _id: result.insertedId, ...doc };
     }
 
-    const userData = encodeURIComponent(JSON.stringify({
+    const responsePayload = {
       user_id: user._id.toString(),
       name: user.name,
       email: user.email,
@@ -208,21 +222,29 @@ router.get('/google/callback', async (req, res) => {
       plan: user.plan || 'Free',
       role: user.role || role,
       company: user.company || '',
-    }));
+    };
 
-    console.log("🚀 Redirecting to frontend");
-
-    const successPage = role === 'hr' ? '/hr/login.html' : '/user/login.html';
-    return res.redirect(
-      `http://localhost:5000${successPage}#google_auth=${userData}`
-    );
+    const oneTimeCode = issueCode(responsePayload);
+    const successPath = role === 'hr' ? '/hr/oauth-callback.html' : '/user/oauth-callback.html';
+    return res.redirect(`${FRONTEND_ORIGIN}${successPath}?code=${encodeURIComponent(oneTimeCode)}`);
 
   } catch (e) {
-    console.error("❌ Google OAuth error:", e);
+    console.error('❌ Google OAuth error:', e);
 
     const loginPage = state === 'hr' ? '/hr/login.html' : '/user/login.html';
-    return res.redirect(`http://localhost:5000${loginPage}?error=google_failed`);
+    return res.redirect(`${FRONTEND_ORIGIN}${loginPage}?oauth=error`);
   }
+});
+
+/* ── GOOGLE OAUTH: EXCHANGE ONE-TIME CODE ─────────────── */
+router.post('/oauth/complete', (req, res) => {
+  const code = (req.body && req.body.code) || '';
+  const row = pendingCodes.get(code);
+  if (!row || row.exp < Date.now()) {
+    return fail(res, 'Invalid or expired code', 400);
+  }
+  pendingCodes.delete(code);
+  return ok(res, row.payload, 'OK');
 });
 
 module.exports = router;

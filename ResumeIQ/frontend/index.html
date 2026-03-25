@@ -53,6 +53,27 @@
             </div>
             <i class="fa-solid fa-arrow-right ldi-arrow"></i>
           </a>
+          <div class="login-drop-head" style="margin-top:10px;">Or continue with</div>
+          <a href="/api/auth/google" class="login-drop-item">
+            <div class="ldi-icon" style="background:rgba(234,67,53,0.12);border:1px solid rgba(234,67,53,0.25);">
+              <i class="fa-brands fa-google" style="color:#ea4335;"></i>
+            </div>
+            <div class="ldi-text">
+              <div class="ldi-title">Google</div>
+              <div class="ldi-sub">Job Seeker Portal</div>
+            </div>
+            <i class="fa-solid fa-arrow-right ldi-arrow"></i>
+          </a>
+          <a href="/api/auth/google?role=hr" class="login-drop-item">
+            <div class="ldi-icon" style="background:rgba(234,67,53,0.12);border:1px solid rgba(234,67,53,0.25);">
+              <i class="fa-brands fa-google" style="color:#ea4335;"></i>
+            </div>
+            <div class="ldi-text">
+              <div class="ldi-title">Google</div>
+              <div class="ldi-sub">HR / Recruiter Portal</div>
+            </div>
+            <i class="fa-solid fa-arrow-right ldi-arrow"></i>
+          </a>
         </div>
       </div>
       <button class="lnav-mob-btn" id="lnavMobBtn"><i class="fa-solid fa-bars"></i></button>
@@ -67,6 +88,8 @@
     <div class="mob-login-group">
       <a href="user/login.html" class="btn btn-primary" style="width:100%;justify-content:center;"><i class="fa-solid fa-user-tie"></i> Job Seeker Login</a>
       <a href="hr/login.html" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:10px;"><i class="fa-solid fa-building-user"></i> HR Login</a>
+      <a href="/api/auth/google" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:10px;"><i class="fa-brands fa-google"></i> Continue with Google</a>
+      <a href="/api/auth/google?role=hr" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:10px;"><i class="fa-brands fa-google"></i> Continue with Google (HR)</a>
     </div>
   </div>
 </nav>

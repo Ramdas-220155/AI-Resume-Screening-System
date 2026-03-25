@@ -129,9 +129,8 @@ document
     hideFormMsg();
 
     try {
-      // API base — matches the API_BASE in api.js
-      // 🔧 Change this to your deployed backend URL when hosting online
-      const apiBase = "http://localhost:5000/api";
+      // API base — same origin as landing page
+      const apiBase = "/api";
 
       const res = await fetch(`${apiBase}/contact/send`, {
         method: "POST",
